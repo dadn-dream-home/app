@@ -9,7 +9,14 @@ class Gauge extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: _MyPainter(),
-      child: Container(),
+      child: Center(
+        child: Text(
+          "37",
+          style: GoogleFonts.inter(
+            textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -19,22 +26,6 @@ class _MyPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     drawArc(canvas, size, toPercent: 100, color: Colors.grey[200]!);
     drawArc(canvas, size, toPercent: 67, color: Colors.amber);
-
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: "37",
-        style: GoogleFonts.inter(
-          textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
-        ),
-      ),
-      textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center,
-    )..layout();
-
-    textPainter.paint(
-      canvas,
-      Alignment.center.inscribe(textPainter.size, Offset.zero & size).topLeft,
-    );
   }
 
   @override
