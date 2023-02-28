@@ -6,10 +6,10 @@ void main() {
   testGoldens('temperature widget show 37 as in prototype', (tester) async {
     await loadAppFonts();
 
-    final builder = GoldenBuilder.column()
-      ..addScenario("37", const TemperatureCard());
-
-    await tester.pumpWidgetBuilder(MyApp(builder.build()));
+    await tester.pumpWidgetBuilder(
+      const TemperatureCard(),
+      wrapper: MyApp.new,
+    );
 
     await screenMatchesGolden(tester, "temperature 37");
   });
