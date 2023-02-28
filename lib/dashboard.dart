@@ -54,7 +54,9 @@ class TemperatureCard extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsetsDirectional.only(top: 20.0),
-              child: const Text("Notification - OFF"),
+              child: const Text(
+                "Notification - OFF",
+              ),
             ),
             Container(
               margin: const EdgeInsetsDirectional.only(top: 15.0),

@@ -24,7 +24,8 @@ class _MyPainter extends CustomPainter {
       text: TextSpan(
         text: "37",
         style: GoogleFonts.inter(
-            textStyle: const TextStyle(color: Colors.amber, fontSize: 40)),
+          textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
+        ),
       ),
       textDirection: TextDirection.ltr,
       textAlign: TextAlign.center,
