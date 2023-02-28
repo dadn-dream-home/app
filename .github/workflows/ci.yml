@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
+          cache: true
           channel: 'stable'
       - run: flutter pub get
       - run: dart format --output=none --set-exit-if-changed .
@@ -29,18 +30,35 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
+          cache: true
           channel: 'stable'
       - run: flutter pub get
       - run: flutter test
 
-  build:
+  build android:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
       - uses: subosito/flutter-action@v2
         with:
+          cache: true
           channel: 'stable'
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
+
+  build ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          cache: true
+          channel: 'stable'
+          architecture: x64
+      - run: flutter pub get
       - run: flutter build ios --release --no-codesign
