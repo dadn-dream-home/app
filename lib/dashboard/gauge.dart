@@ -67,7 +67,7 @@ class _MyPainter extends CustomPainter {
     drawArc(canvas, size, toPercent: 100, color: Colors.grey[200]!);
     drawArc(canvas, size,
         toPercent: ((value - 10) / 40) * 100, color: Colors.amber);
-        // 10°C is 0%, 50°C is 100%
+    // 10°C is 0%, 50°C is 100%
   }
 
   @override
