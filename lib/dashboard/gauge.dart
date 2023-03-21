@@ -1,9 +1,34 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:vector_math/vector_math.dart' as vmath;
 
-class Gauge extends StatelessWidget {
-  const Gauge({super.key});
+class Gauge extends StatefulWidget {
+  const Gauge({Key? key}) : super(key: key);
+
+  @override
+  _GaugeState createState() => _GaugeState();
+}
+
+class _GaugeState extends State<Gauge> {
+  String _value = "0.0";
+
+  Future<void> _fetchData() async {
+    final response = await http.get(Uri.parse('https://io.adafruit.com/api/v2/datdtnhcse/feeds/bbc-temp/data?limit=1'));
+    final jsonString = json.decode(response.body);
+    final j = jsonString.elementAt(0);
+    final value = j["value"];
+    setState(() {
+      _value = value;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +36,7 @@ class Gauge extends StatelessWidget {
       painter: _MyPainter(),
       child: Center(
         child: Text(
-          "37",
+          "$_value",
           style: GoogleFonts.inter(
             textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
           ),
