@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,9 +14,11 @@ class Gauge extends StatefulWidget {
 
 class _GaugeState extends State<Gauge> {
   String _value = "0.0";
+  late Timer timer;
 
   Future<void> _fetchData() async {
-    final response = await http.get(Uri.parse('https://io.adafruit.com/api/v2/datdtnhcse/feeds/bbc-temp/data?limit=1'));
+    final response = await http.get(Uri.parse(
+        'https://io.adafruit.com/api/v2/datdtnhcse/feeds/bbc-temp/data?limit=1'));
     final jsonString = json.decode(response.body);
     final j = jsonString.elementAt(0);
     final value = j["value"];
@@ -27,13 +30,15 @@ class _GaugeState extends State<Gauge> {
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      _fetchData();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: _MyPainter(),
+      painter: _MyPainter(value: double.parse(_value)),
       child: Center(
         child: Text(
           "$_value",
@@ -44,13 +49,23 @@ class _GaugeState extends State<Gauge> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
 }
 
 class _MyPainter extends CustomPainter {
+  final double value;
+
+  _MyPainter({required this.value});
+
   @override
   void paint(Canvas canvas, Size size) {
     drawArc(canvas, size, toPercent: 100, color: Colors.grey[200]!);
-    drawArc(canvas, size, toPercent: 67, color: Colors.amber);
+    drawArc(canvas, size, toPercent: ((value - 10) / 40) *  100, color: Colors.amber);
   }
 
   @override
