@@ -10,32 +10,30 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Light extends StatefulWidget {
   final String lightName;
-  const Light(this.lightName, {super.key});
+  // bool showWidget = false;
+  final Function() notifyParent;
+  const Light(this.lightName, this.notifyParent, {super.key});
 
   @override
   State<Light> createState() => _LightState();
 }
 
 class _LightState extends State<Light> {
-  bool showWidget = true;
+  bool showWidget = false;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       GestureDetector(
         onTap: () {
-          setState(() {
-            showWidget = !showWidget;
-          });
+          widget.notifyParent();
         },
         child: DeviceView(widget.lightName),
       ),
-      const SizedBox(
-        height: 20,
-      ),
       showWidget
           ? Container(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+              padding:
+                  const EdgeInsetsDirectional.only(start: 16, end: 16, top: 20),
               child: Theme(
                   data: Theme.of(context).copyWith(
                     textTheme: TextTheme(
@@ -51,10 +49,13 @@ class _LightState extends State<Light> {
                     SizedBox(height: 10),
                     ChooseTime(),
                     SizedBox(height: 10),
-                    // ChooseDay()
+                    ChooseDay()
                   ])),
             )
-          : Container()
+          : Container(),
+      // const SizedBox(
+      //   height: 20,
+      // )
     ]);
   }
 }

@@ -3,8 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dream_home/bottom_nav.dart';
 import 'package:dream_home/light/light.dart';
 
-class Lighting extends StatelessWidget {
+class Lighting extends StatefulWidget {
   const Lighting({super.key});
+
+  @override
+  State<Lighting> createState() => _LightingState();
+}
+
+class _LightingState extends State<Lighting> {
+  bool showWidget = false;
+
+  final List<String> entries = <String>['Light 1', 'Light 2'];
+
+  refresh() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +52,21 @@ class Lighting extends StatelessWidget {
         shadowColor: Colors.transparent,
       ),
       backgroundColor: Colors.grey[100],
-      body: Column(children: const [Light("Light 1")]),
+      body: ListView.separated(
+        // padding: const EdgeInsets.all(8),
+        itemCount: entries.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Light(entries[index], refresh);
+        },
+        separatorBuilder: (BuildContext context, int index) => Container(
+            padding: const EdgeInsetsDirectional.all(18),
+            child: const Divider(
+              thickness: 1,
+              height: 20,
+              color: Color(0xff928E8E),
+            )),
+        // children: const [Light("Light 1"), Light("Light 2")],
+      ),
       bottomNavigationBar: const BottomNav(),
     );
   }
