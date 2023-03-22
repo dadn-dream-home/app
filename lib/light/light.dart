@@ -10,27 +10,35 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Light extends StatefulWidget {
   final String lightName;
+
   // bool showWidget = false;
-  final Function() notifyParent;
-  const Light(this.lightName, this.notifyParent, {super.key});
+  // final Function() notifyParent;
+  Light(this.lightName, {super.key});
 
   @override
   State<Light> createState() => _LightState();
 }
 
 class _LightState extends State<Light> {
-  bool showWidget = false;
+  bool chosen = false;
+  // static bool oneIsShowing = false;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       GestureDetector(
         onTap: () {
-          widget.notifyParent();
+          setState(() {
+            chosen = !chosen;
+          });
+
+          // _LightState.oneIsShowing = !_LightState.oneIsShowing;
+
+          // widget.notifyParent();
         },
         child: DeviceView(widget.lightName),
       ),
-      showWidget
+      chosen
           ? Container(
               padding:
                   const EdgeInsetsDirectional.only(start: 16, end: 16, top: 20),

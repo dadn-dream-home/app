@@ -11,13 +11,15 @@ class Lighting extends StatefulWidget {
 }
 
 class _LightingState extends State<Lighting> {
-  bool showWidget = false;
+  // bool oneIsShowing = false;
 
   final List<String> entries = <String>['Light 1', 'Light 2'];
 
-  refresh() {
-    setState(() {});
-  }
+  // refresh() {
+  //   setState(() {
+  //     oneIsShowing = !oneIsShowing;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class _LightingState extends State<Lighting> {
         // padding: const EdgeInsets.all(8),
         itemCount: entries.length,
         itemBuilder: (BuildContext context, int index) {
-          return Light(entries[index], refresh);
+          return Light(entries[index]);
         },
         separatorBuilder: (BuildContext context, int index) => Container(
             padding: const EdgeInsetsDirectional.all(18),
