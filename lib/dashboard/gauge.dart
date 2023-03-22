@@ -6,24 +6,34 @@ import 'package:http/http.dart' as http;
 import 'package:vector_math/vector_math.dart' as vmath;
 
 class Gauge extends StatefulWidget {
-  const Gauge({Key? key}) : super(key: key);
+  const Gauge({Key? key, required this.typeValue}) : super(key: key);
+
+  final String typeValue;
 
   @override
   _GaugeState createState() => _GaugeState();
 }
 
 class _GaugeState extends State<Gauge> {
-  String _value = "0.0";
+  String _temp = "0.0", _humi = "0.0";
   late Timer timer;
 
   Future<void> _fetchData() async {
-    final response = await http.get(Uri.parse(
+    final tempResponse = await http.get(Uri.parse(
         'https://io.adafruit.com/api/v2/datdtnhcse/feeds/bbc-temp/data?limit=1'));
-    final api = json.decode(response.body);
-    final jsonString = api.elementAt(0);
-    final value = jsonString["value"];
+    final tempAPI = json.decode(tempResponse.body);
+    final tempJSON = tempAPI.elementAt(0);
+    final temp = tempJSON["value"];
+
+    final humiResponse = await http.get(Uri.parse(
+        'https://io.adafruit.com/api/v2/datdtnhcse/feeds/bbc-humi/data?limit=1'));
+    final humiAPI = json.decode(humiResponse.body);
+    final humiJSON = humiAPI.elementAt(0);
+    final humi = humiJSON["value"];
+
     setState(() {
-      _value = value;
+      _temp = temp;
+      _humi = humi;
     });
   }
 
@@ -37,17 +47,35 @@ class _GaugeState extends State<Gauge> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _MyPainter(value: double.parse(_value)),
-      child: Center(
-        child: Text(
-          "$_value",
-          style: GoogleFonts.inter(
-            textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
+    if (widget.typeValue == "temperature") {
+      return CustomPaint(
+        painter:
+            _MyPainter(value: double.parse(_temp), typeValue: "temperature"),
+        child: Center(
+          child: Text(
+            "$_temp",
+            style: GoogleFonts.inter(
+              textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } else if (widget.typeValue == "humidity") {
+      return CustomPaint(
+        painter: _MyPainter(value: double.parse(_humi), typeValue: "humidity"),
+        child: Center(
+          child: Text(
+            "$_humi",
+            style: GoogleFonts.inter(
+              textStyle: const TextStyle(
+                  color: Color.fromARGB(255, 7, 210, 255), fontSize: 40),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   @override
@@ -59,15 +87,22 @@ class _GaugeState extends State<Gauge> {
 
 class _MyPainter extends CustomPainter {
   final double value;
+  final String typeValue;
 
-  _MyPainter({required this.value});
+  _MyPainter({required this.value, required this.typeValue});
 
   @override
   void paint(Canvas canvas, Size size) {
     drawArc(canvas, size, toPercent: 100, color: Colors.grey[200]!);
-    drawArc(canvas, size,
-        toPercent: ((value - 10) / 40) * 100, color: Colors.amber);
-    // 10°C is 0%, 50°C is 100%
+    if (typeValue == "temperature") {
+      drawArc(canvas, size,
+          toPercent: ((value - 10) / 40) * 100, color: Colors.amber);
+      // 10°C is 0%, 50°C is 100%
+    } else if (typeValue == "humidity") {
+      drawArc(canvas, size,
+          toPercent: value, color: Color.fromARGB(255, 7, 210, 255));
+      // 10°C is 0%, 50°C is 100%
+    }
   }
 
   @override
