@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:vector_math/vector_math.dart' as vmath;
 
 class Gauge extends StatefulWidget {
-  const Gauge({Key? key, required this.typeValue}) : super(key: key);
+  const Gauge({Key? key, required this.typeValue, void Function(double p1)? onChanged}) : super(key: key);
 
   final String typeValue;
 
@@ -46,37 +46,35 @@ class _GaugeState extends State<Gauge> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (widget.typeValue == "temperature") {
-      return CustomPaint(
-        painter:
-            _MyPainter(value: double.parse(_temp), typeValue: "temperature"),
-        child: Center(
-          child: Text(
-            "$_temp",
-            style: GoogleFonts.inter(
-              textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
-            ),
+Widget build(BuildContext context) {
+  if (widget.typeValue == "temperature") {
+    return CustomPaint(
+      painter: _MyPainter(value: double.parse(_temp), typeValue: "temperature"),
+      child: Center(
+        child: Text(
+          "$_temp",
+          style: GoogleFonts.inter(
+            textStyle: const TextStyle(color: Colors.amber, fontSize: 40),
           ),
         ),
-      );
-    } else if (widget.typeValue == "humidity") {
-      return CustomPaint(
-        painter: _MyPainter(value: double.parse(_humi), typeValue: "humidity"),
-        child: Center(
-          child: Text(
-            "$_humi",
-            style: GoogleFonts.inter(
-              textStyle: const TextStyle(
-                  color: Color.fromARGB(255, 7, 210, 255), fontSize: 40),
-            ),
+      ),
+    );
+  } else if (widget.typeValue == "humidity") {
+    return CustomPaint(
+      painter: _MyPainter(value: double.parse(_humi), typeValue: "humidity"),
+      child: Center(
+        child: Text(
+          "$_humi",
+          style: GoogleFonts.inter(
+            textStyle: const TextStyle(color: Color.fromARGB(255, 7, 210, 255), fontSize: 40),
           ),
         ),
-      );
-    } else {
-      return Container();
-    }
+      ),
+    );
+  } else {
+    return Container();
   }
+}
 
   @override
   void dispose() {
@@ -96,12 +94,12 @@ class _MyPainter extends CustomPainter {
     drawArc(canvas, size, toPercent: 100, color: Colors.grey[200]!);
     if (typeValue == "temperature") {
       drawArc(canvas, size,
-          toPercent: ((value - 10) / 40) * 100, color: Colors.amber);
-      // 10°C is 0%, 50°C is 100%
+        toPercent: ((value - 10) / 40) * 100, color: Colors.amber);
+    // 10°C is 0%, 50°C is 100%
     } else if (typeValue == "humidity") {
       drawArc(canvas, size,
-          toPercent: value, color: Color.fromARGB(255, 7, 210, 255));
-      // 10°C is 0%, 50°C is 100%
+        toPercent: value, color: Color.fromARGB(255, 7, 210, 255));
+    // 10°C is 0%, 50°C is 100%
     }
   }
 
