@@ -28,18 +28,35 @@ class _LightColorState extends State<LightColor> {
           textAlign: TextAlign.left,
           style: TextStyle(color: Color(0xff928E8E)),
         ),
-        Card(
-          child: Container(
-              padding: const EdgeInsetsDirectional.all(10),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Light color"),
-                    IconButton(
-                      icon: const Icon(Icons.palette, color: Color(0xff928E8E)),
-                      onPressed: () => _dialogBuilder(context),
-                    ),
-                  ])),
+        Container(
+          // decoration: BoxDecoration(
+          //   borderRadius: BorderRadius.circular(12),
+          //   boxShadow: [
+          //     BoxShadow(
+          //       color: Colors.black.withOpacity(0.12),
+          //       spreadRadius: 0,
+          //       blurRadius: 8,
+          //       offset: Offset(0, 2), // changes position of shadow
+          //     ),
+          //   ],
+          // ),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Container(
+                padding: const EdgeInsetsDirectional.only(
+                    start: 10, top: 3, bottom: 3),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Light color"),
+                      IconButton(
+                        icon: Icon(Icons.palette, color: currentColor),
+                        onPressed: () => _dialogBuilder(context),
+                      ),
+                    ])),
+          ),
         )
       ],
     );

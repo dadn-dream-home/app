@@ -14,81 +14,119 @@ class ChooseDay extends StatelessWidget {
           style: TextStyle(color: Color(0xff928E8E)),
         ),
         Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
             child: Container(
-          padding: const EdgeInsetsDirectional.all(10),
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Monday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Tuesday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Wednesday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Thursday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Friday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Saturday'), CheckBox()],
-            ),
-            const Divider(
-              height: 20,
-              thickness: 0.7,
-              // indent: 20,
-              // endIndent: 0,
-              color: Color(0xff928E8E),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('Every Sunday'), CheckBox()],
-            )
-          ]),
-        ))
+              padding: const EdgeInsetsDirectional.all(10),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Monday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Tuesday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Wednesday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Thursday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Friday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Saturday',
+                    ),
+                    CheckBox()
+                  ],
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 0.7,
+                  // indent: 20,
+                  // endIndent: 0,
+                  color: Color(0xff928E8E),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Every Sunday',
+                    ),
+                    CheckBox()
+                  ],
+                )
+              ]),
+            ))
       ],
     );
   }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:dream_home/device/switch.dart';
 
 class DeviceView extends StatelessWidget {
-  final String DeviceName;
+  final String deviceName;
 
-  const DeviceView(this.DeviceName, {super.key});
+  const DeviceView(this.deviceName, {super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +17,6 @@ class DeviceView extends StatelessWidget {
           ),
         )),
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-        margin: const EdgeInsetsDirectional.symmetric(horizontal: 16),
         height: 100,
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,7 +25,7 @@ class DeviceView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start, // for left side
                   children: [
-                    Text(DeviceName, style: const TextStyle(fontSize: 20)),
+                    Text(deviceName, style: const TextStyle(fontSize: 20)),
                     const SizedBox(height: 10),
                     const Text(
                       'Today | 5pm',

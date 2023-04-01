@@ -13,6 +13,9 @@ class ChooseTime extends StatelessWidget {
           style: TextStyle(color: Color(0xff928E8E)),
         ),
         Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
           child: Container(
               padding: const EdgeInsetsDirectional.all(10),
               child: Column(
@@ -20,10 +23,10 @@ class ChooseTime extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
+                      Text('From', style: TextStyle(color: Color(0xff928E8E))),
                       Text(
-                        'From',
-                      ),
-                      Text('18h', style: TextStyle(color: Color(0xff928E8E)))
+                        '18h',
+                      )
                     ],
                   ),
                   const Divider(
@@ -36,10 +39,8 @@ class ChooseTime extends StatelessWidget {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
-                        Text(
-                          'To',
-                        ),
-                        Text('20h', style: TextStyle(color: Color(0xff928E8E)))
+                        Text('To', style: TextStyle(color: Color(0xff928E8E))),
+                        Text('20h')
                       ])
                 ],
               )),

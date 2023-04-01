@@ -36,7 +36,8 @@ class _LightingState extends State<Lighting> {
         actions: [
           TextButton(
             style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 16, color: Colors.black),
+              foregroundColor: Colors.black,
+              textStyle: GoogleFonts.outfit(fontSize: 16),
             ),
             onPressed: () {},
             child: const Text('Save'),
@@ -55,20 +56,24 @@ class _LightingState extends State<Lighting> {
       ),
       backgroundColor: Colors.grey[100],
       body: ListView.separated(
-        // padding: const EdgeInsets.all(8),
-        itemCount: entries.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Light(entries[index]);
-        },
-        separatorBuilder: (BuildContext context, int index) => Container(
-            padding: const EdgeInsetsDirectional.all(18),
-            child: const Divider(
-              thickness: 1,
-              height: 20,
-              color: Color(0xff928E8E),
-            )),
-        // children: const [Light("Light 1"), Light("Light 2")],
-      ),
+          // padding: const EdgeInsets.all(8),
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Light(entries[index]);
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              // Container(
+              //     padding: const EdgeInsetsDirectional.symmetric(horizontal: 18),
+              //     child: const Divider(
+              //       thickness: 1,
+              //       height: 20,
+              //       color: Color(0xff928E8E),
+              //     )),
+              SizedBox(
+                height: 10,
+              )
+          // children: const [Light("Light 1"), Light("Light 2")],
+          ),
       bottomNavigationBar: const BottomNav(),
     );
   }

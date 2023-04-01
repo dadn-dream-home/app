@@ -14,6 +14,9 @@ class Automatic extends StatelessWidget {
           style: TextStyle(color: Color(0xff928E8E)),
         ),
         Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
           child: Container(
               padding: const EdgeInsetsDirectional.only(
                   start: 10, top: 3, bottom: 3),

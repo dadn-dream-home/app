@@ -19,9 +19,9 @@ class _CheckBoxState extends State<CheckBox> {
         MaterialState.focused,
       };
       if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
+        return const Color(0xff928E8E);
       }
-      return Colors.red;
+      return const Color(0xff928E8E);
     }
 
     return Checkbox(
