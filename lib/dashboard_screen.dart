@@ -38,7 +38,7 @@ class Dashboard extends StatelessWidget {
 }
 
 class TemperatureCard extends StatelessWidget {
-  const TemperatureCard({Key? key});
+  const TemperatureCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,13 @@ class TemperatureCard extends StatelessWidget {
           padding: const EdgeInsetsDirectional.symmetric(vertical: 10),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const SizedBox(
+            SizedBox(
               width: 100,
               height: 100,
-              child: Gauge(typeValue: "temperature"),
+              child: Gauge(
+                  color: Colors.amber,
+                  value: 37,
+                  toPercent: (p0) => (p0 - 10) * 100 / 40),
             ),
             Container(
               margin: const EdgeInsetsDirectional.only(top: 20.0),
@@ -81,7 +84,7 @@ class TemperatureCard extends StatelessWidget {
 }
 
 class HumidCard extends StatelessWidget {
-  const HumidCard({Key? key});
+  const HumidCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +96,14 @@ class HumidCard extends StatelessWidget {
           padding: const EdgeInsetsDirectional.symmetric(vertical: 10),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const SizedBox(
+            SizedBox(
               width: 100,
               height: 100,
-              child: Gauge(typeValue: "humidity"),
+              child: Gauge(
+                value: 80,
+                color: Colors.green,
+                toPercent: (p0) => p0,
+              ),
             ),
             Container(
               margin: const EdgeInsetsDirectional.only(top: 20.0),
