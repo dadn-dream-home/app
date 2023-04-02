@@ -1,7 +1,6 @@
 import 'package:dream_home/dashboard_screen/card.dart';
 import 'package:dream_home/dashboard_screen/gauge.dart';
-import 'package:dream_home/models/moisture.dart';
-import 'package:dream_home/models/temperature.dart';
+import 'package:dream_home/models/data_point.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,7 +46,7 @@ class TemperatureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataPointCard(
       name: "Temperature",
-      value: Temperature(37),
+      value: DataPoint.temperature(37),
     );
   }
 }
@@ -70,7 +69,7 @@ class HumidCard extends StatelessWidget {
               height: 100,
               child: Gauge(
                 color: Colors.green,
-                value: Moisture(80),
+                value: DataPoint.moisture(80),
               ),
             ),
             Container(
