@@ -1,3 +1,4 @@
+import 'package:dream_home/models/data_point.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vector_math/vector_math.dart' as vmath;
@@ -7,17 +8,15 @@ class Gauge extends StatelessWidget {
     super.key,
     required this.color,
     required this.value,
-    required this.toPercent,
   });
 
   final Color color;
-  final double value;
-  final double Function(double) toPercent;
+  final DataPoint value;
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: _MyPainter(percent: toPercent(value), color: color),
+      painter: _MyPainter(color: color, value: value),
       child: Center(
         child: Text(
           "$value",
@@ -31,9 +30,9 @@ class Gauge extends StatelessWidget {
 }
 
 class _MyPainter extends CustomPainter {
-  _MyPainter({required this.percent, required this.color});
+  _MyPainter({required this.value, required this.color});
 
-  final double percent;
+  final DataPoint value;
   final Color color;
 
   @override
@@ -41,7 +40,7 @@ class _MyPainter extends CustomPainter {
     // outer circle
     drawArc(canvas, size, percent: 100, color: Colors.grey[200]!);
     // actual circle
-    drawArc(canvas, size, percent: percent, color: color);
+    drawArc(canvas, size, percent: value.toPercent(), color: color);
   }
 
   @override
