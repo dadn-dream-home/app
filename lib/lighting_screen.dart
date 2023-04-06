@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dream_home/bottom_nav.dart';
-import 'package:dream_home/light/light.dart';
+import 'package:dream_home/widgets/bottom_nav.dart';
+import 'package:dream_home/lighting_screen/light.dart';
 
 class Lighting extends StatefulWidget {
   const Lighting({super.key});

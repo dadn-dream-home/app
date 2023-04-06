@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dream_home/device/checkbox.dart';
+import 'package:dream_home/widgets/checkbox.dart';
 
 class ChooseDay extends StatelessWidget {
   const ChooseDay({super.key});
