@@ -18,7 +18,7 @@ class _TemperatureCardState extends State<TemperatureCard>
   @override
   void initState() {
     super.initState();
-    restartTimer();
+    restartFetching();
   }
 
   @override

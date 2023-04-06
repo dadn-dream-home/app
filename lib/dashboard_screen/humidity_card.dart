@@ -17,7 +17,7 @@ class _HumidCardState extends State<HumidCard> with PeriodicFetching {
   @override
   void initState() {
     super.initState();
-    restartTimer();
+    restartFetching();
   }
 
   @override

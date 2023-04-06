@@ -10,7 +10,7 @@ mixin PeriodicFetching<T extends StatefulWidget> on State<T> {
     this.value = value;
   }
 
-  void restartTimer({Duration duration = const Duration()}) {
+  void restartFetching({Duration duration = const Duration()}) {
     timer = Timer(duration, handleTimeout);
   }
 
@@ -25,7 +25,7 @@ mixin PeriodicFetching<T extends StatefulWidget> on State<T> {
 
     setState(() {
       value = dataPoints[0];
-      restartTimer(duration: const Duration(seconds: 3));
+      restartFetching(duration: const Duration(seconds: 3));
     });
   }
 }
