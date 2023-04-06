@@ -1,6 +1,6 @@
-import 'package:dream_home/lighting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dream_home/models/light_setting.dart';
 
 class ChooseTime extends ConsumerWidget {
   final LightModel lightModel;

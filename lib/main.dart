@@ -1,7 +1,7 @@
-import 'package:dream_home/dashboard.dart';
+import 'package:dream_home/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dream_home/lighting.dart';
+import 'package:dream_home/lighting_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {

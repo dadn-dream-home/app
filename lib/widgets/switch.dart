@@ -32,14 +32,12 @@ class _SwitchButtonState extends State<SwitchButton> {
   Future<void> _fetchData() async {
     var link =
         'https://io.adafruit.com/api/v2/nhatha3788/feeds/light${widget.deviceName[widget.deviceName.length - 1]}/data?limit=1';
-    print(link);
     final lightStatusResponse = await http.get(Uri.parse(link));
 
     if (lightStatusResponse.statusCode == 200) {
       final lightStatusAPI = json.decode(lightStatusResponse.body);
       final lightStatusJSON = lightStatusAPI.elementAt(0);
       final lightStatus = lightStatusJSON["value"];
-      print(lightStatus);
 
       setState(() {
         if (lightStatus == "1") {
@@ -58,7 +56,6 @@ class _SwitchButtonState extends State<SwitchButton> {
       'value': '${status ? 1 : 0}',
       "X-AIO-Key": "aio_oXYI81z4sxKKskdnG9XIIgLPDFqw"
     };
-    print(data);
     var link =
         'https://io.adafruit.com/api/v2/nhatha3788/feeds/light${widget.deviceName[widget.deviceName.length - 1]}/data';
     final response = await http.post(
@@ -73,16 +70,13 @@ class _SwitchButtonState extends State<SwitchButton> {
   @override
   Widget build(BuildContext context) {
     return Switch(
-      // This bool value toggles the switch.
       value: light,
       activeColor: Colors.red,
       onChanged: (bool value) {
-        // This is called when the user toggles the switch.
         setState(() {
           light = !light;
         });
         postData(light);
-        print("hello");
       },
     );
   }

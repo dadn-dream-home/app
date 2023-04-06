@@ -1,6 +1,6 @@
-import 'package:dream_home/lighting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dream_home/models/light_setting.dart';
 
 class Automatic extends ConsumerWidget {
   final LightModel lightModel;
@@ -25,7 +25,7 @@ class Automatic extends ConsumerWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Automatic"),
+                    const Text("Automatic"),
                     Switch(
                         activeColor: Colors.red,
                         onChanged: (bool? value) => ref

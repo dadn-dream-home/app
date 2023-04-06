@@ -1,27 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dream_home/lighting.dart';
+import 'package:dream_home/models/light_setting.dart';
 
 class ChooseDay extends ConsumerWidget {
-  // final String deviceName;
   final LightModel lightModel;
   const ChooseDay(this.lightModel, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // var lights = ref.watch(lightProvider);
-    // LightModel? light;
-    // for (var i in lights) {
-    //   if (i.label == lightModel.label) light = i;
-    // }
     List<int> days = [];
     for (var i = 2; i <= 8; i++) {
       days.add(i);
     }
-
-    // inspect(light);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
