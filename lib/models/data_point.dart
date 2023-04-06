@@ -14,7 +14,7 @@ class DataPoint {
   final DataPointType type;
   final double value;
 
-  DataPoint({required this.type, required this.value});
+  const DataPoint({required this.type, required this.value});
 
   factory DataPoint.temperature(double value) =>
       DataPoint(type: DataPointType.temperature, value: value);
