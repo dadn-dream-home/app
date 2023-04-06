@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dream_home/dashboard_screen/card.dart';
 import 'package:dream_home/models/data_point.dart';
+import 'package:dream_home/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +27,8 @@ class Dashboard extends StatelessWidget {
         shadowColor: Colors.transparent,
       ),
       backgroundColor: Colors.grey[100],
-      body: Container(
+      bottomNavigationBar: const BottomNav(),
+      body: SingleChildScrollView(
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,26 +42,82 @@ class Dashboard extends StatelessWidget {
   }
 }
 
-class TemperatureCard extends StatelessWidget {
+class TemperatureCard extends StatefulWidget {
   const TemperatureCard({super.key});
+
+  @override
+  State<TemperatureCard> createState() => _TemperatureCardState();
+}
+
+class _TemperatureCardState extends State<TemperatureCard>
+    with PeriodicFetching {
+  @override
+  DataPoint value = DataPoint(value: 0, type: DataPointType.temperature);
+
+  @override
+  void initState() {
+    super.initState();
+    restartTimer();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DataPointCard(
       name: "🌡️ Temperature",
-      value: DataPoint.temperature(36),
+      value: value,
     );
   }
 }
 
-class HumidCard extends StatelessWidget {
+class HumidCard extends StatefulWidget {
   const HumidCard({super.key});
+
+  @override
+  State<HumidCard> createState() => _HumidCardState();
+}
+
+class _HumidCardState extends State<HumidCard> with PeriodicFetching {
+  @override
+  DataPoint value = DataPoint(value: 0, type: DataPointType.humidity);
+
+  @override
+  void initState() {
+    super.initState();
+    restartTimer();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DataPointCard(
       name: "💧 Humidity",
-      value: DataPoint.humidity(50),
+      value: value,
     );
+  }
+}
+
+mixin PeriodicFetching<T extends StatefulWidget> on State<T> {
+  late Timer timer;
+  DataPoint get value;
+  set value(DataPoint value) {
+    this.value = value;
+  }
+
+  void restartTimer({Duration duration = const Duration()}) {
+    timer = Timer(duration, handleTimeout);
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void handleTimeout() async {
+    final dataPoints = await fetchDataPoints(type: value.type);
+
+    setState(() {
+      value = dataPoints[0];
+      restartTimer(duration: const Duration(seconds: 3));
+    });
   }
 }
