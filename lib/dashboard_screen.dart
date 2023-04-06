@@ -32,9 +32,15 @@ class Dashboard extends StatelessWidget {
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            TemperatureCard(),
-            HumidCard(), // added HumidCard here
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Expanded(child: HumidCard()),
+                Expanded(child: HumidCard()),
+              ],
+            ),
+            const TemperatureCard(), // added HumidCard here
           ],
         ),
       ),
