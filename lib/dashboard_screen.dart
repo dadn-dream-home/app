@@ -1,5 +1,5 @@
-import 'package:dream_home/dashboard_screen/humidity_card.dart';
-import 'package:dream_home/dashboard_screen/temperature_card.dart';
+import 'package:dream_home/dashboard_screen/humidity_point_display.dart';
+import 'package:dream_home/dashboard_screen/temperature_point_display.dart';
 import 'package:dream_home/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,11 +34,11 @@ class Dashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Expanded(child: HumidCard()),
-                Expanded(child: HumidCard()),
+                Expanded(child: HumidPointDisplay()),
+                Expanded(child: HumidPointDisplay()),
               ],
             ),
-            const TemperatureCard(),
+            const TemperaturePointDisplay(),
           ],
         ),
       ),

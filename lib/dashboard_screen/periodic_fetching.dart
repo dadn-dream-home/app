@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 
 mixin PeriodicFetching<T extends StatefulWidget> on State<T> {
   late Timer timer;
-  DataPoint get value;
-  set value(DataPoint value) {
-    this.value = value;
-  }
+  late DataPoint value;
 
   void restartFetching({Duration duration = const Duration()}) {
     timer = Timer(duration, handleTimeout);
