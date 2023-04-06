@@ -36,7 +36,7 @@ class DeviceView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end, // for left side
                 children: [
-                  const SwitchButton(),
+                  SwitchButton(deviceName),
                   Row(children: [
                     const Text("Duration",
                         style: TextStyle(color: Color(0xff928E8E))),

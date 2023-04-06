@@ -1,34 +1,26 @@
+import 'dart:developer';
+
 import 'package:dream_home/device/automatic.dart';
 import 'package:dream_home/device/choose_day.dart';
 import 'package:dream_home/device/choose_time.dart';
 import 'package:dream_home/device/device_view.dart';
 import 'package:dream_home/device/light_color.dart';
+import 'package:dream_home/lighting.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:dream_home/device/switch.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:dream_home/device/checkbox.dart';
 
-class Light extends StatefulWidget {
+class Light extends ConsumerStatefulWidget {
   final String lightName;
-
-  // bool showWidget = false;
-  // final Function() notifyParent;
-  const Light(this.lightName, {super.key});
+  final LightModel lightModel;
+  const Light(this.lightName, this.lightModel, {super.key});
 
   @override
-  State<Light> createState() => _LightState();
+  ConsumerState<Light> createState() => _LightState();
 }
 
-class _LightState extends State<Light> {
+class _LightState extends ConsumerState<Light> {
   bool chosen = false;
-  // late SwitchButton status;
-
-  // void updateColor() {
-  //   setState(({required Color currentColor, required Color pickerColor}) {
-  //     currentColor = pickerColor;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +29,10 @@ class _LightState extends State<Light> {
         minimumSize: Size.zero, // Set this
         padding: EdgeInsets.zero,
         backgroundColor: Colors.white);
+    final ButtonStyle submitButton = FilledButton.styleFrom(
+      textStyle: GoogleFonts.outfit(),
+      backgroundColor: const Color.fromRGBO(255, 114, 53, 0.4),
+    );
     return Column(children: [
       Container(
           margin: const EdgeInsetsDirectional.symmetric(horizontal: 16),
@@ -50,30 +46,50 @@ class _LightState extends State<Light> {
             child: DeviceView(widget.lightName),
           )),
 
-      Visibility(
-          visible: chosen,
-          maintainState: true,
-          child: Container(
-            padding:
-                const EdgeInsetsDirectional.only(start: 16, end: 16, top: 20),
-            child: Theme(
-                data: Theme.of(context).copyWith(
-                  textTheme: TextTheme(
-                      bodyMedium: GoogleFonts.outfit(
-                    fontSize: 18,
-                    color: Colors.black,
-                  )),
-                ),
-                child: Column(children: [
-                  LightColor(widget.lightName),
-                  SizedBox(height: 10),
-                  Automatic(),
-                  SizedBox(height: 10),
-                  ChooseTime(),
-                  SizedBox(height: 10),
-                  ChooseDay()
-                ])),
-          ))
+      if (chosen)
+        Container(
+          padding:
+              const EdgeInsetsDirectional.only(start: 16, end: 16, top: 20),
+          child: Theme(
+              data: Theme.of(context).copyWith(
+                textTheme: TextTheme(
+                    bodyMedium: GoogleFonts.outfit(
+                  fontSize: 18,
+                  color: Colors.black,
+                )),
+              ),
+              child: Column(children: [
+                LightColor(widget.lightName),
+                const SizedBox(height: 10),
+                Automatic(widget.lightModel),
+                if (widget.lightModel.isAutomatic)
+                  Column(children: [
+                    const SizedBox(height: 10),
+                    ChooseTime(widget.lightModel),
+                    const SizedBox(height: 10),
+                    ChooseDay(widget.lightModel),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FilledButton(
+                          style: submitButton,
+                          onPressed: () {},
+                          child: const Text('Cancel'),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        FilledButton(
+                          style: submitButton,
+                          onPressed: () {},
+                          child: const Text('Save'),
+                        ),
+                      ],
+                    )
+                  ])
+              ])),
+        )
 
       // const SizedBox(
       //   height: 20,

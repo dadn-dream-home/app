@@ -1,10 +1,12 @@
+import 'package:dream_home/lighting.dart';
 import 'package:flutter/material.dart';
-import 'package:dream_home/device/switch.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Automatic extends StatelessWidget {
-  const Automatic({super.key});
+class Automatic extends ConsumerWidget {
+  final LightModel lightModel;
+  const Automatic(this.lightModel, {super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -22,9 +24,14 @@ class Automatic extends StatelessWidget {
                   start: 10, top: 3, bottom: 3),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text("Automatic"),
-                    SwitchButton(),
+                    Switch(
+                        activeColor: Colors.red,
+                        onChanged: (bool? value) => ref
+                            .read(lightProvider.notifier)
+                            .setAutomatic(lightModel.label),
+                        value: lightModel.isAutomatic),
                   ])),
         )
       ],

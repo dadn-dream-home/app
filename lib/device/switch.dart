@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class SwitchButton extends StatefulWidget {
-  const SwitchButton({super.key});
+  const SwitchButton(this.deviceName, {super.key});
+  final String deviceName;
 
   @override
   State<SwitchButton> createState() => _SwitchButtonState();
@@ -9,6 +13,62 @@ class SwitchButton extends StatefulWidget {
 
 class _SwitchButtonState extends State<SwitchButton> {
   bool light = true;
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      _fetchData();
+    });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  Future<void> _fetchData() async {
+    var link =
+        'https://io.adafruit.com/api/v2/nhatha3788/feeds/light${widget.deviceName[widget.deviceName.length - 1]}/data?limit=1';
+    print(link);
+    final lightStatusResponse = await http.get(Uri.parse(link));
+
+    if (lightStatusResponse.statusCode == 200) {
+      final lightStatusAPI = json.decode(lightStatusResponse.body);
+      final lightStatusJSON = lightStatusAPI.elementAt(0);
+      final lightStatus = lightStatusJSON["value"];
+      print(lightStatus);
+
+      setState(() {
+        if (lightStatus == "1") {
+          light = true;
+        } else {
+          light = false;
+        }
+      });
+    } else {
+      throw Exception('Failed to load status');
+    }
+  }
+
+  Future<void> postData(bool status) async {
+    var data = {
+      'value': '${status ? 1 : 0}',
+      "X-AIO-Key": "aio_oXYI81z4sxKKskdnG9XIIgLPDFqw"
+    };
+    print(data);
+    var link =
+        'https://io.adafruit.com/api/v2/nhatha3788/feeds/light${widget.deviceName[widget.deviceName.length - 1]}/data';
+    final response = await http.post(
+      Uri.parse(link),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(data),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +79,10 @@ class _SwitchButtonState extends State<SwitchButton> {
       onChanged: (bool value) {
         // This is called when the user toggles the switch.
         setState(() {
-          light = value;
+          light = !light;
         });
+        postData(light);
+        print("hello");
       },
     );
   }

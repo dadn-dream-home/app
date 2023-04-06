@@ -55,7 +55,7 @@ class _LightColorState extends State<LightColor> {
   Future<void> postData(Color newColor) async {
     var data = {
       'value': '#${newColor.value.toRadixString(16).substring(2)}',
-      "X-AIO-Key": "aio_Goyr05POLgjTA4sg7Nl9xtmbDgxW"
+      "X-AIO-Key": "aio_oXYI81z4sxKKskdnG9XIIgLPDFqw"
     };
     print(data);
     var link =

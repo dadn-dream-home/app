@@ -1,12 +1,13 @@
+import 'package:dream_home/lighting.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChooseTime extends StatelessWidget {
-  final startTimeController = TextEditingController();
-  final endTimeController = TextEditingController();
+class ChooseTime extends ConsumerWidget {
+  final LightModel lightModel;
+  const ChooseTime(this.lightModel, {super.key});
 
-  ChooseTime({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -24,7 +25,7 @@ class ChooseTime extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
                         'From',
@@ -32,25 +33,30 @@ class ChooseTime extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      Flexible(
-                        child: TextField(
-                          controller: startTimeController,
-                          decoration: const InputDecoration(
-                            hintText: '07:00',
-                          ),
-                        ),
-                      ),
+                      TextButton(
+                          onPressed: () async {
+                            TimeOfDay? newTime = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now()
+                                  .replacing(hour: TimeOfDay.now().hour + 1),
+                            );
+                            if (newTime == null) return;
+                            ref
+                                .read(lightProvider.notifier)
+                                .setStartTime(lightModel.label, newTime);
+                          },
+                          child: Text(lightModel.startTime.format(context),
+                              style: const TextStyle(
+                                  color: Color(0xff928E8E), fontSize: 18)))
                     ],
                   ),
-                  // const Divider(
-                  //   height: 20,
-                  //   thickness: 0.7,
-                  //   // indent: 20,
-                  //   // endIndent: 0,
-                  //   color: Color(0xff928E8E),
-                  // ),
+                  const Divider(
+                    height: 20,
+                    thickness: 0.7,
+                    color: Color(0xff928E8E),
+                  ),
                   Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           'To',
@@ -58,14 +64,21 @@ class ChooseTime extends StatelessWidget {
                         const SizedBox(
                           width: 40,
                         ),
-                        Flexible(
-                          child: TextField(
-                            controller: endTimeController,
-                            decoration: const InputDecoration(
-                              hintText: '08:00',
-                            ),
-                          ),
-                        ),
+                        TextButton(
+                            onPressed: () async {
+                              TimeOfDay? newTime = await showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now()
+                                    .replacing(hour: TimeOfDay.now().hour + 2),
+                              );
+                              if (newTime == null) return;
+                              ref
+                                  .read(lightProvider.notifier)
+                                  .setEndTime(lightModel.label, newTime);
+                            },
+                            child: Text(lightModel.endTime.format(context),
+                                style: const TextStyle(
+                                    color: Color(0xff928E8E), fontSize: 18)))
                       ])
                 ],
               )),
