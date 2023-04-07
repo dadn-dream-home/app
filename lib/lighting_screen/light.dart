@@ -17,20 +17,90 @@ class Light extends ConsumerStatefulWidget {
   ConsumerState<Light> createState() => _LightState();
 }
 
-class _LightState extends ConsumerState<Light> {
+class _LightState extends ConsumerState<Light>
+    with AutomaticKeepAliveClientMixin {
   bool chosen = false;
+  void onSave(BuildContext context) async {
+    int startHour = widget.lightModel.startTime.hour;
+    int endHour = widget.lightModel.endTime.hour;
+    int startMinute = widget.lightModel.startTime.minute;
+    int endMinute = widget.lightModel.endTime.minute;
+    Map repeat = widget.lightModel.repeatOn;
+    bool haveDay = false;
+
+    List temp = [];
+
+    for (MapEntry e in repeat.entries) {
+      if (e.value) {
+        haveDay = true;
+        switch (e.key) {
+          case 2:
+            temp.add('mon');
+            break;
+          case 3:
+            temp.add('tue');
+            break;
+          case 4:
+            temp.add('wed');
+            break;
+          case 5:
+            temp.add('thu');
+            break;
+          case 6:
+            temp.add('fri');
+            break;
+          case 7:
+            temp.add('sat');
+            break;
+          case 8:
+            temp.add('sun');
+            break;
+        }
+      }
+    }
+    if (!(startHour <= endHour && startMinute <= endMinute)) {
+      showAlert(context, 'Start time be must be earlier than end time ');
+      return;
+    }
+    if (!haveDay) {
+      showAlert(context, 'At least one day must be selected');
+      return;
+    }
+
+    showSnackbar(context);
+    String link = 'actions';
+    String startActionValue = "$startMinute $startHour * * ${temp.join(',')}";
+    String endActionValue = "$endMinute $endHour * * ${temp.join(',')}";
+    String feed = widget.lightModel.label.replaceAll(' ', '').toLowerCase();
+    int feedID = await fetchData(feed, 'feed_id');
+
+    Map data = {
+      "action": "feed",
+      "trigger_type": "schedule",
+      "action_value": "1",
+      "value": startActionValue,
+      "action_feed_id": feedID
+    };
+    await postData(link, data);
+    data = {...data, "value": endActionValue, "action_value": "0"};
+    await postData(link, data);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style = ElevatedButton.styleFrom(
         textStyle: GoogleFonts.outfit(),
-        minimumSize: Size.zero, // Set this
+        minimumSize: Size.zero,
         padding: EdgeInsets.zero,
         backgroundColor: Colors.white);
     final ButtonStyle submitButton = FilledButton.styleFrom(
       textStyle: GoogleFonts.outfit(),
       backgroundColor: const Color.fromRGBO(255, 114, 53, 0.4),
     );
+    super.build(context);
     return Column(children: [
       Container(
           margin: const EdgeInsetsDirectional.symmetric(horizontal: 16),
@@ -43,7 +113,6 @@ class _LightState extends ConsumerState<Light> {
             },
             child: DeviceView(widget.lightName),
           )),
-
       if (chosen)
         Container(
           padding:
@@ -80,7 +149,7 @@ class _LightState extends ConsumerState<Light> {
                         ),
                         FilledButton(
                           style: submitButton,
-                          onPressed: () {},
+                          onPressed: () => {onSave(context)},
                           child: const Text('Save'),
                         ),
                       ],
@@ -88,10 +157,32 @@ class _LightState extends ConsumerState<Light> {
                   ])
               ])),
         )
-
-      // const SizedBox(
-      //   height: 20,
-      // )
     ]);
   }
+}
+
+void showAlert(BuildContext context, String msg) {
+  showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            title: const Text('Notice'),
+            content: Text(msg),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ));
+}
+
+void showSnackbar(BuildContext context) {
+  const snackBar = SnackBar(
+    content: Text('Yay! Set schedule OK!'),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

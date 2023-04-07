@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 
 class LightColor extends StatefulWidget {
   final String deviceName;
-  // final Function() notifyParent;
-
   const LightColor(this.deviceName, {super.key});
   @override
   State<LightColor> createState() => _LightColorState();
@@ -35,17 +33,14 @@ class _LightColorState extends State<LightColor> {
     var link =
         'https://io.adafruit.com/api/v2/nhatha3788/feeds/color${widget.deviceName[widget.deviceName.length - 1]}/data?limit=1';
     final colorResponse = await http.get(Uri.parse(link));
-    // print(link);
     if (colorResponse.statusCode == 200) {
       final colorAPI = json.decode(colorResponse.body);
       final colorJSON = colorAPI.elementAt(0);
       final color = colorJSON["value"];
-      print(color);
 
       setState(() {
         currentColor = hexToColor(color);
         pickerColor = currentColor;
-        // print(currentColor);
       });
     } else {
       throw Exception('Failed to load color');
@@ -55,9 +50,8 @@ class _LightColorState extends State<LightColor> {
   Future<void> postData(Color newColor) async {
     var data = {
       'value': '#${newColor.value.toRadixString(16).substring(2)}',
-      "X-AIO-Key": "aio_oXYI81z4sxKKskdnG9XIIgLPDFqw"
+      "X-AIO-Key": ""
     };
-    print(data);
     var link =
         'https://io.adafruit.com/api/v2/nhatha3788/feeds/color${widget.deviceName[widget.deviceName.length - 1]}/data';
     final response = await http.post(
@@ -79,35 +73,22 @@ class _LightColorState extends State<LightColor> {
           textAlign: TextAlign.left,
           style: TextStyle(color: Color(0xff928E8E)),
         ),
-        Container(
-          // decoration: BoxDecoration(
-          //   borderRadius: BorderRadius.circular(12),
-          //   boxShadow: [
-          //     BoxShadow(
-          //       color: Colors.black.withOpacity(0.12),
-          //       spreadRadius: 0,
-          //       blurRadius: 8,
-          //       offset: Offset(0, 2), // changes position of shadow
-          //     ),
-          //   ],
-          // ),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Container(
-                padding: const EdgeInsetsDirectional.only(
-                    start: 10, top: 3, bottom: 3),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Light color"),
-                      IconButton(
-                        icon: Icon(Icons.palette, color: currentColor),
-                        onPressed: () => _dialogBuilder(context),
-                      ),
-                    ])),
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
           ),
+          child: Container(
+              padding: const EdgeInsetsDirectional.only(
+                  start: 10, top: 3, bottom: 3),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("Light color"),
+                    IconButton(
+                      icon: Icon(Icons.palette, color: currentColor),
+                      onPressed: () => _dialogBuilder(context),
+                    ),
+                  ])),
         )
       ],
     );

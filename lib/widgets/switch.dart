@@ -52,10 +52,7 @@ class _SwitchButtonState extends State<SwitchButton> {
   }
 
   Future<void> postData(bool status) async {
-    var data = {
-      'value': '${status ? 1 : 0}',
-      "X-AIO-Key": "aio_oXYI81z4sxKKskdnG9XIIgLPDFqw"
-    };
+    var data = {'value': '${status ? 1 : 0}', "X-AIO-Key": ""};
     var link =
         'https://io.adafruit.com/api/v2/nhatha3788/feeds/light${widget.deviceName[widget.deviceName.length - 1]}/data';
     final response = await http.post(

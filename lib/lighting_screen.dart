@@ -22,16 +22,6 @@ class Lighting extends ConsumerWidget {
           tooltip: 'Go back',
           onPressed: () {},
         ),
-        // actions: [
-        //   TextButton(
-        //     style: TextButton.styleFrom(
-        //       foregroundColor: Colors.black,
-        //       textStyle: GoogleFonts.outfit(fontSize: 16),
-        //     ),
-        //     onPressed: () {},
-        //     child: const Text('Save'),
-        //   )
-        // ],
         title: const Text(
           "Lighting",
           style: TextStyle(fontWeight: FontWeight.w900),
@@ -45,6 +35,7 @@ class Lighting extends ConsumerWidget {
       ),
       backgroundColor: Colors.grey[100],
       body: ListView.separated(
+          addAutomaticKeepAlives: true,
           itemCount: entries.length,
           itemBuilder: (BuildContext context, int index) {
             return Light(entries[index], lights[index]);

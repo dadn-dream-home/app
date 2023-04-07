@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -122,3 +125,27 @@ final lightProvider =
         })
   ]);
 });
+
+Future<int> fetchData(String feed, String value) async {
+  var link =
+      'https://io.adafruit.com/api/v2/nhatha3788/feeds/$feed/data?limit=1';
+  final response = await http.get(Uri.parse(link));
+  if (response.statusCode == 200) {
+    var ret = json.decode(response.body)[0][value];
+    return ret;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
+Future<void> postData(String link, Map value) async {
+  var data = {...value, "X-AIO-Key": ""};
+  var useLink = 'https://io.adafruit.com/api/v2/nhatha3788/$link';
+  final response = await http.post(
+    Uri.parse(useLink),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(data),
+  );
+}
