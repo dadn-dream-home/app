@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dream_home/device/switch.dart';
+import 'package:dream_home/widgets/switch.dart';
 
 class Automatic extends StatelessWidget {
   const Automatic({super.key});

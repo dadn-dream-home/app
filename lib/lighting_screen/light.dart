@@ -1,10 +1,9 @@
-import 'package:dream_home/device/automatic.dart';
-import 'package:dream_home/device/choose_day.dart';
-import 'package:dream_home/device/choose_time.dart';
-import 'package:dream_home/device/device_view.dart';
-import 'package:dream_home/device/light_color.dart';
+import 'package:dream_home/lighting_screen/light_color.dart';
+import 'package:dream_home/widgets/automatic.dart';
+import 'package:dream_home/widgets/choose_day.dart';
+import 'package:dream_home/widgets/choose_time.dart';
+import 'package:dream_home/widgets/device_view.dart';
 import 'package:flutter/material.dart';
-
 // import 'package:dream_home/device/switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:dream_home/device/checkbox.dart';
