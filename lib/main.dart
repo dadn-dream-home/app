@@ -1,9 +1,11 @@
 import 'package:dream_home/dashboard.dart';
+import 'package:dream_home/lighting.dart';
+import 'package:dream_home/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp(Dashboard()));
+  runApp(const MyApp(Lighting()));
 }
 
 class MyApp extends StatelessWidget {
