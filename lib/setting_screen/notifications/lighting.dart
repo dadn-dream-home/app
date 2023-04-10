@@ -44,12 +44,27 @@ class _LightingState extends State<Lighting> {
               if (isExpanded)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Some additional text to show when expanded',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Lower',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        '60%',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ],
                   ),
                 ),
             ],

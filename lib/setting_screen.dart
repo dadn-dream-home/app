@@ -44,7 +44,6 @@ class Setting extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 300, // Set a specific height for the widgets
                 child: Column(
                   children: const [
                     Moisture(),
@@ -55,8 +54,12 @@ class Setting extends StatelessWidget {
                   ],
                 ),
               ),
+              const Divider(
+                color: Colors.grey,
+                height: 16.5,
+              ),
               const Padding(
-                padding: EdgeInsets.only(bottom: 14),
+                padding: EdgeInsets.only(bottom: 14, top: 14),
                 child: Text(
                   'Controlling',
                   textAlign: TextAlign.left,
