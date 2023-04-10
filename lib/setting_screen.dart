@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dream_home/setting_screen/notifications/moisture.dart';
 import 'package:dream_home/setting_screen/notifications/lighting.dart';
 import 'package:dream_home/setting_screen/notifications/temperature.dart';
+import 'package:dream_home/setting_screen/controlling/lighting.dart';
+import 'package:dream_home/setting_screen/controlling/fan.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
@@ -11,6 +13,7 @@ class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           leading: const Icon(Icons.account_circle_outlined),
@@ -33,7 +36,7 @@ class Setting extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Padding(
-                padding:  EdgeInsets.only(bottom: 14),
+                padding: EdgeInsets.only(bottom: 14),
                 child: Text(
                   'Notifications',
                   textAlign: TextAlign.left,
@@ -49,6 +52,24 @@ class Setting extends StatelessWidget {
                     Lighting(),
                     SizedBox(height: 16),
                     Temperature(),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 14),
+                child: Text(
+                  'Controlling',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 300, // Set a specific height for the widgets
+                child: Column(
+                  children: const [
+                    LightingControl(),
+                    SizedBox(height: 16),
+                    Fan(),
                   ],
                 ),
               ),

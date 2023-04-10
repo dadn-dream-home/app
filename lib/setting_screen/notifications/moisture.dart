@@ -33,10 +33,8 @@ class _MoistureState extends State<Moisture> {
               'Moisture',
               textAlign: TextAlign.left,
             ),
-            leading: Icon(isExpanded
-                ? Icons.keyboard_arrow_down
-                : Icons.keyboard_arrow_right),
-            trailing: SwitchButton(),
+            controlAffinity: ListTileControlAffinity.leading,
+            trailing: const SwitchButton(),
             onExpansionChanged: (value) {
               setState(() {
                 isExpanded = value;

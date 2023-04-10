@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:dream_home/widgets/switch.dart';
 
@@ -34,10 +33,8 @@ class _TemperatureState extends State<Temperature> {
               'Temperature',
               textAlign: TextAlign.left,
             ),
-            leading: Icon(isExpanded
-                ? Icons.keyboard_arrow_down
-                : Icons.keyboard_arrow_right),
-            trailing: SwitchButton(),
+            controlAffinity: ListTileControlAffinity.leading,
+            trailing: const SwitchButton(),
             onExpansionChanged: (value) {
               setState(() {
                 isExpanded = value;
