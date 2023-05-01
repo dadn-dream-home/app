@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dream_home/widgets/switch.dart';
+import 'package:dream_home/widgets/control_switch.dart';
 
 class DeviceView extends StatelessWidget {
   final String deviceName;
