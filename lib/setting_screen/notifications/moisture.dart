@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:dream_home/widgets/card.dart';
 import 'package:dream_home/widgets/switch.dart';
+import 'package:flutter/material.dart';
 
 class Moisture extends StatefulWidget {
   const Moisture({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _MoistureState extends State<Moisture> {
           textAlign: TextAlign.left,
           style: TextStyle(color: Color(0xff928E8E), fontSize: 14),
         ),
-        Card(
+        MyCard(
           child: ExpansionTile(
             title: const Text(
               'Moisture',

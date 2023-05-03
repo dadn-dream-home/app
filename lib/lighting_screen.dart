@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dream_home/widgets/bottom_nav.dart';
 import 'package:dream_home/lighting_screen/light.dart';
 import 'package:dream_home/models/light_setting.dart';
+import 'package:dream_home/widgets/bottom_nav.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Lighting extends ConsumerWidget {
   Lighting({super.key});

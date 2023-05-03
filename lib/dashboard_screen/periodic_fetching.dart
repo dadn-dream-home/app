@@ -18,10 +18,10 @@ mixin PeriodicFetching<T extends StatefulWidget> on State<T> {
   }
 
   void handleTimeout() async {
-    final dataPoints = await fetchDataPoints(type: value.type);
+    // final dataPoints = await fetchDataPoints(type: value.type);
 
     setState(() {
-      value = dataPoints[0];
+      // value = dataPoints[0];
       restartFetching(duration: const Duration(seconds: 3));
     });
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -8,7 +9,15 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
-  void _onItemTapped(int index) {
+  void _onItemTapped(BuildContext ctx, int index) {
+    switch (index) {
+      case 0:
+        ctx.go("/dashboard");
+        break;
+      case 2:
+        ctx.go("/settings");
+        break;
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -38,7 +47,7 @@ class _BottomNavState extends State<BottomNav> {
         ),
       ],
       currentIndex: _selectedIndex,
-      onTap: _onItemTapped,
+      onTap: (index) => _onItemTapped(context, index),
     );
   }
 }
