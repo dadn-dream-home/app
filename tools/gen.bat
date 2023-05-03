@@ -1,0 +1,1 @@
+protoc --dart_out=grpc:lib/generated ..\backend\protobuf\backend.proto -I..\backend\protobuf
