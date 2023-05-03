@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CheckBox extends StatefulWidget {
-  const CheckBox({super.key});
+class CustomCheckBox extends StatefulWidget {
+  const CustomCheckBox({super.key});
 
   @override
-  State<CheckBox> createState() => _CheckBoxState();
+  State<CustomCheckBox> createState() => _CustomCheckBoxState();
 }
 
-class _CheckBoxState extends State<CheckBox> {
+class _CustomCheckBoxState extends State<CustomCheckBox> {
   bool isChecked = false;
 
   @override
@@ -19,9 +19,9 @@ class _CheckBoxState extends State<CheckBox> {
         MaterialState.focused,
       };
       if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
+        return const Color(0xff928E8E);
       }
-      return Colors.red;
+      return const Color(0xff928E8E);
     }
 
     return Checkbox(
