@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../common_widgets/sub_scaffold.dart';
+import '../navigations/presentation/sub_scaffold.dart';
 import 'feed_config_screen_controller.dart';
 
 class FeedConfigScreen extends ConsumerWidget {

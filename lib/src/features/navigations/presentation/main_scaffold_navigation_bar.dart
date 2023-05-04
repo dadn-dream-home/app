@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class MainScaffoldNavigationBar extends StatefulWidget {
-  const MainScaffoldNavigationBar({super.key});
-  @override
-  State<MainScaffoldNavigationBar> createState() =>
-      _MainScaffoldNavigationBarState();
-}
+import '../data/selected_screen_index.dart';
 
-class _MainScaffoldNavigationBarState extends State<MainScaffoldNavigationBar> {
-  int selectedIndex = 0;
+class MainScaffoldNavigationBar extends ConsumerWidget {
+  const MainScaffoldNavigationBar({super.key});
 
   static const List<Destination> destinations = [
     Destination(
@@ -29,17 +25,17 @@ class _MainScaffoldNavigationBarState extends State<MainScaffoldNavigationBar> {
     ),
   ];
 
-  void _onItemTapped(BuildContext ctx, int index) {
-    ctx.go(destinations[index].route);
-    setState(() => selectedIndex = index);
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(selectedScreenIndexProvider, (_, index) {
+      context.go(destinations[index].route);
+    });
+
     return NavigationBar(
       destinations: destinations,
-      selectedIndex: selectedIndex,
-      onDestinationSelected: (index) => _onItemTapped(context, index),
+      selectedIndex: ref.watch(selectedScreenIndexProvider),
+      onDestinationSelected:
+          ref.watch(selectedScreenIndexProvider.notifier).set,
     );
   }
 }

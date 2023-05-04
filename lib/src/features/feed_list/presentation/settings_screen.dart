@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/main_scaffold.dart';
+import '../../navigations/presentation/main_scaffold.dart';
 import '../data/feed_list_provider.dart';
 import 'feed_list_item.dart';
 import 'settings_screen_controller.dart';

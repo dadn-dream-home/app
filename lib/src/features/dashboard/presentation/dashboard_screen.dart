@@ -1,5 +1,6 @@
-import 'package:dream_home/src/common_widgets/main_scaffold.dart';
 import 'package:flutter/material.dart';
+
+import '../../navigations/presentation/main_scaffold.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
