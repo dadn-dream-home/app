@@ -16,6 +16,7 @@ class _AddFeedDialogState extends ConsumerState<AddFeedDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ref.watch(addFeedDialogControllerProvider.notifier);
     final state = ref.watch(addFeedDialogControllerProvider);
 
     return AlertDialog(
@@ -37,19 +38,14 @@ class _AddFeedDialogState extends ConsumerState<AddFeedDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: state.isLoading
-              ? null
-              : () => ref
-                  .watch(addFeedDialogControllerProvider.notifier)
-                  .onCancel(context),
+          onPressed:
+              state.isLoading ? null : () => controller.onCancel(context),
           child: const Text("Cancel"),
         ),
         TextButton(
           onPressed: state.isLoading
               ? null
-              : () => ref
-                  .watch(addFeedDialogControllerProvider.notifier)
-                  .onAdd(context, feedIdController),
+              : () => controller.onAdd(context, feedIdController),
           child: const Text("Add"),
         ),
       ],
