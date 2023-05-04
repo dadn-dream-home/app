@@ -16,24 +16,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.orange,
-          textTheme: GoogleFonts.outfitTextTheme(),
-          appBarTheme: AppBarTheme(
-            titleTextStyle: GoogleFonts.fraunces(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
-            ),
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-          ),
-          scaffoldBackgroundColor: Colors.grey[100],
-          navigationBarTheme: NavigationBarThemeData(
-              labelTextStyle: MaterialStateTextStyle.resolveWith(
-            (states) => GoogleFonts.outfit(fontSize: 12, color: Colors.black),
-          ))),
+      theme: themeData,
       routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+
+final themeData = ThemeData(
+  primarySwatch: Colors.orange,
+  textTheme: GoogleFonts.outfitTextTheme(),
+  appBarTheme: AppBarTheme(
+    titleTextStyle: GoogleFonts.fraunces(
+      fontSize: 20,
+      color: Colors.black,
+      fontWeight: FontWeight.w600,
+    ),
+    backgroundColor: Colors.transparent,
+    shadowColor: Colors.transparent,
+  ),
+  scaffoldBackgroundColor: Colors.grey[100],
+  navigationBarTheme: NavigationBarThemeData(
+    labelTextStyle: MaterialStateTextStyle.resolveWith(
+      (states) => GoogleFonts.outfit(fontSize: 12, color: Colors.black),
+    ),
+  ),
+);
