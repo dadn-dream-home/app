@@ -1,6 +1,7 @@
-import 'package:dream_home/src/features/feed_list/presentation/add_feed_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../add_feed/presentation/add_feed_dialog.dart';
 
 part 'settings_screen_controller.g.dart';
 
@@ -14,6 +15,7 @@ class SettingsScreenController extends _$SettingsScreenController {
   void createFeed(BuildContext context) {
     showDialog<String>(
       context: context,
+      useRootNavigator: false,
       builder: (BuildContext context) => AddFeedDialog(),
     );
   }
