@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../feed_list/data/feed_list_provider.dart';
-import 'feed_cart.dart';
+import 'feed_card.dart';
 
 class FeedCardGrid extends ConsumerWidget {
   const FeedCardGrid({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class FeedCardGrid extends ConsumerWidget {
       axisDirection: AxisDirection.down,
       crossAxisCount: 4,
       children: feedList
-          .sortedBy<num>((feed) => feed.type.value)
+          // .sortedBy<num>((feed) => feed.type.value)
           .mapIndexed((index, feed) => index <= 1
               ? FeedCard.large(feed: feed)
               : FeedCard.medium(feed: feed))

@@ -27,7 +27,7 @@ final themeData = ThemeData(
   primarySwatch: Colors.orange,
   textTheme: GoogleFonts.outfitTextTheme(),
   appBarTheme: AppBarTheme(
-    titleTextStyle: GoogleFonts.fraunces(
+    titleTextStyle: GoogleFonts.outfit(
       fontSize: 20,
       color: Colors.black,
       fontWeight: FontWeight.w600,

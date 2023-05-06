@@ -7,35 +7,50 @@ import 'package:vector_math/vector_math.dart' as vmath;
 class Gauge extends StatelessWidget {
   const Gauge({
     super.key,
-    required this.color,
     this.value,
     required this.min,
     required this.max,
     this.fontSize = 26,
   });
 
-  final MaterialColor color;
   final double? value;
   final double min;
   final double max;
   final double fontSize;
 
+  static const colorScale = [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.yellow,
+    Colors.orange,
+    Colors.red,
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final t = clampDouble(((value ?? min) - min) / (max - min), 0, 0.9999999);
+
+    final scaledT = t * (colorScale.length - 1);
+    final oldColor = colorScale[scaledT.floor()];
+    final newColor = colorScale[scaledT.floor() + 1];
+    final newT = scaledT - scaledT.floor();
+    final color = Color.lerp(oldColor, newColor, newT)!;
+
     return AspectRatio(
       aspectRatio: 1,
       child: CustomPaint(
         painter: _MyPainter(
           color: color,
-          percent:
-              clampDouble((value ?? min - min) / (max - min) * 100, 0, 100),
+          percent: t * 100,
         ),
         child: Center(
           child: Text(
             value == null ? "" : "$value",
             style: GoogleFonts.inter(
               textStyle: TextStyle(
-                color: color.shade800,
+                color: Color.lerp(color, Colors.black, 0.5),
                 fontSize: fontSize,
                 fontWeight: FontWeight.w300,
               ),
@@ -51,14 +66,14 @@ class _MyPainter extends CustomPainter {
   _MyPainter({required this.percent, required this.color});
 
   final double percent;
-  final MaterialColor color;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     // outer circle
     drawArc(canvas, size, percent: 100, color: Colors.grey[100]!);
     // actual circle
-    drawArc(canvas, size, percent: percent, color: color.shade200);
+    drawArc(canvas, size, percent: percent, color: color);
   }
 
   @override

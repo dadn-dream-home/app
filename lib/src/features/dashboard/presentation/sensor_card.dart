@@ -5,34 +5,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
+import 'feed_card.dart';
 import 'gauge.dart';
 
-abstract class FeedCard extends ConsumerWidget {
-  const FeedCard({
-    super.key,
-    required this.feed,
-  });
-
-  factory FeedCard.large({Key? key, required Feed feed}) =>
-      FeedCardLarge(key: key, feed: feed);
-
-  factory FeedCard.medium({Key? key, required Feed feed}) =>
-      FeedCardMedium(key: key, feed: feed);
-
-  final Feed feed;
-
-  static const feedUnits = {
-    FeedType.TEMPERATURE: "°C",
-    FeedType.HUMIDITY: "%",
-    FeedType.LIGHT: "W/m²",
-  };
-}
-
-class FeedCardLarge extends FeedCard {
-  const FeedCardLarge({
+class SensorCardLarge extends FeedCard {
+  const SensorCardLarge({
     Key? key,
     required Feed feed,
   }) : super(key: key, feed: feed);
+
+  static const feedMins = {
+    FeedType.TEMPERATURE: 10.0,
+    FeedType.HUMIDITY: 0.0,
+    // FeedType.LIGHT: 100.0,
+  };
+
+  static const feedMaxs = {
+    FeedType.TEMPERATURE: 40.0,
+    FeedType.HUMIDITY: 100.0,
+    // FeedType.LIGHT: 1000.0,
+  };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -52,23 +44,24 @@ class FeedCardLarge extends FeedCard {
                     children: [
                       FeedIcon(feed: feed),
                       const Spacer(),
-                      Text(FeedCard.feedUnits[feed.type]!,
-                          style: TextStyle(color: Colors.grey)),
+                      Text(
+                        FeedCard.sensorUnits[feed.type]!,
+                        style: const TextStyle(color: Colors.grey),
+                      ),
                     ],
                   ),
                 ),
                 Expanded(
                   child: Gauge(
-                    color: Colors.green,
                     value: valueAsync.value,
-                    min: 0,
-                    max: 100,
+                    min: feedMins[feed.type]!,
+                    max: feedMaxs[feed.type]!,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   feed.id,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -80,14 +73,16 @@ class FeedCardLarge extends FeedCard {
   }
 }
 
-class FeedCardMedium extends FeedCard {
-  const FeedCardMedium({
+class SensorCardMedium extends FeedCard {
+  const SensorCardMedium({
     Key? key,
     required Feed feed,
   }) : super(key: key, feed: feed);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final valueAsync = ref.watch(feedValueProvider(feed));
+
     return StaggeredGridTile.count(
       crossAxisCellCount: 4,
       mainAxisCellCount: 1,
@@ -100,14 +95,24 @@ class FeedCardMedium extends FeedCard {
               const SizedBox(width: 16),
               Text(
                 feed.id,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(width: 8),
               const Spacer(),
-              Text("34 ${FeedCard.feedUnits[feed.type]}"),
+              if (valueAsync.hasValue) ...[
+                Text(
+                  "${valueAsync.value}",
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                const Text(" "),
+                Text(
+                  "${FeedCard.sensorUnits[feed.type]}",
+                  style: const TextStyle(color: Colors.grey),
+                ),
+              ],
             ],
           ),
         ),
