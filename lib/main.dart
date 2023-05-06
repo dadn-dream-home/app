@@ -41,4 +41,10 @@ final themeData = ThemeData(
       (states) => GoogleFonts.outfit(fontSize: 12, color: Colors.black),
     ),
   ),
+  cardTheme: CardTheme(
+    elevation: 2.0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
 );
