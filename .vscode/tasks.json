@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "dart generator",
+            "type": "shell",
+            "icon": {
+                "color": "terminal.ansiBlue",
+                "id": "sync"
+            },
+            "isBackground": true,
+            "command": "dart run build_runner watch",
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen",
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "go server",
+            "type": "shell",
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "server"
+            },
+            "command": "go run ./cmd/server",
+            "problemMatcher": [],
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}/../backend"
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "generate app protobuf",
+            "type": "shell",
+            "command": "protoc --dart_out=grpc:lib/src/grpc/generated ../backend/protobuf/backend.proto -I../backend/protobuf",
+            "problemMatcher": []
+        }
+    ]
+}
