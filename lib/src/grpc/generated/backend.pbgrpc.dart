@@ -14,12 +14,18 @@ import 'backend.pb.dart' as $0;
 export 'backend.pb.dart';
 
 class BackendServiceClient extends $grpc.Client {
-  static final _$streamFeedValues = $grpc.ClientMethod<
-          $0.StreamFeedValuesRequest, $0.StreamFeedValuesResponse>(
-      '/protobuf.BackendService/StreamFeedValues',
-      ($0.StreamFeedValuesRequest value) => value.writeToBuffer(),
+  static final _$streamSensorValues = $grpc.ClientMethod<
+          $0.StreamSensorValuesRequest, $0.StreamSensorValuesResponse>(
+      '/protobuf.BackendService/StreamSensorValues',
+      ($0.StreamSensorValuesRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
-          $0.StreamFeedValuesResponse.fromBuffer(value));
+          $0.StreamSensorValuesResponse.fromBuffer(value));
+  static final _$streamActuatorStates = $grpc.ClientMethod<
+          $0.StreamActuatorStatesRequest, $0.StreamActuatorStatesResponse>(
+      '/protobuf.BackendService/StreamActuatorStates',
+      ($0.StreamActuatorStatesRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.StreamActuatorStatesResponse.fromBuffer(value));
   static final _$listFeeds =
       $grpc.ClientMethod<$0.ListFeedsRequest, $0.ListFeedsResponse>(
           '/protobuf.BackendService/ListFeeds',
@@ -44,11 +50,19 @@ class BackendServiceClient extends $grpc.Client {
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseStream<$0.StreamFeedValuesResponse> streamFeedValues(
-      $0.StreamFeedValuesRequest request,
+  $grpc.ResponseStream<$0.StreamSensorValuesResponse> streamSensorValues(
+      $0.StreamSensorValuesRequest request,
       {$grpc.CallOptions? options}) {
     return $createStreamingCall(
-        _$streamFeedValues, $async.Stream.fromIterable([request]),
+        _$streamSensorValues, $async.Stream.fromIterable([request]),
+        options: options);
+  }
+
+  $grpc.ResponseStream<$0.StreamActuatorStatesResponse> streamActuatorStates(
+      $0.StreamActuatorStatesRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createStreamingCall(
+        _$streamActuatorStates, $async.Stream.fromIterable([request]),
         options: options);
   }
 
@@ -75,15 +89,24 @@ abstract class BackendServiceBase extends $grpc.Service {
   $core.String get $name => 'protobuf.BackendService';
 
   BackendServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.StreamFeedValuesRequest,
-            $0.StreamFeedValuesResponse>(
-        'StreamFeedValues',
-        streamFeedValues_Pre,
+    $addMethod($grpc.ServiceMethod<$0.StreamSensorValuesRequest,
+            $0.StreamSensorValuesResponse>(
+        'StreamSensorValues',
+        streamSensorValues_Pre,
         false,
         true,
         ($core.List<$core.int> value) =>
-            $0.StreamFeedValuesRequest.fromBuffer(value),
-        ($0.StreamFeedValuesResponse value) => value.writeToBuffer()));
+            $0.StreamSensorValuesRequest.fromBuffer(value),
+        ($0.StreamSensorValuesResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.StreamActuatorStatesRequest,
+            $0.StreamActuatorStatesResponse>(
+        'StreamActuatorStates',
+        streamActuatorStates_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) =>
+            $0.StreamActuatorStatesRequest.fromBuffer(value),
+        ($0.StreamActuatorStatesResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ListFeedsRequest, $0.ListFeedsResponse>(
         'ListFeeds',
         listFeeds_Pre,
@@ -107,10 +130,16 @@ abstract class BackendServiceBase extends $grpc.Service {
         ($0.DeleteFeedResponse value) => value.writeToBuffer()));
   }
 
-  $async.Stream<$0.StreamFeedValuesResponse> streamFeedValues_Pre(
+  $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues_Pre(
       $grpc.ServiceCall call,
-      $async.Future<$0.StreamFeedValuesRequest> request) async* {
-    yield* streamFeedValues(call, await request);
+      $async.Future<$0.StreamSensorValuesRequest> request) async* {
+    yield* streamSensorValues(call, await request);
+  }
+
+  $async.Stream<$0.StreamActuatorStatesResponse> streamActuatorStates_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.StreamActuatorStatesRequest> request) async* {
+    yield* streamActuatorStates(call, await request);
   }
 
   $async.Future<$0.ListFeedsResponse> listFeeds_Pre($grpc.ServiceCall call,
@@ -128,8 +157,10 @@ abstract class BackendServiceBase extends $grpc.Service {
     return deleteFeed(call, await request);
   }
 
-  $async.Stream<$0.StreamFeedValuesResponse> streamFeedValues(
-      $grpc.ServiceCall call, $0.StreamFeedValuesRequest request);
+  $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues(
+      $grpc.ServiceCall call, $0.StreamSensorValuesRequest request);
+  $async.Stream<$0.StreamActuatorStatesResponse> streamActuatorStates(
+      $grpc.ServiceCall call, $0.StreamActuatorStatesRequest request);
   $async.Future<$0.ListFeedsResponse> listFeeds(
       $grpc.ServiceCall call, $0.ListFeedsRequest request);
   $async.Future<$0.CreateFeedResponse> createFeed(

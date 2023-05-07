@@ -1,10 +1,11 @@
+import 'package:dream_home/src/common_widgets/async_value_ui.dart';
 import 'package:dream_home/src/common_widgets/feed_icon.dart';
-import 'package:dream_home/src/features/dashboard/data/feed_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
+import '../data/actuator_state.dart';
 import 'feed_card.dart';
 
 class ActuatorCardLarge extends FeedCard {
@@ -15,7 +16,11 @@ class ActuatorCardLarge extends FeedCard {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final valueAsync = ref.watch(feedValueProvider(feed));
+    final stateAsync = ref.watch(actuatorStateProvider(feed));
+
+    ref.listen(actuatorStateProvider(feed), (_, v) {
+      v.showSnackbarOnError(context);
+    });
 
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
@@ -30,7 +35,12 @@ class ActuatorCardLarge extends FeedCard {
                 child: FeedIcon(feed: feed),
               ),
               Expanded(
-                child: Switch(value: false, onChanged: (v) {}),
+                child: stateAsync.when(
+                  data: (value) => Switch(value: value, onChanged: (v) {}),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (e, s) => const Text(""),
+                ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -56,7 +66,7 @@ class ActuatorCardMedium extends FeedCard {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final valueAsync = ref.watch(feedValueProvider(feed));
+    final stateAsync = ref.watch(actuatorStateProvider(feed));
 
     return StaggeredGridTile.count(
       crossAxisCellCount: 4,
@@ -77,7 +87,11 @@ class ActuatorCardMedium extends FeedCard {
               ),
               const SizedBox(width: 8),
               const Spacer(),
-              Switch(value: false, onChanged: (v) {}),
+              stateAsync.when(
+                data: (value) => Switch(value: value, onChanged: (v) {}),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (e, s) => const Text(""),
+              ),
             ],
           ),
         ),

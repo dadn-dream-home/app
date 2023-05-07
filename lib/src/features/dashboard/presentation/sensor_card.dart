@@ -1,5 +1,5 @@
 import 'package:dream_home/src/common_widgets/feed_icon.dart';
-import 'package:dream_home/src/features/dashboard/data/feed_value.dart';
+import 'package:dream_home/src/features/dashboard/data/sensor_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -28,7 +28,7 @@ class SensorCardLarge extends FeedCard {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final valueAsync = ref.watch(feedValueProvider(feed));
+    final valueAsync = ref.watch(sensorValueProvider(feed));
 
     return StaggeredGridTile.count(
         crossAxisCellCount: 2,
@@ -52,10 +52,15 @@ class SensorCardLarge extends FeedCard {
                   ),
                 ),
                 Expanded(
-                  child: Gauge(
-                    value: valueAsync.value,
-                    min: feedMins[feed.type]!,
-                    max: feedMaxs[feed.type]!,
+                  child: valueAsync.when(
+                    data: (value) => Gauge(
+                      value: value,
+                      min: feedMins[feed.type]!,
+                      max: feedMaxs[feed.type]!,
+                    ),
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    error: (e, s) => const Text(""),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -81,7 +86,7 @@ class SensorCardMedium extends FeedCard {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final valueAsync = ref.watch(feedValueProvider(feed));
+    final valueAsync = ref.watch(sensorValueProvider(feed));
 
     return StaggeredGridTile.count(
       crossAxisCellCount: 4,
@@ -102,17 +107,25 @@ class SensorCardMedium extends FeedCard {
               ),
               const SizedBox(width: 8),
               const Spacer(),
-              if (valueAsync.hasValue) ...[
-                Text(
-                  "${valueAsync.value}",
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+              valueAsync.when(
+                data: (value) => RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${valueAsync.value}",
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      const TextSpan(text: " "),
+                      TextSpan(
+                        text: "${FeedCard.sensorUnits[feed.type]}",
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
-                const Text(" "),
-                Text(
-                  "${FeedCard.sensorUnits[feed.type]}",
-                  style: const TextStyle(color: Colors.grey),
-                ),
-              ],
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (e, s) => const Text(""),
+              )
             ],
           ),
         ),

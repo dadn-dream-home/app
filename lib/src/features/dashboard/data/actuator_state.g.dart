@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feed_value.dart';
+part of 'actuator_state.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$feedValueHash() => r'af397a9acdc9c68048af57de0b92771dd0e8a9e0';
+String _$actuatorStateHash() => r'a67f24185a8a50bf35a15142ac2c28fcbb129440';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,29 +29,29 @@ class _SystemHash {
   }
 }
 
-typedef FeedValueRef = AutoDisposeStreamProviderRef<double>;
+typedef ActuatorStateRef = AutoDisposeStreamProviderRef<bool>;
 
-/// See also [feedValue].
-@ProviderFor(feedValue)
-const feedValueProvider = FeedValueFamily();
+/// See also [actuatorState].
+@ProviderFor(actuatorState)
+const actuatorStateProvider = ActuatorStateFamily();
 
-/// See also [feedValue].
-class FeedValueFamily extends Family<AsyncValue<double>> {
-  /// See also [feedValue].
-  const FeedValueFamily();
+/// See also [actuatorState].
+class ActuatorStateFamily extends Family<AsyncValue<bool>> {
+  /// See also [actuatorState].
+  const ActuatorStateFamily();
 
-  /// See also [feedValue].
-  FeedValueProvider call(
+  /// See also [actuatorState].
+  ActuatorStateProvider call(
     Feed feed,
   ) {
-    return FeedValueProvider(
+    return ActuatorStateProvider(
       feed,
     );
   }
 
   @override
-  FeedValueProvider getProviderOverride(
-    covariant FeedValueProvider provider,
+  ActuatorStateProvider getProviderOverride(
+    covariant ActuatorStateProvider provider,
   ) {
     return call(
       provider.feed,
@@ -70,34 +70,35 @@ class FeedValueFamily extends Family<AsyncValue<double>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'feedValueProvider';
+  String? get name => r'actuatorStateProvider';
 }
 
-/// See also [feedValue].
-class FeedValueProvider extends AutoDisposeStreamProvider<double> {
-  /// See also [feedValue].
-  FeedValueProvider(
+/// See also [actuatorState].
+class ActuatorStateProvider extends AutoDisposeStreamProvider<bool> {
+  /// See also [actuatorState].
+  ActuatorStateProvider(
     this.feed,
   ) : super.internal(
-          (ref) => feedValue(
+          (ref) => actuatorState(
             ref,
             feed,
           ),
-          from: feedValueProvider,
-          name: r'feedValueProvider',
+          from: actuatorStateProvider,
+          name: r'actuatorStateProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$feedValueHash,
-          dependencies: FeedValueFamily._dependencies,
-          allTransitiveDependencies: FeedValueFamily._allTransitiveDependencies,
+                  : _$actuatorStateHash,
+          dependencies: ActuatorStateFamily._dependencies,
+          allTransitiveDependencies:
+              ActuatorStateFamily._allTransitiveDependencies,
         );
 
   final Feed feed;
 
   @override
   bool operator ==(Object other) {
-    return other is FeedValueProvider && other.feed == feed;
+    return other is ActuatorStateProvider && other.feed == feed;
   }
 
   @override
