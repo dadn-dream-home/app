@@ -1,18 +1,16 @@
-import 'package:dream_home/src/common_widgets/feed_icon.dart';
 import 'package:dream_home/src/features/dashboard/data/sensor_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
 import 'feed_card.dart';
 import 'gauge.dart';
 
-class SensorCardLarge extends FeedCard {
+class SensorCardLarge extends FeedCardLarge {
   const SensorCardLarge({
-    Key? key,
+    super.key,
     required Feed feed,
-  }) : super(key: key, feed: feed);
+  }) : super(feed: feed);
 
   static const feedMins = {
     FeedType.TEMPERATURE: 10.0,
@@ -27,109 +25,48 @@ class SensorCardLarge extends FeedCard {
   };
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget buildLarge(BuildContext context, WidgetRef ref) {
     final valueAsync = ref.watch(sensorValueProvider(feed));
 
-    return StaggeredGridTile.count(
-        crossAxisCellCount: 2,
-        mainAxisCellCount: 2,
-        child: Card(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      FeedIcon(feed: feed),
-                      const Spacer(),
-                      Text(
-                        FeedCard.sensorUnits[feed.type]!,
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: valueAsync.when(
-                    data: (value) => Gauge(
-                      value: value,
-                      min: feedMins[feed.type]!,
-                      max: feedMaxs[feed.type]!,
-                    ),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                    error: (e, s) => const Text(""),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  feed.id,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ));
+    return valueAsync.when(
+      data: (value) => Gauge(
+        value: value,
+        min: feedMins[feed.type]!,
+        max: feedMaxs[feed.type]!,
+      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, s) => const Text(""),
+    );
   }
 }
 
-class SensorCardMedium extends FeedCard {
+class SensorCardMedium extends FeedCardMedium {
   const SensorCardMedium({
-    Key? key,
+    super.key,
     required Feed feed,
-  }) : super(key: key, feed: feed);
+  }) : super(feed: feed);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget buildMedium(BuildContext context, WidgetRef ref) {
     final valueAsync = ref.watch(sensorValueProvider(feed));
-
-    return StaggeredGridTile.count(
-      crossAxisCellCount: 4,
-      mainAxisCellCount: 1,
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              FeedIcon(feed: feed),
-              const SizedBox(width: 16),
-              Text(
-                feed.id,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 8),
-              const Spacer(),
-              valueAsync.when(
-                data: (value) => RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "${valueAsync.value}",
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      const TextSpan(text: " "),
-                      TextSpan(
-                        text: "${FeedCard.sensorUnits[feed.type]}",
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (e, s) => const Text(""),
-              )
-            ],
-          ),
+    return valueAsync.when(
+      data: (value) => RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: "${valueAsync.value}",
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            const TextSpan(text: " "),
+            TextSpan(
+              text: "${FeedCard.sensorUnits[feed.type]}",
+              style: const TextStyle(color: Colors.grey),
+            ),
+          ],
         ),
       ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, s) => const Text(""),
     );
   }
 }

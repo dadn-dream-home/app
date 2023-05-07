@@ -1,112 +1,41 @@
-import 'package:dream_home/src/common_widgets/async_value_ui.dart';
-import 'package:dream_home/src/common_widgets/feed_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
 import '../data/actuator_state.dart';
 import 'actuator_card_controller.dart';
 import 'feed_card.dart';
 
-class ActuatorCardLarge extends FeedCard {
+class ActuatorCardLarge extends FeedCardLarge {
   const ActuatorCardLarge({
     super.key,
     required Feed feed,
   }) : super(feed: feed);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final stateAsync = ref.watch(actuatorStateProvider(feed));
-
-    ref.listen(actuatorStateProvider(feed), (_, v) {
-      v.showSnackbarOnError(context);
-    });
-
-    return StaggeredGridTile.count(
-      crossAxisCellCount: 2,
-      mainAxisCellCount: 2,
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: FeedIcon(feed: feed),
-              ),
-              Expanded(
-                child: stateAsync.when(
-                  data: (value) => Switch(
-                    value: value,
-                    onChanged: ref
-                        .watch(actuatorCardControllerProvider(feed).notifier)
-                        .onChange,
-                  ),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  error: (e, s) => const Text(""),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                feed.id,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+  Widget buildLarge(BuildContext context, WidgetRef ref) {
+    return ActuatorCardMedium(feed: feed).buildMedium(context, ref);
   }
 }
 
-class ActuatorCardMedium extends FeedCard {
+class ActuatorCardMedium extends FeedCardMedium {
   const ActuatorCardMedium({
     super.key,
     required Feed feed,
   }) : super(feed: feed);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget buildMedium(BuildContext context, WidgetRef ref) {
     final stateAsync = ref.watch(actuatorStateProvider(feed));
+    final controller = ref.watch(actuatorCardControllerProvider(feed).notifier);
 
-    return StaggeredGridTile.count(
-      crossAxisCellCount: 4,
-      mainAxisCellCount: 1,
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              FeedIcon(feed: feed),
-              const SizedBox(width: 16),
-              Text(
-                feed.id,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 8),
-              const Spacer(),
-              stateAsync.when(
-                data: (value) => Switch(
-                  value: value,
-                  onChanged: ref
-                      .watch(actuatorCardControllerProvider(feed).notifier)
-                      .onChange,
-                ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (e, s) => const Text(""),
-              ),
-            ],
-          ),
-        ),
+    return stateAsync.when(
+      data: (value) => Switch(
+        value: value,
+        onChanged: controller.onChange,
       ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, s) => const Text(""),
     );
   }
 }
