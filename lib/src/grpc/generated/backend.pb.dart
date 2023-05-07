@@ -201,94 +201,146 @@ class StreamActuatorStatesResponse extends $pb.GeneratedMessage {
   void clearState() => clearField(1);
 }
 
-class ListFeedsRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListFeedsRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+class StreamFeedsChangesRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StreamFeedsChangesRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
-  ListFeedsRequest._() : super();
-  factory ListFeedsRequest() => create();
-  factory ListFeedsRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListFeedsRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  StreamFeedsChangesRequest._() : super();
+  factory StreamFeedsChangesRequest() => create();
+  factory StreamFeedsChangesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory StreamFeedsChangesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  ListFeedsRequest clone() => ListFeedsRequest()..mergeFromMessage(this);
+  StreamFeedsChangesRequest clone() => StreamFeedsChangesRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListFeedsRequest copyWith(void Function(ListFeedsRequest) updates) => super.copyWith((message) => updates(message as ListFeedsRequest)) as ListFeedsRequest; // ignore: deprecated_member_use
+  StreamFeedsChangesRequest copyWith(void Function(StreamFeedsChangesRequest) updates) => super.copyWith((message) => updates(message as StreamFeedsChangesRequest)) as StreamFeedsChangesRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static ListFeedsRequest create() => ListFeedsRequest._();
-  ListFeedsRequest createEmptyInstance() => create();
-  static $pb.PbList<ListFeedsRequest> createRepeated() => $pb.PbList<ListFeedsRequest>();
+  static StreamFeedsChangesRequest create() => StreamFeedsChangesRequest._();
+  StreamFeedsChangesRequest createEmptyInstance() => create();
+  static $pb.PbList<StreamFeedsChangesRequest> createRepeated() => $pb.PbList<StreamFeedsChangesRequest>();
   @$core.pragma('dart2js:noInline')
-  static ListFeedsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListFeedsRequest>(create);
-  static ListFeedsRequest? _defaultInstance;
+  static StreamFeedsChangesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamFeedsChangesRequest>(create);
+  static StreamFeedsChangesRequest? _defaultInstance;
 }
 
-class ListFeedsResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ListFeedsResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
-    ..pc<Feed>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'feeds', $pb.PbFieldType.PM, subBuilder: Feed.create)
+class StreamFeedsChangesResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StreamFeedsChangesResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..aOM<FeedsChange>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'change', subBuilder: FeedsChange.create)
     ..hasRequiredFields = false
   ;
 
-  ListFeedsResponse._() : super();
-  factory ListFeedsResponse({
-    $core.Iterable<Feed>? feeds,
+  StreamFeedsChangesResponse._() : super();
+  factory StreamFeedsChangesResponse({
+    FeedsChange? change,
   }) {
     final _result = create();
-    if (feeds != null) {
-      _result.feeds.addAll(feeds);
+    if (change != null) {
+      _result.change = change;
     }
     return _result;
   }
-  factory ListFeedsResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ListFeedsResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory StreamFeedsChangesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory StreamFeedsChangesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  ListFeedsResponse clone() => ListFeedsResponse()..mergeFromMessage(this);
+  StreamFeedsChangesResponse clone() => StreamFeedsChangesResponse()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListFeedsResponse copyWith(void Function(ListFeedsResponse) updates) => super.copyWith((message) => updates(message as ListFeedsResponse)) as ListFeedsResponse; // ignore: deprecated_member_use
+  StreamFeedsChangesResponse copyWith(void Function(StreamFeedsChangesResponse) updates) => super.copyWith((message) => updates(message as StreamFeedsChangesResponse)) as StreamFeedsChangesResponse; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static ListFeedsResponse create() => ListFeedsResponse._();
-  ListFeedsResponse createEmptyInstance() => create();
-  static $pb.PbList<ListFeedsResponse> createRepeated() => $pb.PbList<ListFeedsResponse>();
+  static StreamFeedsChangesResponse create() => StreamFeedsChangesResponse._();
+  StreamFeedsChangesResponse createEmptyInstance() => create();
+  static $pb.PbList<StreamFeedsChangesResponse> createRepeated() => $pb.PbList<StreamFeedsChangesResponse>();
   @$core.pragma('dart2js:noInline')
-  static ListFeedsResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListFeedsResponse>(create);
-  static ListFeedsResponse? _defaultInstance;
+  static StreamFeedsChangesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamFeedsChangesResponse>(create);
+  static StreamFeedsChangesResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Feed> get feeds => $_getList(0);
+  FeedsChange get change => $_getN(0);
+  @$pb.TagNumber(1)
+  set change(FeedsChange v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasChange() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearChange() => clearField(1);
+  @$pb.TagNumber(1)
+  FeedsChange ensureChange() => $_ensure(0);
+}
+
+class FeedsChange extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'FeedsChange', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..pc<Feed>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'added', $pb.PbFieldType.PM, subBuilder: Feed.create)
+    ..pPS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'removed')
+    ..hasRequiredFields = false
+  ;
+
+  FeedsChange._() : super();
+  factory FeedsChange({
+    $core.Iterable<Feed>? added,
+    $core.Iterable<$core.String>? removed,
+  }) {
+    final _result = create();
+    if (added != null) {
+      _result.added.addAll(added);
+    }
+    if (removed != null) {
+      _result.removed.addAll(removed);
+    }
+    return _result;
+  }
+  factory FeedsChange.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FeedsChange.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  FeedsChange clone() => FeedsChange()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FeedsChange copyWith(void Function(FeedsChange) updates) => super.copyWith((message) => updates(message as FeedsChange)) as FeedsChange; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static FeedsChange create() => FeedsChange._();
+  FeedsChange createEmptyInstance() => create();
+  static $pb.PbList<FeedsChange> createRepeated() => $pb.PbList<FeedsChange>();
+  @$core.pragma('dart2js:noInline')
+  static FeedsChange getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FeedsChange>(create);
+  static FeedsChange? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Feed> get added => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.String> get removed => $_getList(1);
 }
 
 class CreateFeedRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateFeedRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..e<FeedType>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: FeedType.TEMPERATURE, valueOf: FeedType.valueOf, enumValues: FeedType.values)
+    ..aOM<Feed>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'feed', subBuilder: Feed.create)
     ..hasRequiredFields = false
   ;
 
   CreateFeedRequest._() : super();
   factory CreateFeedRequest({
-    $core.String? id,
-    FeedType? type,
+    Feed? feed,
   }) {
     final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
-    if (type != null) {
-      _result.type = type;
+    if (feed != null) {
+      _result.feed = feed;
     }
     return _result;
   }
@@ -314,45 +366,24 @@ class CreateFeedRequest extends $pb.GeneratedMessage {
   static CreateFeedRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  Feed get feed => $_getN(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set feed(Feed v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
+  $core.bool hasFeed() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  FeedType get type => $_getN(1);
-  @$pb.TagNumber(2)
-  set type(FeedType v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasType() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearType() => clearField(2);
+  void clearFeed() => clearField(1);
+  @$pb.TagNumber(1)
+  Feed ensureFeed() => $_ensure(0);
 }
 
 class CreateFeedResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateFeedResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..e<FeedType>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: FeedType.TEMPERATURE, valueOf: FeedType.valueOf, enumValues: FeedType.values)
     ..hasRequiredFields = false
   ;
 
   CreateFeedResponse._() : super();
-  factory CreateFeedResponse({
-    $core.String? id,
-    FeedType? type,
-  }) {
-    final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
-    if (type != null) {
-      _result.type = type;
-    }
-    return _result;
-  }
+  factory CreateFeedResponse() => create();
   factory CreateFeedResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory CreateFeedResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -373,24 +404,6 @@ class CreateFeedResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static CreateFeedResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateFeedResponse>(create);
   static CreateFeedResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  FeedType get type => $_getN(1);
-  @$pb.TagNumber(2)
-  set type(FeedType v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasType() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearType() => clearField(2);
 }
 
 class DeleteFeedRequest extends $pb.GeneratedMessage {
@@ -467,6 +480,98 @@ class DeleteFeedResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static DeleteFeedResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteFeedResponse>(create);
   static DeleteFeedResponse? _defaultInstance;
+}
+
+class SetActuatorStateRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SetActuatorStateRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..aOM<Feed>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'feed', subBuilder: Feed.create)
+    ..aOB(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state')
+    ..hasRequiredFields = false
+  ;
+
+  SetActuatorStateRequest._() : super();
+  factory SetActuatorStateRequest({
+    Feed? feed,
+    $core.bool? state,
+  }) {
+    final _result = create();
+    if (feed != null) {
+      _result.feed = feed;
+    }
+    if (state != null) {
+      _result.state = state;
+    }
+    return _result;
+  }
+  factory SetActuatorStateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetActuatorStateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetActuatorStateRequest clone() => SetActuatorStateRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetActuatorStateRequest copyWith(void Function(SetActuatorStateRequest) updates) => super.copyWith((message) => updates(message as SetActuatorStateRequest)) as SetActuatorStateRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SetActuatorStateRequest create() => SetActuatorStateRequest._();
+  SetActuatorStateRequest createEmptyInstance() => create();
+  static $pb.PbList<SetActuatorStateRequest> createRepeated() => $pb.PbList<SetActuatorStateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SetActuatorStateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetActuatorStateRequest>(create);
+  static SetActuatorStateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  Feed get feed => $_getN(0);
+  @$pb.TagNumber(1)
+  set feed(Feed v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasFeed() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearFeed() => clearField(1);
+  @$pb.TagNumber(1)
+  Feed ensureFeed() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.bool get state => $_getBF(1);
+  @$pb.TagNumber(2)
+  set state($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearState() => clearField(2);
+}
+
+class SetActuatorStateResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SetActuatorStateResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  SetActuatorStateResponse._() : super();
+  factory SetActuatorStateResponse() => create();
+  factory SetActuatorStateResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetActuatorStateResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetActuatorStateResponse clone() => SetActuatorStateResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetActuatorStateResponse copyWith(void Function(SetActuatorStateResponse) updates) => super.copyWith((message) => updates(message as SetActuatorStateResponse)) as SetActuatorStateResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SetActuatorStateResponse create() => SetActuatorStateResponse._();
+  SetActuatorStateResponse createEmptyInstance() => create();
+  static $pb.PbList<SetActuatorStateResponse> createRepeated() => $pb.PbList<SetActuatorStateResponse>();
+  @$core.pragma('dart2js:noInline')
+  static SetActuatorStateResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetActuatorStateResponse>(create);
+  static SetActuatorStateResponse? _defaultInstance;
 }
 
 class Feed extends $pb.GeneratedMessage {

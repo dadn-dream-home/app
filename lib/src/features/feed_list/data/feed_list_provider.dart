@@ -5,8 +5,17 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'feed_list_provider.g.dart';
 
 @riverpod
-Future<List<Feed>> feedList(FeedListRef ref) async {
+Stream<List<Feed>> feedList(FeedListRef ref) async* {
   final backend = ref.watch(backendProvider);
-  final response = await backend.listFeeds(ListFeedsRequest());
-  return response.feeds;
+  final stream = backend.streamFeedsChanges(StreamFeedsChangesRequest());
+  List<Feed> feeds = [];
+  await for (final response in stream) {
+    for (final feed in response.change.added) {
+      feeds.add(feed);
+    }
+    for (final feed in response.change.removed) {
+      feeds.removeWhere((element) => element.id == feed);
+    }
+    yield feeds;
+  }
 }

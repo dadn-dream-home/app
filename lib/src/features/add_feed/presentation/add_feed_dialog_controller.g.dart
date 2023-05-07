@@ -7,7 +7,7 @@ part of 'add_feed_dialog_controller.dart';
 // **************************************************************************
 
 String _$addFeedDialogControllerHash() =>
-    r'f45b2e50d089d0967001a9b05f21f0f1dea4c2bf';
+    r'f20ec031edc354cc97e0e11ff33eaa5f802480f9';
 
 /// See also [AddFeedDialogController].
 @ProviderFor(AddFeedDialogController)

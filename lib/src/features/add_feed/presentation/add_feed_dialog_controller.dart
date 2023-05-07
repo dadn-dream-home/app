@@ -24,10 +24,14 @@ class AddFeedDialogController extends _$AddFeedDialogController {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      await ref.read(backendProvider).createFeed(CreateFeedRequest(
-            id: ref.read(feedIdTextControllerProvider).text,
-            type: ref.read(selectedFeedTypeProvider),
-          ));
+      await ref.read(backendProvider).createFeed(
+            CreateFeedRequest(
+              feed: Feed(
+                id: ref.read(feedIdTextControllerProvider).text,
+                type: ref.read(selectedFeedTypeProvider),
+              ),
+            ),
+          );
     });
     state.whenData((_) => onDone(context));
   }

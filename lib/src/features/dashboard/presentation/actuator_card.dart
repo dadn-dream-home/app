@@ -6,6 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
 import '../data/actuator_state.dart';
+import 'actuator_card_controller.dart';
 import 'feed_card.dart';
 
 class ActuatorCardLarge extends FeedCard {
@@ -36,7 +37,12 @@ class ActuatorCardLarge extends FeedCard {
               ),
               Expanded(
                 child: stateAsync.when(
-                  data: (value) => Switch(value: value, onChanged: (v) {}),
+                  data: (value) => Switch(
+                    value: value,
+                    onChanged: ref
+                        .watch(actuatorCardControllerProvider(feed).notifier)
+                        .onChange,
+                  ),
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                   error: (e, s) => const Text(""),
@@ -88,7 +94,12 @@ class ActuatorCardMedium extends FeedCard {
               const SizedBox(width: 8),
               const Spacer(),
               stateAsync.when(
-                data: (value) => Switch(value: value, onChanged: (v) {}),
+                data: (value) => Switch(
+                  value: value,
+                  onChanged: ref
+                      .watch(actuatorCardControllerProvider(feed).notifier)
+                      .onChange,
+                ),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 error: (e, s) => const Text(""),
               ),

@@ -26,12 +26,12 @@ class BackendServiceClient extends $grpc.Client {
       ($0.StreamActuatorStatesRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.StreamActuatorStatesResponse.fromBuffer(value));
-  static final _$listFeeds =
-      $grpc.ClientMethod<$0.ListFeedsRequest, $0.ListFeedsResponse>(
-          '/protobuf.BackendService/ListFeeds',
-          ($0.ListFeedsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.ListFeedsResponse.fromBuffer(value));
+  static final _$streamFeedsChanges = $grpc.ClientMethod<
+          $0.StreamFeedsChangesRequest, $0.StreamFeedsChangesResponse>(
+      '/protobuf.BackendService/StreamFeedsChanges',
+      ($0.StreamFeedsChangesRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.StreamFeedsChangesResponse.fromBuffer(value));
   static final _$createFeed =
       $grpc.ClientMethod<$0.CreateFeedRequest, $0.CreateFeedResponse>(
           '/protobuf.BackendService/CreateFeed',
@@ -44,6 +44,12 @@ class BackendServiceClient extends $grpc.Client {
           ($0.DeleteFeedRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.DeleteFeedResponse.fromBuffer(value));
+  static final _$setActuatorState = $grpc.ClientMethod<
+          $0.SetActuatorStateRequest, $0.SetActuatorStateResponse>(
+      '/protobuf.BackendService/SetActuatorState',
+      ($0.SetActuatorStateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.SetActuatorStateResponse.fromBuffer(value));
 
   BackendServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -66,10 +72,12 @@ class BackendServiceClient extends $grpc.Client {
         options: options);
   }
 
-  $grpc.ResponseFuture<$0.ListFeedsResponse> listFeeds(
-      $0.ListFeedsRequest request,
+  $grpc.ResponseStream<$0.StreamFeedsChangesResponse> streamFeedsChanges(
+      $0.StreamFeedsChangesRequest request,
       {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listFeeds, request, options: options);
+    return $createStreamingCall(
+        _$streamFeedsChanges, $async.Stream.fromIterable([request]),
+        options: options);
   }
 
   $grpc.ResponseFuture<$0.CreateFeedResponse> createFeed(
@@ -82,6 +90,12 @@ class BackendServiceClient extends $grpc.Client {
       $0.DeleteFeedRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deleteFeed, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SetActuatorStateResponse> setActuatorState(
+      $0.SetActuatorStateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$setActuatorState, request, options: options);
   }
 }
 
@@ -107,13 +121,15 @@ abstract class BackendServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.StreamActuatorStatesRequest.fromBuffer(value),
         ($0.StreamActuatorStatesResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.ListFeedsRequest, $0.ListFeedsResponse>(
-        'ListFeeds',
-        listFeeds_Pre,
+    $addMethod($grpc.ServiceMethod<$0.StreamFeedsChangesRequest,
+            $0.StreamFeedsChangesResponse>(
+        'StreamFeedsChanges',
+        streamFeedsChanges_Pre,
         false,
-        false,
-        ($core.List<$core.int> value) => $0.ListFeedsRequest.fromBuffer(value),
-        ($0.ListFeedsResponse value) => value.writeToBuffer()));
+        true,
+        ($core.List<$core.int> value) =>
+            $0.StreamFeedsChangesRequest.fromBuffer(value),
+        ($0.StreamFeedsChangesResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.CreateFeedRequest, $0.CreateFeedResponse>(
         'CreateFeed',
         createFeed_Pre,
@@ -128,6 +144,15 @@ abstract class BackendServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.DeleteFeedRequest.fromBuffer(value),
         ($0.DeleteFeedResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SetActuatorStateRequest,
+            $0.SetActuatorStateResponse>(
+        'SetActuatorState',
+        setActuatorState_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SetActuatorStateRequest.fromBuffer(value),
+        ($0.SetActuatorStateResponse value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues_Pre(
@@ -142,9 +167,10 @@ abstract class BackendServiceBase extends $grpc.Service {
     yield* streamActuatorStates(call, await request);
   }
 
-  $async.Future<$0.ListFeedsResponse> listFeeds_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListFeedsRequest> request) async {
-    return listFeeds(call, await request);
+  $async.Stream<$0.StreamFeedsChangesResponse> streamFeedsChanges_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.StreamFeedsChangesRequest> request) async* {
+    yield* streamFeedsChanges(call, await request);
   }
 
   $async.Future<$0.CreateFeedResponse> createFeed_Pre($grpc.ServiceCall call,
@@ -157,14 +183,22 @@ abstract class BackendServiceBase extends $grpc.Service {
     return deleteFeed(call, await request);
   }
 
+  $async.Future<$0.SetActuatorStateResponse> setActuatorState_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.SetActuatorStateRequest> request) async {
+    return setActuatorState(call, await request);
+  }
+
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues(
       $grpc.ServiceCall call, $0.StreamSensorValuesRequest request);
   $async.Stream<$0.StreamActuatorStatesResponse> streamActuatorStates(
       $grpc.ServiceCall call, $0.StreamActuatorStatesRequest request);
-  $async.Future<$0.ListFeedsResponse> listFeeds(
-      $grpc.ServiceCall call, $0.ListFeedsRequest request);
+  $async.Stream<$0.StreamFeedsChangesResponse> streamFeedsChanges(
+      $grpc.ServiceCall call, $0.StreamFeedsChangesRequest request);
   $async.Future<$0.CreateFeedResponse> createFeed(
       $grpc.ServiceCall call, $0.CreateFeedRequest request);
   $async.Future<$0.DeleteFeedResponse> deleteFeed(
       $grpc.ServiceCall call, $0.DeleteFeedRequest request);
+  $async.Future<$0.SetActuatorStateResponse> setActuatorState(
+      $grpc.ServiceCall call, $0.SetActuatorStateRequest request);
 }

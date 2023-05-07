@@ -60,45 +60,51 @@ const StreamActuatorStatesResponse$json = const {
 
 /// Descriptor for `StreamActuatorStatesResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List streamActuatorStatesResponseDescriptor = $convert.base64Decode('ChxTdHJlYW1BY3R1YXRvclN0YXRlc1Jlc3BvbnNlEhQKBXN0YXRlGAEgASgIUgVzdGF0ZQ==');
-@$core.Deprecated('Use listFeedsRequestDescriptor instead')
-const ListFeedsRequest$json = const {
-  '1': 'ListFeedsRequest',
+@$core.Deprecated('Use streamFeedsChangesRequestDescriptor instead')
+const StreamFeedsChangesRequest$json = const {
+  '1': 'StreamFeedsChangesRequest',
 };
 
-/// Descriptor for `ListFeedsRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listFeedsRequestDescriptor = $convert.base64Decode('ChBMaXN0RmVlZHNSZXF1ZXN0');
-@$core.Deprecated('Use listFeedsResponseDescriptor instead')
-const ListFeedsResponse$json = const {
-  '1': 'ListFeedsResponse',
+/// Descriptor for `StreamFeedsChangesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamFeedsChangesRequestDescriptor = $convert.base64Decode('ChlTdHJlYW1GZWVkc0NoYW5nZXNSZXF1ZXN0');
+@$core.Deprecated('Use streamFeedsChangesResponseDescriptor instead')
+const StreamFeedsChangesResponse$json = const {
+  '1': 'StreamFeedsChangesResponse',
   '2': const [
-    const {'1': 'feeds', '3': 1, '4': 3, '5': 11, '6': '.protobuf.Feed', '10': 'feeds'},
+    const {'1': 'change', '3': 1, '4': 1, '5': 11, '6': '.protobuf.FeedsChange', '10': 'change'},
   ],
 };
 
-/// Descriptor for `ListFeedsResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listFeedsResponseDescriptor = $convert.base64Decode('ChFMaXN0RmVlZHNSZXNwb25zZRIkCgVmZWVkcxgBIAMoCzIOLnByb3RvYnVmLkZlZWRSBWZlZWRz');
+/// Descriptor for `StreamFeedsChangesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamFeedsChangesResponseDescriptor = $convert.base64Decode('ChpTdHJlYW1GZWVkc0NoYW5nZXNSZXNwb25zZRItCgZjaGFuZ2UYASABKAsyFS5wcm90b2J1Zi5GZWVkc0NoYW5nZVIGY2hhbmdl');
+@$core.Deprecated('Use feedsChangeDescriptor instead')
+const FeedsChange$json = const {
+  '1': 'FeedsChange',
+  '2': const [
+    const {'1': 'added', '3': 1, '4': 3, '5': 11, '6': '.protobuf.Feed', '10': 'added'},
+    const {'1': 'removed', '3': 2, '4': 3, '5': 9, '10': 'removed'},
+  ],
+};
+
+/// Descriptor for `FeedsChange`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List feedsChangeDescriptor = $convert.base64Decode('CgtGZWVkc0NoYW5nZRIkCgVhZGRlZBgBIAMoCzIOLnByb3RvYnVmLkZlZWRSBWFkZGVkEhgKB3JlbW92ZWQYAiADKAlSB3JlbW92ZWQ=');
 @$core.Deprecated('Use createFeedRequestDescriptor instead')
 const CreateFeedRequest$json = const {
   '1': 'CreateFeedRequest',
   '2': const [
-    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    const {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.protobuf.FeedType', '10': 'type'},
+    const {'1': 'feed', '3': 1, '4': 1, '5': 11, '6': '.protobuf.Feed', '10': 'feed'},
   ],
 };
 
 /// Descriptor for `CreateFeedRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List createFeedRequestDescriptor = $convert.base64Decode('ChFDcmVhdGVGZWVkUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQSJgoEdHlwZRgCIAEoDjISLnByb3RvYnVmLkZlZWRUeXBlUgR0eXBl');
+final $typed_data.Uint8List createFeedRequestDescriptor = $convert.base64Decode('ChFDcmVhdGVGZWVkUmVxdWVzdBIiCgRmZWVkGAEgASgLMg4ucHJvdG9idWYuRmVlZFIEZmVlZA==');
 @$core.Deprecated('Use createFeedResponseDescriptor instead')
 const CreateFeedResponse$json = const {
   '1': 'CreateFeedResponse',
-  '2': const [
-    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    const {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.protobuf.FeedType', '10': 'type'},
-  ],
 };
 
 /// Descriptor for `CreateFeedResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List createFeedResponseDescriptor = $convert.base64Decode('ChJDcmVhdGVGZWVkUmVzcG9uc2USDgoCaWQYASABKAlSAmlkEiYKBHR5cGUYAiABKA4yEi5wcm90b2J1Zi5GZWVkVHlwZVIEdHlwZQ==');
+final $typed_data.Uint8List createFeedResponseDescriptor = $convert.base64Decode('ChJDcmVhdGVGZWVkUmVzcG9uc2U=');
 @$core.Deprecated('Use deleteFeedRequestDescriptor instead')
 const DeleteFeedRequest$json = const {
   '1': 'DeleteFeedRequest',
@@ -116,6 +122,24 @@ const DeleteFeedResponse$json = const {
 
 /// Descriptor for `DeleteFeedResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List deleteFeedResponseDescriptor = $convert.base64Decode('ChJEZWxldGVGZWVkUmVzcG9uc2U=');
+@$core.Deprecated('Use setActuatorStateRequestDescriptor instead')
+const SetActuatorStateRequest$json = const {
+  '1': 'SetActuatorStateRequest',
+  '2': const [
+    const {'1': 'feed', '3': 1, '4': 1, '5': 11, '6': '.protobuf.Feed', '10': 'feed'},
+    const {'1': 'state', '3': 2, '4': 1, '5': 8, '10': 'state'},
+  ],
+};
+
+/// Descriptor for `SetActuatorStateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setActuatorStateRequestDescriptor = $convert.base64Decode('ChdTZXRBY3R1YXRvclN0YXRlUmVxdWVzdBIiCgRmZWVkGAEgASgLMg4ucHJvdG9idWYuRmVlZFIEZmVlZBIUCgVzdGF0ZRgCIAEoCFIFc3RhdGU=');
+@$core.Deprecated('Use setActuatorStateResponseDescriptor instead')
+const SetActuatorStateResponse$json = const {
+  '1': 'SetActuatorStateResponse',
+};
+
+/// Descriptor for `SetActuatorStateResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setActuatorStateResponseDescriptor = $convert.base64Decode('ChhTZXRBY3R1YXRvclN0YXRlUmVzcG9uc2U=');
 @$core.Deprecated('Use feedDescriptor instead')
 const Feed$json = const {
   '1': 'Feed',
