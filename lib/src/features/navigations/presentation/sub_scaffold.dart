@@ -19,6 +19,7 @@ class SubScaffold extends StatelessWidget {
         title: Text(title),
         actions: actions,
       ),
+      backgroundColor: Colors.white,
       body: body,
     );
   }
