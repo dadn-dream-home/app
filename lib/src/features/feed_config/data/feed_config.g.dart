@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feed_config_form_controller.dart';
+part of 'feed_config.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$feedConfigFormControllerHash() =>
-    r'504822b35ec57a2d41b23f6fee2f9e2c2bf9802a';
+String _$feedConfigHash() => r'03d136e9acc6c9a57cdddf8b767e026c59838940';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +29,29 @@ class _SystemHash {
   }
 }
 
-abstract class _$FeedConfigFormController
-    extends BuildlessAutoDisposeNotifier<FeedType> {
-  late final Feed feed;
+typedef FeedConfigRef = AutoDisposeFutureProviderRef<Config>;
 
-  FeedType build(
-    Feed feed,
-  );
-}
+/// See also [feedConfig].
+@ProviderFor(feedConfig)
+const feedConfigProvider = FeedConfigFamily();
 
-/// See also [FeedConfigFormController].
-@ProviderFor(FeedConfigFormController)
-const feedConfigFormControllerProvider = FeedConfigFormControllerFamily();
+/// See also [feedConfig].
+class FeedConfigFamily extends Family<AsyncValue<Config>> {
+  /// See also [feedConfig].
+  const FeedConfigFamily();
 
-/// See also [FeedConfigFormController].
-class FeedConfigFormControllerFamily extends Family<FeedType> {
-  /// See also [FeedConfigFormController].
-  const FeedConfigFormControllerFamily();
-
-  /// See also [FeedConfigFormController].
-  FeedConfigFormControllerProvider call(
+  /// See also [feedConfig].
+  FeedConfigProvider call(
     Feed feed,
   ) {
-    return FeedConfigFormControllerProvider(
+    return FeedConfigProvider(
       feed,
     );
   }
 
   @override
-  FeedConfigFormControllerProvider getProviderOverride(
-    covariant FeedConfigFormControllerProvider provider,
+  FeedConfigProvider getProviderOverride(
+    covariant FeedConfigProvider provider,
   ) {
     return call(
       provider.feed,
@@ -78,33 +70,35 @@ class FeedConfigFormControllerFamily extends Family<FeedType> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'feedConfigFormControllerProvider';
+  String? get name => r'feedConfigProvider';
 }
 
-/// See also [FeedConfigFormController].
-class FeedConfigFormControllerProvider extends AutoDisposeNotifierProviderImpl<
-    FeedConfigFormController, FeedType> {
-  /// See also [FeedConfigFormController].
-  FeedConfigFormControllerProvider(
+/// See also [feedConfig].
+class FeedConfigProvider extends AutoDisposeFutureProvider<Config> {
+  /// See also [feedConfig].
+  FeedConfigProvider(
     this.feed,
   ) : super.internal(
-          () => FeedConfigFormController()..feed = feed,
-          from: feedConfigFormControllerProvider,
-          name: r'feedConfigFormControllerProvider',
+          (ref) => feedConfig(
+            ref,
+            feed,
+          ),
+          from: feedConfigProvider,
+          name: r'feedConfigProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$feedConfigFormControllerHash,
-          dependencies: FeedConfigFormControllerFamily._dependencies,
+                  : _$feedConfigHash,
+          dependencies: FeedConfigFamily._dependencies,
           allTransitiveDependencies:
-              FeedConfigFormControllerFamily._allTransitiveDependencies,
+              FeedConfigFamily._allTransitiveDependencies,
         );
 
   final Feed feed;
 
   @override
   bool operator ==(Object other) {
-    return other is FeedConfigFormControllerProvider && other.feed == feed;
+    return other is FeedConfigProvider && other.feed == feed;
   }
 
   @override
@@ -113,15 +107,6 @@ class FeedConfigFormControllerProvider extends AutoDisposeNotifierProviderImpl<
     hash = _SystemHash.combine(hash, feed.hashCode);
 
     return _SystemHash.finish(hash);
-  }
-
-  @override
-  FeedType runNotifierBuild(
-    covariant FeedConfigFormController notifier,
-  ) {
-    return notifier.build(
-      feed,
-    );
   }
 }
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

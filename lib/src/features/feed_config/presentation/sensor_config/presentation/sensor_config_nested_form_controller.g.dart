@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feed_config_form_controller.dart';
+part of 'sensor_config_nested_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$feedConfigFormControllerHash() =>
-    r'504822b35ec57a2d41b23f6fee2f9e2c2bf9802a';
+String _$sensorConfigNestedFormControllerHash() =>
+    r'9dc8528cf85952cc0f9952a0954ae1efd09139d7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +30,37 @@ class _SystemHash {
   }
 }
 
-abstract class _$FeedConfigFormController
-    extends BuildlessAutoDisposeNotifier<FeedType> {
+abstract class _$SensorConfigNestedFormController
+    extends BuildlessAutoDisposeNotifier<bool> {
   late final Feed feed;
 
-  FeedType build(
+  bool build(
     Feed feed,
   );
 }
 
-/// See also [FeedConfigFormController].
-@ProviderFor(FeedConfigFormController)
-const feedConfigFormControllerProvider = FeedConfigFormControllerFamily();
+/// See also [SensorConfigNestedFormController].
+@ProviderFor(SensorConfigNestedFormController)
+const sensorConfigNestedFormControllerProvider =
+    SensorConfigNestedFormControllerFamily();
 
-/// See also [FeedConfigFormController].
-class FeedConfigFormControllerFamily extends Family<FeedType> {
-  /// See also [FeedConfigFormController].
-  const FeedConfigFormControllerFamily();
+/// See also [SensorConfigNestedFormController].
+class SensorConfigNestedFormControllerFamily extends Family<bool> {
+  /// See also [SensorConfigNestedFormController].
+  const SensorConfigNestedFormControllerFamily();
 
-  /// See also [FeedConfigFormController].
-  FeedConfigFormControllerProvider call(
+  /// See also [SensorConfigNestedFormController].
+  SensorConfigNestedFormControllerProvider call(
     Feed feed,
   ) {
-    return FeedConfigFormControllerProvider(
+    return SensorConfigNestedFormControllerProvider(
       feed,
     );
   }
 
   @override
-  FeedConfigFormControllerProvider getProviderOverride(
-    covariant FeedConfigFormControllerProvider provider,
+  SensorConfigNestedFormControllerProvider getProviderOverride(
+    covariant SensorConfigNestedFormControllerProvider provider,
   ) {
     return call(
       provider.feed,
@@ -78,33 +79,35 @@ class FeedConfigFormControllerFamily extends Family<FeedType> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'feedConfigFormControllerProvider';
+  String? get name => r'sensorConfigNestedFormControllerProvider';
 }
 
-/// See also [FeedConfigFormController].
-class FeedConfigFormControllerProvider extends AutoDisposeNotifierProviderImpl<
-    FeedConfigFormController, FeedType> {
-  /// See also [FeedConfigFormController].
-  FeedConfigFormControllerProvider(
+/// See also [SensorConfigNestedFormController].
+class SensorConfigNestedFormControllerProvider
+    extends AutoDisposeNotifierProviderImpl<SensorConfigNestedFormController,
+        bool> {
+  /// See also [SensorConfigNestedFormController].
+  SensorConfigNestedFormControllerProvider(
     this.feed,
   ) : super.internal(
-          () => FeedConfigFormController()..feed = feed,
-          from: feedConfigFormControllerProvider,
-          name: r'feedConfigFormControllerProvider',
+          () => SensorConfigNestedFormController()..feed = feed,
+          from: sensorConfigNestedFormControllerProvider,
+          name: r'sensorConfigNestedFormControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$feedConfigFormControllerHash,
-          dependencies: FeedConfigFormControllerFamily._dependencies,
+                  : _$sensorConfigNestedFormControllerHash,
+          dependencies: SensorConfigNestedFormControllerFamily._dependencies,
           allTransitiveDependencies:
-              FeedConfigFormControllerFamily._allTransitiveDependencies,
+              SensorConfigNestedFormControllerFamily._allTransitiveDependencies,
         );
 
   final Feed feed;
 
   @override
   bool operator ==(Object other) {
-    return other is FeedConfigFormControllerProvider && other.feed == feed;
+    return other is SensorConfigNestedFormControllerProvider &&
+        other.feed == feed;
   }
 
   @override
@@ -116,8 +119,8 @@ class FeedConfigFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  FeedType runNotifierBuild(
-    covariant FeedConfigFormController notifier,
+  bool runNotifierBuild(
+    covariant SensorConfigNestedFormController notifier,
   ) {
     return notifier.build(
       feed,
