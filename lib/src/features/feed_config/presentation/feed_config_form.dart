@@ -42,28 +42,32 @@ class FeedConfigForm extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     const Text("Feed config"),
-          //     FormBuilderTextField(
-          //       name: "feedConfig.id",
-          //       decoration: const InputDecoration(labelText: "Feed ID"),
-          //     ),
-          //     FormBuilderDropdown(
-          //       name: "feedConfig.type",
-          //       decoration: const InputDecoration(labelText: "Feed type"),
-          //       initialValue: config.feedConfig.type,
-          //       onChanged: controller.onChange,
-          //       items: FeedType.values
-          //           .map((e) => DropdownMenuItem(
-          //                 value: e,
-          //                 child: Text(e.toString()),
-          //               ))
-          //           .toList(),
-          //     ),
-          //   ],
-          // ),
+          Visibility(
+            visible: false,
+            maintainState: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Feed config"),
+                FormBuilderTextField(
+                  name: "feedConfig.id",
+                  decoration: const InputDecoration(labelText: "Feed ID"),
+                ),
+                FormBuilderDropdown(
+                  name: "feedConfig.type",
+                  decoration: const InputDecoration(labelText: "Feed type"),
+                  initialValue: config.feedConfig.type,
+                  onChanged: controller.onChange,
+                  items: FeedType.values
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e.toString()),
+                          ))
+                      .toList(),
+                ),
+              ],
+            ),
+          ),
           // const SizedBox(height: 32.0),
           state == FeedType.TEMPERATURE || state == FeedType.HUMIDITY
               ? SensorConfigNestedForm(feed: feed)

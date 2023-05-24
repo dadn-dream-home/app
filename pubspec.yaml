@@ -48,6 +48,9 @@ dependencies:
   collection: ^1.17.0
   form_builder_validators: ^9.0.0
   flutter_form_builder: ^9.0.0
+  freezed: ^2.3.3
+  freezed_annotation: ^2.2.0
+  cron: ^0.5.1
 
 dev_dependencies:
   flutter_test:
