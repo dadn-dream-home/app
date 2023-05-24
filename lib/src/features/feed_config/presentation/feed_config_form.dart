@@ -1,13 +1,13 @@
-import 'package:dream_home/src/features/feed_config/data/feed_config.dart';
-import 'package:dream_home/src/features/feed_config/presentation/feed_config_form_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
+import '../data/feed_config.dart';
+import '../data/flatten.dart';
 import '../data/form_key.dart';
 import 'actuator_config/presentation/actuator_config_nested_form.dart';
-import 'nested_form_builder.dart';
+import 'feed_config_form_controller.dart';
 import 'sensor_config/presentation/sensor_config_nested_form.dart';
 
 class FeedConfigForm extends ConsumerWidget {
@@ -38,36 +38,33 @@ class FeedConfigForm extends ConsumerWidget {
 
     return FormBuilder(
       key: ref.watch(formKeyProvider(feed)),
-      initialValue: config.toProto3Json() as Map<String, dynamic>,
+      initialValue: (config.toProto3Json() as Map<String, dynamic>).flatten(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          NestedFormBuilder(
-            name: "feedConfig",
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Feed config"),
-                FormBuilderTextField(
-                  name: "id",
-                  decoration: const InputDecoration(labelText: "Feed ID"),
-                ),
-                FormBuilderDropdown(
-                  name: "type",
-                  decoration: const InputDecoration(labelText: "Feed type"),
-                  initialValue: config.feedConfig.type,
-                  onChanged: controller.onChange,
-                  items: FeedType.values
-                      .map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e.toString()),
-                          ))
-                      .toList(),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 32.0),
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     const Text("Feed config"),
+          //     FormBuilderTextField(
+          //       name: "feedConfig.id",
+          //       decoration: const InputDecoration(labelText: "Feed ID"),
+          //     ),
+          //     FormBuilderDropdown(
+          //       name: "feedConfig.type",
+          //       decoration: const InputDecoration(labelText: "Feed type"),
+          //       initialValue: config.feedConfig.type,
+          //       onChanged: controller.onChange,
+          //       items: FeedType.values
+          //           .map((e) => DropdownMenuItem(
+          //                 value: e,
+          //                 child: Text(e.toString()),
+          //               ))
+          //           .toList(),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(height: 32.0),
           state == FeedType.TEMPERATURE || state == FeedType.HUMIDITY
               ? SensorConfigNestedForm(feed: feed)
               : ActuatorConfigNestedForm(feed: feed),

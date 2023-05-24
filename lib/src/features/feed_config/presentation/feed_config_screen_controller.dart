@@ -1,3 +1,4 @@
+import 'package:dream_home/src/features/feed_config/data/flatten.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,7 +29,7 @@ class FeedConfigScreenController extends _$FeedConfigScreenController {
     final formData = ref.read(formKeyProvider(feed)).currentState!;
     if (formData.validate()) {
       formData.save();
-      print(formData.value);
+      print(formData.value.unflatten());
     }
   }
 
