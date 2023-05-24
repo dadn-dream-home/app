@@ -12,14 +12,4 @@ class FormKey extends _$FormKey {
   GlobalKey<FormBuilderState> build(Feed feed) {
     return GlobalKey<FormBuilderState>();
   }
-
-  void saveSwitches() {
-    for (final field in state.currentState!.fields.values) {
-      if (field.initialValue is bool) {
-        field.save();
-      }
-    }
-    print(state.currentState!.fields['notification']!.value);
-    ref.notifyListeners();
-  }
 }

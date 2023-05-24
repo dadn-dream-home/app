@@ -6,7 +6,7 @@ part of 'form_key.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$formKeyHash() => r'6c7931c784d861983135b89b5101060c0f7da7d3';
+String _$formKeyHash() => r'80916047c50a7846effdc88d8d7fa5214e92101f';
 
 /// Copied from Dart SDK
 class _SystemHash {

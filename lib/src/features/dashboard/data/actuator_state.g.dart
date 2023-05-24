@@ -6,7 +6,7 @@ part of 'actuator_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$actuatorStateHash() => r'a67f24185a8a50bf35a15142ac2c28fcbb129440';
+String _$actuatorStateHash() => r'c3936ff2f6aff930b741488368bb16e66c16395c';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -7,7 +7,7 @@ part of 'feed_config_screen_controller.dart';
 // **************************************************************************
 
 String _$feedConfigScreenControllerHash() =>
-    r'24e93ef82a069c2333bd5a4d0c4f77c271a04a3e';
+    r'b652f09cf8c80c81f1d973f7533f8ae93292087c';
 
 /// Copied from Dart SDK
 class _SystemHash {

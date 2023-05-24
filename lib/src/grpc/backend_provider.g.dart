@@ -6,11 +6,11 @@ part of 'backend_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$backendHash() => r'8c07f16fd3b14688d80893a9df76a8a967bd4584';
+String _$backendHash() => r'f332bd4b09ad02f740c5dcf8ae542c8336e4dd5b';
 
 /// See also [backend].
 @ProviderFor(backend)
-final backendProvider = Provider<BackendServiceClient>.internal(
+final backendProvider = AutoDisposeProvider<BackendServiceClient>.internal(
   backend,
   name: r'backendProvider',
   debugGetCreateSourceHash:
@@ -19,5 +19,5 @@ final backendProvider = Provider<BackendServiceClient>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef BackendRef = ProviderRef<BackendServiceClient>;
+typedef BackendRef = AutoDisposeProviderRef<BackendServiceClient>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

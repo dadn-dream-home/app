@@ -9,7 +9,7 @@ part 'sensor_value.g.dart';
 Stream<double> sensorValue(SensorValueRef ref, Feed feed) {
   final backend = ref.read(backendProvider);
   final stream = backend.streamSensorValues(StreamSensorValuesRequest(
-    id: feed.id,
+    feed: feed,
   ));
   return stream.map((response) => response.value);
 }

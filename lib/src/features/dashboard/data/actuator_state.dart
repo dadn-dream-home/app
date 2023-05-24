@@ -9,7 +9,7 @@ part 'actuator_state.g.dart';
 Stream<bool> actuatorState(ActuatorStateRef ref, Feed feed) {
   final backend = ref.read(backendProvider);
   final stream = backend.streamActuatorStates(StreamActuatorStatesRequest(
-    id: feed.id,
+    feed: feed,
   ));
   return stream.map((response) => response.state);
 }

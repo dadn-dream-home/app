@@ -36,7 +36,7 @@
         {
             "label": "generate app protobuf",
             "type": "shell",
-            "command": "protoc --dart_out=grpc:lib/src/grpc/generated ../backend/protobuf/backend.proto -I../backend/protobuf",
+            "command": "protoc --dart_out=grpc:lib/src/grpc/generated ../backend/protobuf/backend.proto -I../backend/protobuf google/protobuf/timestamp.proto",
             "problemMatcher": []
         }
     ]

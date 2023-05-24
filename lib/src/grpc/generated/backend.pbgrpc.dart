@@ -50,6 +50,24 @@ class BackendServiceClient extends $grpc.Client {
       ($0.SetActuatorStateRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.SetActuatorStateResponse.fromBuffer(value));
+  static final _$streamNotifications = $grpc.ClientMethod<
+          $0.StreamNotificationsRequest, $0.StreamNotificationsResponse>(
+      '/protobuf.BackendService/StreamNotifications',
+      ($0.StreamNotificationsRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.StreamNotificationsResponse.fromBuffer(value));
+  static final _$updateFeedConfig = $grpc.ClientMethod<
+          $0.UpdateFeedConfigRequest, $0.UpdateFeedConfigResponse>(
+      '/protobuf.BackendService/UpdateFeedConfig',
+      ($0.UpdateFeedConfigRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.UpdateFeedConfigResponse.fromBuffer(value));
+  static final _$getFeedConfig =
+      $grpc.ClientMethod<$0.GetFeedConfigRequest, $0.GetFeedConfigResponse>(
+          '/protobuf.BackendService/GetFeedConfig',
+          ($0.GetFeedConfigRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.GetFeedConfigResponse.fromBuffer(value));
 
   BackendServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -96,6 +114,26 @@ class BackendServiceClient extends $grpc.Client {
       $0.SetActuatorStateRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$setActuatorState, request, options: options);
+  }
+
+  $grpc.ResponseStream<$0.StreamNotificationsResponse> streamNotifications(
+      $0.StreamNotificationsRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createStreamingCall(
+        _$streamNotifications, $async.Stream.fromIterable([request]),
+        options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UpdateFeedConfigResponse> updateFeedConfig(
+      $0.UpdateFeedConfigRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$updateFeedConfig, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.GetFeedConfigResponse> getFeedConfig(
+      $0.GetFeedConfigRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getFeedConfig, request, options: options);
   }
 }
 
@@ -153,6 +191,33 @@ abstract class BackendServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.SetActuatorStateRequest.fromBuffer(value),
         ($0.SetActuatorStateResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.StreamNotificationsRequest,
+            $0.StreamNotificationsResponse>(
+        'StreamNotifications',
+        streamNotifications_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) =>
+            $0.StreamNotificationsRequest.fromBuffer(value),
+        ($0.StreamNotificationsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UpdateFeedConfigRequest,
+            $0.UpdateFeedConfigResponse>(
+        'UpdateFeedConfig',
+        updateFeedConfig_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.UpdateFeedConfigRequest.fromBuffer(value),
+        ($0.UpdateFeedConfigResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.GetFeedConfigRequest, $0.GetFeedConfigResponse>(
+            'GetFeedConfig',
+            getFeedConfig_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.GetFeedConfigRequest.fromBuffer(value),
+            ($0.GetFeedConfigResponse value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues_Pre(
@@ -189,6 +254,24 @@ abstract class BackendServiceBase extends $grpc.Service {
     return setActuatorState(call, await request);
   }
 
+  $async.Stream<$0.StreamNotificationsResponse> streamNotifications_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.StreamNotificationsRequest> request) async* {
+    yield* streamNotifications(call, await request);
+  }
+
+  $async.Future<$0.UpdateFeedConfigResponse> updateFeedConfig_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.UpdateFeedConfigRequest> request) async {
+    return updateFeedConfig(call, await request);
+  }
+
+  $async.Future<$0.GetFeedConfigResponse> getFeedConfig_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.GetFeedConfigRequest> request) async {
+    return getFeedConfig(call, await request);
+  }
+
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues(
       $grpc.ServiceCall call, $0.StreamSensorValuesRequest request);
   $async.Stream<$0.StreamActuatorStatesResponse> streamActuatorStates(
@@ -201,4 +284,10 @@ abstract class BackendServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.DeleteFeedRequest request);
   $async.Future<$0.SetActuatorStateResponse> setActuatorState(
       $grpc.ServiceCall call, $0.SetActuatorStateRequest request);
+  $async.Stream<$0.StreamNotificationsResponse> streamNotifications(
+      $grpc.ServiceCall call, $0.StreamNotificationsRequest request);
+  $async.Future<$0.UpdateFeedConfigResponse> updateFeedConfig(
+      $grpc.ServiceCall call, $0.UpdateFeedConfigRequest request);
+  $async.Future<$0.GetFeedConfigResponse> getFeedConfig(
+      $grpc.ServiceCall call, $0.GetFeedConfigRequest request);
 }

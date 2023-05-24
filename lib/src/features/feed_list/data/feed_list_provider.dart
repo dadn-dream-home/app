@@ -10,11 +10,11 @@ Stream<List<Feed>> feedList(FeedListRef ref) async* {
   final stream = backend.streamFeedsChanges(StreamFeedsChangesRequest());
   List<Feed> feeds = [];
   await for (final response in stream) {
-    for (final feed in response.change.added) {
+    for (final feed in response.change.addeds) {
       feeds.add(feed);
     }
-    for (final feed in response.change.removed) {
-      feeds.removeWhere((element) => element.id == feed);
+    for (final feedId in response.change.removedIDs) {
+      feeds.removeWhere((element) => element.id == feedId);
     }
     yield feeds;
   }
