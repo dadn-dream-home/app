@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../grpc/generated/backend.pbgrpc.dart';
 import '../data/form_key.dart';
+import 'actuator_config/presentation/actuator_config_nested_form.dart';
 import 'nested_form_builder.dart';
 import 'sensor_config/presentation/sensor_config_nested_form.dart';
 
@@ -69,32 +70,7 @@ class FeedConfigForm extends ConsumerWidget {
           const SizedBox(height: 32.0),
           state == FeedType.TEMPERATURE || state == FeedType.HUMIDITY
               ? SensorConfigNestedForm(feed: feed)
-              : ActuatorConfigForm(feed: feed),
-        ],
-      ),
-    );
-  }
-}
-
-class ActuatorConfigForm extends ConsumerWidget {
-  const ActuatorConfigForm({super.key, required this.feed});
-
-  final Feed feed;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return NestedFormBuilder(
-      name: "actuatorConfig",
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Actuator config"),
-          FormBuilderSwitch(
-            name: "automatic",
-            initialValue: false,
-            title: const Text("Notification", style: TextStyle()),
-            subtitle: const Text("Enable notification for this feed"),
-          ),
+              : ActuatorConfigNestedForm(feed: feed),
         ],
       ),
     );

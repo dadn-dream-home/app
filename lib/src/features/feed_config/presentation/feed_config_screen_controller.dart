@@ -25,8 +25,11 @@ class FeedConfigScreenController extends _$FeedConfigScreenController {
   }
 
   void onSave() {
-    ref.read(formKeyProvider(feed)).currentState!.save();
-    print(ref.read(formKeyProvider(feed)).currentState!.value);
+    final formData = ref.read(formKeyProvider(feed)).currentState!;
+    if (formData.validate()) {
+      formData.save();
+      print(formData.value);
+    }
   }
 
   void onDone(BuildContext context) {

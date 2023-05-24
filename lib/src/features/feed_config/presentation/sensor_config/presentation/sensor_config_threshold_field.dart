@@ -7,13 +7,11 @@ class SensorConfigNestedFormThresholdField extends StatelessWidget {
     super.key,
     required this.name,
     required this.labelText,
-    required this.initialValue,
     required this.enabled,
   });
 
   final String name;
   final String labelText;
-  final double initialValue;
   final bool enabled;
 
   @override
@@ -25,7 +23,6 @@ class SensorConfigNestedFormThresholdField extends StatelessWidget {
         labelText: labelText,
         suffixText: "°C",
       ),
-      initialValue: initialValue.toString(),
       enabled: enabled,
       validator: FormBuilderValidators.compose([
         FormBuilderValidators.required(),

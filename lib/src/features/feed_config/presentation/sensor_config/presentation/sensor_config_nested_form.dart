@@ -1,4 +1,3 @@
-import 'package:dream_home/src/features/feed_config/data/feed_config.dart';
 import 'package:dream_home/src/features/feed_config/presentation/sensor_config/presentation/sensor_config_nested_form_controller.dart';
 import 'package:dream_home/src/grpc/generated/backend.pbgrpc.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ class SensorConfigNestedForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final initial = ref.watch(feedConfigProvider(feed)).value!;
     final state = ref.watch(sensorConfigNestedFormControllerProvider(feed));
     final controller =
         ref.watch(sensorConfigNestedFormControllerProvider(feed).notifier);
@@ -38,7 +36,6 @@ class SensorConfigNestedForm extends ConsumerWidget {
                 child: SensorConfigNestedFormThresholdField(
                   name: "lowerThreshold",
                   labelText: "Lower threshold",
-                  initialValue: initial.sensorConfig.lowerThreshold,
                   enabled: state,
                 ),
               ),
@@ -47,7 +44,6 @@ class SensorConfigNestedForm extends ConsumerWidget {
                 child: SensorConfigNestedFormThresholdField(
                   name: "upperThreshold",
                   labelText: "Upper threshold",
-                  initialValue: initial.sensorConfig.upperThreshold,
                   enabled: state,
                 ),
               ),
