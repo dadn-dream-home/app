@@ -73,9 +73,9 @@ class ActuatorConfigNestedFormController
   }
 
   void setTurnOnTime(DateTime? dateTime) {
-    final time = TimeOfDay(hour: dateTime!.hour, minute: dateTime.minute);
+    final time =
+        TimeOfDay(hour: dateTime?.hour ?? 0, minute: dateTime?.minute ?? 0);
     state = state.copyWith(turnOnTime: time);
-    print(state.turnOnCronExpr);
   }
 
   void setTurnOffTime(DateTime? dateTime) {

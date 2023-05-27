@@ -7,7 +7,7 @@ part of 'sensor_config_nested_form_controller.dart';
 // **************************************************************************
 
 String _$sensorConfigNestedFormControllerHash() =>
-    r'9dc8528cf85952cc0f9952a0954ae1efd09139d7';
+    r'6c1d1f677ef0137adb16ca41f4f99077a9ad65b6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$SensorConfigNestedFormController
-    extends BuildlessAutoDisposeNotifier<bool> {
+    extends BuildlessAutoDisposeNotifier<State> {
   late final Feed feed;
 
-  bool build(
+  State build(
     Feed feed,
   );
 }
@@ -45,7 +45,7 @@ const sensorConfigNestedFormControllerProvider =
     SensorConfigNestedFormControllerFamily();
 
 /// See also [SensorConfigNestedFormController].
-class SensorConfigNestedFormControllerFamily extends Family<bool> {
+class SensorConfigNestedFormControllerFamily extends Family<State> {
   /// See also [SensorConfigNestedFormController].
   const SensorConfigNestedFormControllerFamily();
 
@@ -85,7 +85,7 @@ class SensorConfigNestedFormControllerFamily extends Family<bool> {
 /// See also [SensorConfigNestedFormController].
 class SensorConfigNestedFormControllerProvider
     extends AutoDisposeNotifierProviderImpl<SensorConfigNestedFormController,
-        bool> {
+        State> {
   /// See also [SensorConfigNestedFormController].
   SensorConfigNestedFormControllerProvider(
     this.feed,
@@ -119,7 +119,7 @@ class SensorConfigNestedFormControllerProvider
   }
 
   @override
-  bool runNotifierBuild(
+  State runNotifierBuild(
     covariant SensorConfigNestedFormController notifier,
   ) {
     return notifier.build(

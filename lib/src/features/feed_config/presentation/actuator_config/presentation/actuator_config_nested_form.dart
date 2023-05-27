@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../grpc/generated/backend.pbgrpc.dart';
 import '../../../data/form_key.dart';
@@ -48,6 +49,9 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
                 initialTime: state.turnOnTime,
                 onChanged: controller.setTurnOnTime,
                 enabled: true,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                ]),
               ),
             ),
             const SizedBox(width: 16.0),
@@ -59,6 +63,9 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
                 initialTime: state.turnOffTime,
                 onChanged: controller.setTurnOffTime,
                 enabled: true,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                ]),
               ),
             ),
           ],
@@ -66,19 +73,22 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
 
         // weekdays, new row for each option
         FormBuilderCheckboxGroup(
-          name: "actuatorConfig.weekdays",
-          decoration: const InputDecoration(labelText: "Weekdays"),
-          options: Weekday.values
-              .map(
-                (e) => FormBuilderFieldOption(
-                  value: e,
-                  child: Text(e.name.toUpperCase()),
-                ),
-              )
-              .toList(),
-          orientation: OptionsOrientation.vertical,
-          onChanged: controller.setWeekdays,
-        ),
+            name: "actuatorConfig.weekdays",
+            decoration: const InputDecoration(labelText: "Weekdays"),
+            options: Weekday.values
+                .map(
+                  (e) => FormBuilderFieldOption(
+                    value: e,
+                    child: Text(e.name.toUpperCase()),
+                  ),
+                )
+                .toList(),
+            orientation: OptionsOrientation.vertical,
+            onChanged: controller.setWeekdays,
+            validator: FormBuilderValidators.compose<List<Weekday>>([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.minLength(1),
+            ])),
 
         Visibility(
           visible: false,

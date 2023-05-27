@@ -64,6 +64,7 @@ class FeedConfigForm extends ConsumerWidget {
                             child: Text(e.toString()),
                           ))
                       .toList(),
+                  valueTransformer: (value) => value.toString(),
                 ),
               ],
             ),

@@ -25,11 +25,18 @@ class FeedConfigScreenController extends _$FeedConfigScreenController {
     state.whenData((_) => onDone(context));
   }
 
-  void onSave() {
+  Future<void> onSave() async {
     final formData = ref.read(formKeyProvider(feed)).currentState!;
     if (formData.validate()) {
       formData.save();
-      print(formData.value.unflatten());
+      final config = Config.create()
+        ..mergeFromProto3Json(
+          formData.value.unflatten(),
+          ignoreUnknownFields: true,
+        );
+      await ref.read(backendProvider).updateFeedConfig(UpdateFeedConfigRequest(
+            config: config,
+          ));
     }
   }
 

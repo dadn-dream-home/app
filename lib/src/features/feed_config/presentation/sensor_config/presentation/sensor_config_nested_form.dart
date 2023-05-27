@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'sensor_config_threshold_field.dart';
-
 class SensorConfigNestedForm extends ConsumerWidget {
   const SensorConfigNestedForm({super.key, required this.feed});
 
@@ -27,26 +25,51 @@ class SensorConfigNestedForm extends ConsumerWidget {
           title: const Text("Notification", style: TextStyle()),
           subtitle: const Text("Enable notification for this feed"),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: SensorConfigNestedFormThresholdField(
-                name: "sensorConfig.lowerThreshold",
-                labelText: "Lower threshold",
-                enabled: state,
-              ),
-            ),
-            const SizedBox(width: 16.0),
-            Expanded(
-              child: SensorConfigNestedFormThresholdField(
-                name: "sensorConfig.upperThreshold",
-                labelText: "Upper threshold",
-                enabled: state,
-              ),
-            ),
-          ],
+        SingleChildScrollView(
+          child: FormBuilderRangeSlider(
+            name: "sensorConfig.threshold",
+            decoration: const InputDecoration(labelText: "Threshold"),
+            min: 0.0,
+            max: 100.0,
+            initialValue: state.threshold,
+            onChanged: controller.onRangeChanged,
+          ),
         ),
+        Visibility(
+            visible: false,
+            maintainState: true,
+            child: Column(children: [
+              FormBuilderField(
+                name: "sensorConfig.lowerThreshold",
+                initialValue: state.threshold.start,
+                builder: (field) => const SizedBox.shrink(),
+              ),
+              FormBuilderField(
+                name: "sensorConfig.upperThreshold",
+                initialValue: state.threshold.end,
+                builder: (field) => const SizedBox.shrink(),
+              ),
+            ]))
+        // Row(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     Expanded(
+        //       child: SensorConfigNestedFormThresholdField(
+        //         name: "sensorConfig.lowerThreshold",
+        //         labelText: "Lower threshold",
+        //         enabled: state,
+        //       ),
+        //     ),
+        //     const SizedBox(width: 16.0),
+        //     Expanded(
+        //       child: SensorConfigNestedFormThresholdField(
+        //         name: "sensorConfig.upperThreshold",
+        //         labelText: "Upper threshold",
+        //         enabled: state,
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }
