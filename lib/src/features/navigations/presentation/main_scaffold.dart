@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../notification/presentation/notification_subscriber.dart';
 import 'main_scaffold_navigation_bar.dart';
 
 class MainScaffold extends StatelessWidget {
@@ -18,7 +19,7 @@ class MainScaffold extends StatelessWidget {
         title: Text(title),
         actions: actions,
       ),
-      body: body,
+      body: NotificationSubscriber(child: body),
       bottomNavigationBar: const MainScaffoldNavigationBar(),
     );
   }
