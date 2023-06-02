@@ -6,7 +6,7 @@ part of 'sensor_value.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sensorValueHash() => r'd2ecd6be114f660cccecda473a8e033dff82f843';
+String _$sensorValueHash() => r'7d99db72fbe995330eaf25f846106335600520c8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-typedef SensorValueRef = AutoDisposeStreamProviderRef<double>;
+typedef SensorValueRef = StreamProviderRef<double>;
 
 /// See also [sensorValue].
 @ProviderFor(sensorValue)
@@ -74,7 +74,7 @@ class SensorValueFamily extends Family<AsyncValue<double>> {
 }
 
 /// See also [sensorValue].
-class SensorValueProvider extends AutoDisposeStreamProvider<double> {
+class SensorValueProvider extends StreamProvider<double> {
   /// See also [sensorValue].
   SensorValueProvider(
     this.feed,

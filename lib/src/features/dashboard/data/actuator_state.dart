@@ -5,7 +5,7 @@ import '../../../grpc/generated/backend.pbgrpc.dart';
 
 part 'actuator_state.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<bool> actuatorState(ActuatorStateRef ref, Feed feed) {
   final backend = ref.read(backendProvider);
   final stream = backend.streamActuatorStates(StreamActuatorStatesRequest(

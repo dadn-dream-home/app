@@ -6,7 +6,7 @@ part of 'actuator_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$actuatorStateHash() => r'c3936ff2f6aff930b741488368bb16e66c16395c';
+String _$actuatorStateHash() => r'540385b27aad465af5a89add559ea722caf7400d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-typedef ActuatorStateRef = AutoDisposeStreamProviderRef<bool>;
+typedef ActuatorStateRef = StreamProviderRef<bool>;
 
 /// See also [actuatorState].
 @ProviderFor(actuatorState)
@@ -74,7 +74,7 @@ class ActuatorStateFamily extends Family<AsyncValue<bool>> {
 }
 
 /// See also [actuatorState].
-class ActuatorStateProvider extends AutoDisposeStreamProvider<bool> {
+class ActuatorStateProvider extends StreamProvider<bool> {
   /// See also [actuatorState].
   ActuatorStateProvider(
     this.feed,

@@ -5,7 +5,7 @@ import '../../../grpc/generated/backend.pbgrpc.dart';
 
 part 'sensor_value.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<double> sensorValue(SensorValueRef ref, Feed feed) {
   final backend = ref.read(backendProvider);
   final stream = backend.streamSensorValues(StreamSensorValuesRequest(
