@@ -51,6 +51,7 @@ dependencies:
   freezed: ^2.3.3
   freezed_annotation: ^2.2.0
   cron: ^0.5.1
+  syncfusion_flutter_sliders: ^21.2.6
 
 dev_dependencies:
   flutter_test:

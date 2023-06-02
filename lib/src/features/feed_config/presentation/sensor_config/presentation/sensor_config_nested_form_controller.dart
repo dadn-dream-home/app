@@ -1,8 +1,8 @@
 import 'package:dream_home/src/features/feed_config/data/feed_config.dart';
 import 'package:dream_home/src/features/feed_config/data/form_key.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../../grpc/generated/backend.pbgrpc.dart';
 
@@ -13,7 +13,7 @@ part 'sensor_config_nested_form_controller.g.dart';
 class State with _$State {
   const factory State({
     required bool hasNotification,
-    required RangeValues threshold,
+    required SfRangeValues threshold,
   }) = _State;
   const State._();
 }
@@ -24,9 +24,12 @@ class SensorConfigNestedFormController
   @override
   State build(Feed feed) {
     final sensorConfig = ref.read(feedConfigProvider(feed)).value!.sensorConfig;
+
+    ref.listenSelf((_, __) => updateFormData());
+
     return State(
       hasNotification: sensorConfig.hasNotification,
-      threshold: RangeValues(
+      threshold: SfRangeValues(
         sensorConfig.lowerThreshold,
         sensorConfig.upperThreshold,
       ),
@@ -37,12 +40,15 @@ class SensorConfigNestedFormController
     state = state.copyWith(hasNotification: value ?? false);
   }
 
-  void onRangeChanged(RangeValues? values) {
-    state = state.copyWith(threshold: values ?? const RangeValues(0, 0));
+  void onRangeChanged(SfRangeValues values) {
+    state = state.copyWith(threshold: values);
+  }
+
+  void updateFormData() {
     final formData = ref.read(formKeyProvider(feed)).currentState!;
-    formData.fields["sensorConfig.lowerThreshold"]!
-        .didChange(state.threshold.start);
-    formData.fields["sensorConfig.upperThreshold"]!
-        .didChange(state.threshold.end);
+    formData.fields["sensorConfig.lowerThreshold"]
+        ?.didChange(state.threshold.start);
+    formData.fields["sensorConfig.upperThreshold"]
+        ?.didChange(state.threshold.end);
   }
 }

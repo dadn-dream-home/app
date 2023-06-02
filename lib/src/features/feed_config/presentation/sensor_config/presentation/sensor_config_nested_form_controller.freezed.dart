@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$State {
   bool get hasNotification => throw _privateConstructorUsedError;
-  RangeValues get threshold => throw _privateConstructorUsedError;
+  SfRangeValues get threshold => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StateCopyWith<State> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ abstract class $StateCopyWith<$Res> {
   factory $StateCopyWith(State value, $Res Function(State) then) =
       _$StateCopyWithImpl<$Res, State>;
   @useResult
-  $Res call({bool hasNotification, RangeValues threshold});
+  $Res call({bool hasNotification, SfRangeValues threshold});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$StateCopyWithImpl<$Res, $Val extends State>
       threshold: null == threshold
           ? _value.threshold
           : threshold // ignore: cast_nullable_to_non_nullable
-              as RangeValues,
+              as SfRangeValues,
     ) as $Val);
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$_StateCopyWith<$Res> implements $StateCopyWith<$Res> {
       __$$_StateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool hasNotification, RangeValues threshold});
+  $Res call({bool hasNotification, SfRangeValues threshold});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class __$$_StateCopyWithImpl<$Res> extends _$StateCopyWithImpl<$Res, _$_State>
       threshold: null == threshold
           ? _value.threshold
           : threshold // ignore: cast_nullable_to_non_nullable
-              as RangeValues,
+              as SfRangeValues,
     ));
   }
 }
@@ -103,7 +103,7 @@ class _$_State extends _State {
   @override
   final bool hasNotification;
   @override
-  final RangeValues threshold;
+  final SfRangeValues threshold;
 
   @override
   String toString() {
@@ -134,13 +134,13 @@ class _$_State extends _State {
 abstract class _State extends State {
   const factory _State(
       {required final bool hasNotification,
-      required final RangeValues threshold}) = _$_State;
+      required final SfRangeValues threshold}) = _$_State;
   const _State._() : super._();
 
   @override
   bool get hasNotification;
   @override
-  RangeValues get threshold;
+  SfRangeValues get threshold;
   @override
   @JsonKey(ignore: true)
   _$$_StateCopyWith<_$_State> get copyWith =>

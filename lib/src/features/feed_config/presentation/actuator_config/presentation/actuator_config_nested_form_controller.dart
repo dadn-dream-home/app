@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../grpc/generated/backend.pbgrpc.dart';
 import '../../../data/feed_config.dart';
+import '../../../data/form_key.dart';
 
 part 'actuator_config_nested_form_controller.freezed.dart';
 part 'actuator_config_nested_form_controller.g.dart';
@@ -66,8 +67,10 @@ class ActuatorConfigNestedFormController
         minute: offSchedule.minutes?[0] ?? 0,
       ),
       weekdays:
-          onSchedule.weekdays?.map((i) => Weekday.values[i]).toList() ?? [],
+          onSchedule.weekdays?.map((i) => Weekday.values[i % 7]).toList() ?? [],
     );
+
+    ref.listenSelf((_, __) => updateFormData());
 
     return state;
   }
@@ -85,5 +88,13 @@ class ActuatorConfigNestedFormController
 
   void setWeekdays(List<Weekday>? weekdays) {
     state = state.copyWith(weekdays: weekdays ?? []);
+  }
+
+  void updateFormData() {
+    final formData = ref.read(formKeyProvider(feed)).currentState!;
+    formData.fields["actuatorConfig.turnOnCronExpr"]
+        ?.didChange(state.turnOnCronExpr);
+    formData.fields["actuatorConfig.turnOffCronExpr"]
+        ?.didChange(state.turnOffCronExpr);
   }
 }

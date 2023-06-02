@@ -3,6 +3,7 @@ import 'package:dream_home/src/grpc/generated/backend.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SensorConfigNestedForm extends ConsumerWidget {
   const SensorConfigNestedForm({super.key, required this.feed});
@@ -22,23 +23,36 @@ class SensorConfigNestedForm extends ConsumerWidget {
         FormBuilderSwitch(
           name: "sensorConfig.hasNotification",
           onChanged: controller.onChange,
-          title: const Text("Notification", style: TextStyle()),
+          title: const Text("Notification"),
           subtitle: const Text("Enable notification for this feed"),
         ),
-        SingleChildScrollView(
-          child: FormBuilderRangeSlider(
-            name: "sensorConfig.threshold",
-            decoration: const InputDecoration(labelText: "Threshold"),
-            min: 0.0,
-            max: 100.0,
-            initialValue: state.threshold,
-            onChanged: controller.onRangeChanged,
-          ),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          dense: true,
+          title: const Text("Threshold"),
+          subtitle:
+              const Text("Outside this threshold, a notification will be sent"),
+          enabled: state.hasNotification,
         ),
+        SfRangeSelector(
+          enabled: state.hasNotification,
+          min: 0.0,
+          max: 100.0,
+          interval: 10.0,
+          stepSize: 0.1,
+          onChanged: controller.onRangeChanged,
+          showLabels: true,
+          enableTooltip: true,
+          initialValues: state.threshold,
+          child: Container(height: 0),
+        ),
+        const SizedBox(height: 30.0),
+        Divider(color: Colors.grey[500]),
         Visibility(
-            visible: false,
-            maintainState: true,
-            child: Column(children: [
+          visible: false,
+          maintainState: true,
+          child: Column(
+            children: [
               FormBuilderField(
                 name: "sensorConfig.lowerThreshold",
                 initialValue: state.threshold.start,
@@ -49,27 +63,9 @@ class SensorConfigNestedForm extends ConsumerWidget {
                 initialValue: state.threshold.end,
                 builder: (field) => const SizedBox.shrink(),
               ),
-            ]))
-        // Row(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Expanded(
-        //       child: SensorConfigNestedFormThresholdField(
-        //         name: "sensorConfig.lowerThreshold",
-        //         labelText: "Lower threshold",
-        //         enabled: state,
-        //       ),
-        //     ),
-        //     const SizedBox(width: 16.0),
-        //     Expanded(
-        //       child: SensorConfigNestedFormThresholdField(
-        //         name: "sensorConfig.upperThreshold",
-        //         labelText: "Upper threshold",
-        //         enabled: state,
-        //       ),
-        //     ),
-        //   ],
-        // ),
+            ],
+          ),
+        ),
       ],
     );
   }
