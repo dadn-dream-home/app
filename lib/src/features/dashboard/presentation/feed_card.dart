@@ -1,3 +1,4 @@
+import 'package:dream_home/src/extensions/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -15,35 +16,24 @@ abstract class FeedCard extends ConsumerWidget {
   });
 
   factory FeedCard.large({Key? key, required Feed feed}) {
-    switch (feed.type) {
-      case FeedType.TEMPERATURE:
-      case FeedType.HUMIDITY:
-        return SensorCardLarge(key: key, feed: feed);
-      case FeedType.LIGHT:
-        return ActuatorCardLarge(key: key, feed: feed);
-      default:
-        throw UnimplementedError("Feed type ${feed.type} not implemented");
+    if (feed.type.isSensor()) {
+      return SensorCardLarge(key: key, feed: feed);
+    } else if (feed.type.isActuator()) {
+      return ActuatorCardLarge(key: key, feed: feed);
     }
+    throw UnimplementedError("Feed type ${feed.type} not implemented");
   }
 
   factory FeedCard.medium({Key? key, required Feed feed}) {
-    switch (feed.type) {
-      case FeedType.TEMPERATURE:
-      case FeedType.HUMIDITY:
-        return SensorCardMedium(key: key, feed: feed);
-      case FeedType.LIGHT:
-        return ActuatorCardMedium(key: key, feed: feed);
-      default:
-        throw UnimplementedError("Feed type ${feed.type} not implemented");
+    if (feed.type.isSensor()) {
+      return SensorCardMedium(key: key, feed: feed);
+    } else if (feed.type.isActuator()) {
+      return ActuatorCardMedium(key: key, feed: feed);
     }
+    throw UnimplementedError("Feed type ${feed.type} not implemented");
   }
 
   final Feed feed;
-
-  static const sensorUnits = {
-    FeedType.TEMPERATURE: "°C",
-    FeedType.HUMIDITY: "%",
-  };
 }
 
 abstract class FeedCardLarge extends FeedCard {
@@ -73,7 +63,7 @@ abstract class FeedCardLarge extends FeedCard {
                       FeedIcon(feed: feed),
                       const Spacer(),
                       Text(
-                        FeedCard.sensorUnits[feed.type] ?? "",
+                        feed.type.isSensor() ? feed.type.unit() : "",
                         style: const TextStyle(color: Colors.grey),
                       ),
                     ],

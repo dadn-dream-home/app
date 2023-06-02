@@ -1,3 +1,4 @@
+import 'package:dream_home/src/extensions/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,9 +71,10 @@ class FeedConfigForm extends ConsumerWidget {
             ),
           ),
           // const SizedBox(height: 32.0),
-          state == FeedType.TEMPERATURE || state == FeedType.HUMIDITY
-              ? SensorConfigNestedForm(feed: feed)
-              : ActuatorConfigNestedForm(feed: feed),
+          if (state.isSensor())
+            SensorConfigNestedForm(feed: feed)
+          else
+            ActuatorConfigNestedForm(feed: feed),
         ],
       ),
     );

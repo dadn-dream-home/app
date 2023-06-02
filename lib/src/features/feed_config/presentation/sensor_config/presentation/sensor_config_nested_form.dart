@@ -1,3 +1,4 @@
+import 'package:dream_home/src/extensions/feed.dart';
 import 'package:dream_home/src/features/feed_config/presentation/sensor_config/presentation/sensor_config_nested_form_controller.dart';
 import 'package:dream_home/src/grpc/generated/backend.pbgrpc.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +37,8 @@ class SensorConfigNestedForm extends ConsumerWidget {
         ),
         SfRangeSelector(
           enabled: state.hasNotification,
-          min: 0.0,
-          max: 100.0,
+          min: feed.type.min(),
+          max: feed.type.max(),
           interval: 10.0,
           stepSize: 0.1,
           onChanged: controller.onRangeChanged,
