@@ -55,12 +55,12 @@ class SensorConfigNestedForm extends ConsumerWidget {
           child: Column(
             children: [
               FormBuilderField(
-                name: "sensorConfig.lowerThreshold",
+                name: "sensorConfig.lowerThreshold.threshold",
                 initialValue: state.threshold.start,
                 builder: (field) => const SizedBox.shrink(),
               ),
               FormBuilderField(
-                name: "sensorConfig.upperThreshold",
+                name: "sensorConfig.upperThreshold.threshold",
                 initialValue: state.threshold.end,
                 builder: (field) => const SizedBox.shrink(),
               ),

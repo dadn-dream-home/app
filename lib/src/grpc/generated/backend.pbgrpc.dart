@@ -68,6 +68,12 @@ class BackendServiceClient extends $grpc.Client {
           ($0.GetFeedConfigRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.GetFeedConfigResponse.fromBuffer(value));
+  static final _$streamActivities = $grpc.ClientMethod<
+          $0.StreamActivitiesRequest, $0.StreamActivitiesResponse>(
+      '/protobuf.BackendService/StreamActivities',
+      ($0.StreamActivitiesRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.StreamActivitiesResponse.fromBuffer(value));
 
   BackendServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -134,6 +140,14 @@ class BackendServiceClient extends $grpc.Client {
       $0.GetFeedConfigRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getFeedConfig, request, options: options);
+  }
+
+  $grpc.ResponseStream<$0.StreamActivitiesResponse> streamActivities(
+      $0.StreamActivitiesRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createStreamingCall(
+        _$streamActivities, $async.Stream.fromIterable([request]),
+        options: options);
   }
 }
 
@@ -218,6 +232,15 @@ abstract class BackendServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.GetFeedConfigRequest.fromBuffer(value),
             ($0.GetFeedConfigResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.StreamActivitiesRequest,
+            $0.StreamActivitiesResponse>(
+        'StreamActivities',
+        streamActivities_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) =>
+            $0.StreamActivitiesRequest.fromBuffer(value),
+        ($0.StreamActivitiesResponse value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues_Pre(
@@ -272,6 +295,12 @@ abstract class BackendServiceBase extends $grpc.Service {
     return getFeedConfig(call, await request);
   }
 
+  $async.Stream<$0.StreamActivitiesResponse> streamActivities_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.StreamActivitiesRequest> request) async* {
+    yield* streamActivities(call, await request);
+  }
+
   $async.Stream<$0.StreamSensorValuesResponse> streamSensorValues(
       $grpc.ServiceCall call, $0.StreamSensorValuesRequest request);
   $async.Stream<$0.StreamActuatorStatesResponse> streamActuatorStates(
@@ -290,4 +319,6 @@ abstract class BackendServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.UpdateFeedConfigRequest request);
   $async.Future<$0.GetFeedConfigResponse> getFeedConfig(
       $grpc.ServiceCall call, $0.GetFeedConfigRequest request);
+  $async.Stream<$0.StreamActivitiesResponse> streamActivities(
+      $grpc.ServiceCall call, $0.StreamActivitiesRequest request);
 }

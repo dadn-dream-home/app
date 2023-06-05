@@ -186,6 +186,23 @@ const GetFeedConfigResponse$json = const {
 
 /// Descriptor for `GetFeedConfigResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getFeedConfigResponseDescriptor = $convert.base64Decode('ChVHZXRGZWVkQ29uZmlnUmVzcG9uc2USKAoGY29uZmlnGAEgASgLMhAucHJvdG9idWYuQ29uZmlnUgZjb25maWc=');
+@$core.Deprecated('Use streamActivitiesRequestDescriptor instead')
+const StreamActivitiesRequest$json = const {
+  '1': 'StreamActivitiesRequest',
+};
+
+/// Descriptor for `StreamActivitiesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamActivitiesRequestDescriptor = $convert.base64Decode('ChdTdHJlYW1BY3Rpdml0aWVzUmVxdWVzdA==');
+@$core.Deprecated('Use streamActivitiesResponseDescriptor instead')
+const StreamActivitiesResponse$json = const {
+  '1': 'StreamActivitiesResponse',
+  '2': const [
+    const {'1': 'activity', '3': 1, '4': 1, '5': 11, '6': '.protobuf.Activity', '10': 'activity'},
+  ],
+};
+
+/// Descriptor for `StreamActivitiesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamActivitiesResponseDescriptor = $convert.base64Decode('ChhTdHJlYW1BY3Rpdml0aWVzUmVzcG9uc2USLgoIYWN0aXZpdHkYASABKAsyEi5wcm90b2J1Zi5BY3Rpdml0eVIIYWN0aXZpdHk=');
 @$core.Deprecated('Use feedDescriptor instead')
 const Feed$json = const {
   '1': 'Feed',
@@ -229,13 +246,26 @@ const SensorConfig$json = const {
   '1': 'SensorConfig',
   '2': const [
     const {'1': 'hasNotification', '3': 1, '4': 1, '5': 8, '10': 'hasNotification'},
-    const {'1': 'lowerThreshold', '3': 2, '4': 1, '5': 2, '10': 'lowerThreshold'},
-    const {'1': 'upperThreshold', '3': 3, '4': 1, '5': 2, '10': 'upperThreshold'},
+    const {'1': 'lowerThreshold', '3': 2, '4': 1, '5': 11, '6': '.protobuf.Threshold', '10': 'lowerThreshold'},
+    const {'1': 'upperThreshold', '3': 3, '4': 1, '5': 11, '6': '.protobuf.Threshold', '10': 'upperThreshold'},
   ],
 };
 
 /// Descriptor for `SensorConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List sensorConfigDescriptor = $convert.base64Decode('CgxTZW5zb3JDb25maWcSKAoPaGFzTm90aWZpY2F0aW9uGAEgASgIUg9oYXNOb3RpZmljYXRpb24SJgoObG93ZXJUaHJlc2hvbGQYAiABKAJSDmxvd2VyVGhyZXNob2xkEiYKDnVwcGVyVGhyZXNob2xkGAMgASgCUg51cHBlclRocmVzaG9sZA==');
+final $typed_data.Uint8List sensorConfigDescriptor = $convert.base64Decode('CgxTZW5zb3JDb25maWcSKAoPaGFzTm90aWZpY2F0aW9uGAEgASgIUg9oYXNOb3RpZmljYXRpb24SOwoObG93ZXJUaHJlc2hvbGQYAiABKAsyEy5wcm90b2J1Zi5UaHJlc2hvbGRSDmxvd2VyVGhyZXNob2xkEjsKDnVwcGVyVGhyZXNob2xkGAMgASgLMhMucHJvdG9idWYuVGhyZXNob2xkUg51cHBlclRocmVzaG9sZA==');
+@$core.Deprecated('Use thresholdDescriptor instead')
+const Threshold$json = const {
+  '1': 'Threshold',
+  '2': const [
+    const {'1': 'threshold', '3': 1, '4': 1, '5': 2, '10': 'threshold'},
+    const {'1': 'hasTrigger', '3': 2, '4': 1, '5': 8, '10': 'hasTrigger'},
+    const {'1': 'feed', '3': 3, '4': 1, '5': 11, '6': '.protobuf.Feed', '10': 'feed'},
+    const {'1': 'state', '3': 4, '4': 1, '5': 8, '10': 'state'},
+  ],
+};
+
+/// Descriptor for `Threshold`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List thresholdDescriptor = $convert.base64Decode('CglUaHJlc2hvbGQSHAoJdGhyZXNob2xkGAEgASgCUgl0aHJlc2hvbGQSHgoKaGFzVHJpZ2dlchgCIAEoCFIKaGFzVHJpZ2dlchIiCgRmZWVkGAMgASgLMg4ucHJvdG9idWYuRmVlZFIEZmVlZBIUCgVzdGF0ZRgEIAEoCFIFc3RhdGU=');
 @$core.Deprecated('Use actuatorConfigDescriptor instead')
 const ActuatorConfig$json = const {
   '1': 'ActuatorConfig',
@@ -260,3 +290,15 @@ const Notification$json = const {
 
 /// Descriptor for `Notification`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List notificationDescriptor = $convert.base64Decode('CgxOb3RpZmljYXRpb24SOAoJdGltZXN0YW1wGAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJdGltZXN0YW1wEiIKBGZlZWQYAiABKAsyDi5wcm90b2J1Zi5GZWVkUgRmZWVkEhgKB21lc3NhZ2UYAyABKAlSB21lc3NhZ2U=');
+@$core.Deprecated('Use activityDescriptor instead')
+const Activity$json = const {
+  '1': 'Activity',
+  '2': const [
+    const {'1': 'timestamp', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
+    const {'1': 'feed', '3': 2, '4': 1, '5': 11, '6': '.protobuf.Feed', '10': 'feed'},
+    const {'1': 'state', '3': 3, '4': 1, '5': 8, '10': 'state'},
+  ],
+};
+
+/// Descriptor for `Activity`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List activityDescriptor = $convert.base64Decode('CghBY3Rpdml0eRI4Cgl0aW1lc3RhbXAYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgl0aW1lc3RhbXASIgoEZmVlZBgCIAEoCzIOLnByb3RvYnVmLkZlZWRSBGZlZWQSFAoFc3RhdGUYAyABKAhSBXN0YXRl');

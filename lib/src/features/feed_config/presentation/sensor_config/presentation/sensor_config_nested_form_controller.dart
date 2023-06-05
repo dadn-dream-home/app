@@ -30,8 +30,8 @@ class SensorConfigNestedFormController
     return State(
       hasNotification: sensorConfig.hasNotification,
       threshold: SfRangeValues(
-        sensorConfig.lowerThreshold,
-        sensorConfig.upperThreshold,
+        sensorConfig.lowerThreshold.threshold,
+        sensorConfig.upperThreshold.threshold,
       ),
     );
   }
@@ -46,9 +46,9 @@ class SensorConfigNestedFormController
 
   void updateFormData() {
     final formData = ref.read(formKeyProvider(feed)).currentState!;
-    formData.fields["sensorConfig.lowerThreshold"]
+    formData.fields["sensorConfig.lowerThreshold.threshold"]
         ?.didChange(state.threshold.start);
-    formData.fields["sensorConfig.upperThreshold"]
+    formData.fields["sensorConfig.upperThreshold.threshold"]
         ?.didChange(state.threshold.end);
   }
 }

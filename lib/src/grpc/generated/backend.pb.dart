@@ -807,6 +807,84 @@ class GetFeedConfigResponse extends $pb.GeneratedMessage {
   Config ensureConfig() => $_ensure(0);
 }
 
+class StreamActivitiesRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StreamActivitiesRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  StreamActivitiesRequest._() : super();
+  factory StreamActivitiesRequest() => create();
+  factory StreamActivitiesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory StreamActivitiesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  StreamActivitiesRequest clone() => StreamActivitiesRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  StreamActivitiesRequest copyWith(void Function(StreamActivitiesRequest) updates) => super.copyWith((message) => updates(message as StreamActivitiesRequest)) as StreamActivitiesRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static StreamActivitiesRequest create() => StreamActivitiesRequest._();
+  StreamActivitiesRequest createEmptyInstance() => create();
+  static $pb.PbList<StreamActivitiesRequest> createRepeated() => $pb.PbList<StreamActivitiesRequest>();
+  @$core.pragma('dart2js:noInline')
+  static StreamActivitiesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamActivitiesRequest>(create);
+  static StreamActivitiesRequest? _defaultInstance;
+}
+
+class StreamActivitiesResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StreamActivitiesResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..aOM<Activity>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'activity', subBuilder: Activity.create)
+    ..hasRequiredFields = false
+  ;
+
+  StreamActivitiesResponse._() : super();
+  factory StreamActivitiesResponse({
+    Activity? activity,
+  }) {
+    final _result = create();
+    if (activity != null) {
+      _result.activity = activity;
+    }
+    return _result;
+  }
+  factory StreamActivitiesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory StreamActivitiesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  StreamActivitiesResponse clone() => StreamActivitiesResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  StreamActivitiesResponse copyWith(void Function(StreamActivitiesResponse) updates) => super.copyWith((message) => updates(message as StreamActivitiesResponse)) as StreamActivitiesResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static StreamActivitiesResponse create() => StreamActivitiesResponse._();
+  StreamActivitiesResponse createEmptyInstance() => create();
+  static $pb.PbList<StreamActivitiesResponse> createRepeated() => $pb.PbList<StreamActivitiesResponse>();
+  @$core.pragma('dart2js:noInline')
+  static StreamActivitiesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamActivitiesResponse>(create);
+  static StreamActivitiesResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  Activity get activity => $_getN(0);
+  @$pb.TagNumber(1)
+  set activity(Activity v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasActivity() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearActivity() => clearField(1);
+  @$pb.TagNumber(1)
+  Activity ensureActivity() => $_ensure(0);
+}
+
 class Feed extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Feed', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
@@ -1030,16 +1108,16 @@ class Config extends $pb.GeneratedMessage {
 class SensorConfig extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SensorConfig', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
     ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'hasNotification', protoName: 'hasNotification')
-    ..a<$core.double>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'lowerThreshold', $pb.PbFieldType.OF, protoName: 'lowerThreshold')
-    ..a<$core.double>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'upperThreshold', $pb.PbFieldType.OF, protoName: 'upperThreshold')
+    ..aOM<Threshold>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'lowerThreshold', protoName: 'lowerThreshold', subBuilder: Threshold.create)
+    ..aOM<Threshold>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'upperThreshold', protoName: 'upperThreshold', subBuilder: Threshold.create)
     ..hasRequiredFields = false
   ;
 
   SensorConfig._() : super();
   factory SensorConfig({
     $core.bool? hasNotification,
-    $core.double? lowerThreshold,
-    $core.double? upperThreshold,
+    Threshold? lowerThreshold,
+    Threshold? upperThreshold,
   }) {
     final _result = create();
     if (hasNotification != null) {
@@ -1084,22 +1162,117 @@ class SensorConfig extends $pb.GeneratedMessage {
   void clearHasNotification() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.double get lowerThreshold => $_getN(1);
+  Threshold get lowerThreshold => $_getN(1);
   @$pb.TagNumber(2)
-  set lowerThreshold($core.double v) { $_setFloat(1, v); }
+  set lowerThreshold(Threshold v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLowerThreshold() => $_has(1);
   @$pb.TagNumber(2)
   void clearLowerThreshold() => clearField(2);
+  @$pb.TagNumber(2)
+  Threshold ensureLowerThreshold() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.double get upperThreshold => $_getN(2);
+  Threshold get upperThreshold => $_getN(2);
   @$pb.TagNumber(3)
-  set upperThreshold($core.double v) { $_setFloat(2, v); }
+  set upperThreshold(Threshold v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpperThreshold() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpperThreshold() => clearField(3);
+  @$pb.TagNumber(3)
+  Threshold ensureUpperThreshold() => $_ensure(2);
+}
+
+class Threshold extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Threshold', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..a<$core.double>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'threshold', $pb.PbFieldType.OF)
+    ..aOB(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'hasTrigger', protoName: 'hasTrigger')
+    ..aOM<Feed>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'feed', subBuilder: Feed.create)
+    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state')
+    ..hasRequiredFields = false
+  ;
+
+  Threshold._() : super();
+  factory Threshold({
+    $core.double? threshold,
+    $core.bool? hasTrigger,
+    Feed? feed,
+    $core.bool? state,
+  }) {
+    final _result = create();
+    if (threshold != null) {
+      _result.threshold = threshold;
+    }
+    if (hasTrigger != null) {
+      _result.hasTrigger = hasTrigger;
+    }
+    if (feed != null) {
+      _result.feed = feed;
+    }
+    if (state != null) {
+      _result.state = state;
+    }
+    return _result;
+  }
+  factory Threshold.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Threshold.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Threshold clone() => Threshold()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Threshold copyWith(void Function(Threshold) updates) => super.copyWith((message) => updates(message as Threshold)) as Threshold; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static Threshold create() => Threshold._();
+  Threshold createEmptyInstance() => create();
+  static $pb.PbList<Threshold> createRepeated() => $pb.PbList<Threshold>();
+  @$core.pragma('dart2js:noInline')
+  static Threshold getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Threshold>(create);
+  static Threshold? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.double get threshold => $_getN(0);
+  @$pb.TagNumber(1)
+  set threshold($core.double v) { $_setFloat(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasThreshold() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearThreshold() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get hasTrigger => $_getBF(1);
+  @$pb.TagNumber(2)
+  set hasTrigger($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasHasTrigger() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearHasTrigger() => clearField(2);
+
+  @$pb.TagNumber(3)
+  Feed get feed => $_getN(2);
+  @$pb.TagNumber(3)
+  set feed(Feed v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasFeed() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearFeed() => clearField(3);
+  @$pb.TagNumber(3)
+  Feed ensureFeed() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.bool get state => $_getBF(3);
+  @$pb.TagNumber(4)
+  set state($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasState() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearState() => clearField(4);
 }
 
 class ActuatorConfig extends $pb.GeneratedMessage {
@@ -1254,5 +1427,84 @@ class Notification extends $pb.GeneratedMessage {
   $core.bool hasMessage() => $_has(2);
   @$pb.TagNumber(3)
   void clearMessage() => clearField(3);
+}
+
+class Activity extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Activity', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf'), createEmptyInstance: create)
+    ..aOM<$1.Timestamp>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', subBuilder: $1.Timestamp.create)
+    ..aOM<Feed>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'feed', subBuilder: Feed.create)
+    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state')
+    ..hasRequiredFields = false
+  ;
+
+  Activity._() : super();
+  factory Activity({
+    $1.Timestamp? timestamp,
+    Feed? feed,
+    $core.bool? state,
+  }) {
+    final _result = create();
+    if (timestamp != null) {
+      _result.timestamp = timestamp;
+    }
+    if (feed != null) {
+      _result.feed = feed;
+    }
+    if (state != null) {
+      _result.state = state;
+    }
+    return _result;
+  }
+  factory Activity.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Activity.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Activity clone() => Activity()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Activity copyWith(void Function(Activity) updates) => super.copyWith((message) => updates(message as Activity)) as Activity; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static Activity create() => Activity._();
+  Activity createEmptyInstance() => create();
+  static $pb.PbList<Activity> createRepeated() => $pb.PbList<Activity>();
+  @$core.pragma('dart2js:noInline')
+  static Activity getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Activity>(create);
+  static Activity? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.Timestamp get timestamp => $_getN(0);
+  @$pb.TagNumber(1)
+  set timestamp($1.Timestamp v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTimestamp() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTimestamp() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.Timestamp ensureTimestamp() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  Feed get feed => $_getN(1);
+  @$pb.TagNumber(2)
+  set feed(Feed v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasFeed() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearFeed() => clearField(2);
+  @$pb.TagNumber(2)
+  Feed ensureFeed() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.bool get state => $_getBF(2);
+  @$pb.TagNumber(3)
+  set state($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasState() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearState() => clearField(3);
 }
 
