@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'backend_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 BackendServiceClient backend(BackendRef ref) {
   return BackendServiceClient(ClientChannel(
     'localhost',

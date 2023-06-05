@@ -14,9 +14,9 @@ class MainScaffoldNavigationBar extends ConsumerWidget {
       route: '/',
     ),
     Destination(
-      icon: Icon(Icons.star_outlined),
-      label: 'Summary',
-      route: '/summary',
+      icon: Icon(Icons.change_history_outlined),
+      label: 'Activities',
+      route: '/activities',
     ),
     Destination(
       icon: Icon(Icons.settings_suggest_outlined),

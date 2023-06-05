@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'backend_provider.dart';
+part of 'activities.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$backendHash() => r'8c07f16fd3b14688d80893a9df76a8a967bd4584';
+String _$activitiesHash() => r'3b363b93aa2e67a00de7a4abbf74e934816a4e9e';
 
-/// See also [backend].
-@ProviderFor(backend)
-final backendProvider = Provider<BackendServiceClient>.internal(
-  backend,
-  name: r'backendProvider',
+/// See also [activities].
+@ProviderFor(activities)
+final activitiesProvider = StreamProvider<List<Activity>>.internal(
+  activities,
+  name: r'activitiesProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$backendHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$activitiesHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef BackendRef = ProviderRef<BackendServiceClient>;
+typedef ActivitiesRef = StreamProviderRef<List<Activity>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
