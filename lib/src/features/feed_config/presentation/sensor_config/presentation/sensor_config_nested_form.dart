@@ -7,6 +7,7 @@ import 'package:dream_home/src/grpc/generated/backend.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SensorConfigNestedForm extends ConsumerWidget {
@@ -71,15 +72,19 @@ class SensorConfigNestedForm extends ConsumerWidget {
                     title: const Text("Lower trigger"),
                     subtitle: const Text("Trigger when value is low"),
                     onChanged: controller.onLowerTriggerChange,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                    initialValue: sensorConfig.lowerThreshold.hasTrigger,
                   ),
                   FormBuilderDropdown(
                     decoration: const InputDecoration(
                       labelText: "Trigger feed",
                     ),
                     name: "sensorConfig.lowerThreshold.feed",
-                    initialValue: actuators.firstWhere(
-                        (f) => sensorConfig.lowerThreshold.feed.id == f.id,
-                        orElse: () => actuators.first),
+                    initialValue: actuators.firstWhereOrNull(
+                      (f) => sensorConfig.lowerThreshold.feed.id == f.id,
+                    ),
                     items: actuators
                         .map((f) => DropdownMenuItem(
                               value: f,
@@ -88,12 +93,20 @@ class SensorConfigNestedForm extends ConsumerWidget {
                         .toList(),
                     valueTransformer: (f) => f?.toProto3Json(),
                     enabled: state.hasLowerTrigger,
+                    validator: FormBuilderValidators.compose([
+                      if (state.hasLowerTrigger)
+                        FormBuilderValidators.required(),
+                    ]),
                   ),
                   FormBuilderSwitch(
                     name: "sensorConfig.lowerThreshold.state",
                     title: const Text("Set state"),
                     subtitle: const Text("State to set"),
                     enabled: state.hasLowerTrigger,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                    initialValue: sensorConfig.lowerThreshold.state,
                   )
                 ],
               ),
@@ -107,6 +120,10 @@ class SensorConfigNestedForm extends ConsumerWidget {
                     title: const Text("Upper trigger"),
                     subtitle: const Text("Trigger when value is high"),
                     onChanged: controller.onUpperTriggerChange,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                    initialValue: sensorConfig.upperThreshold.hasTrigger,
                   ),
                   FormBuilderDropdown(
                     decoration: const InputDecoration(
@@ -114,7 +131,7 @@ class SensorConfigNestedForm extends ConsumerWidget {
                     ),
                     name: "sensorConfig.upperThreshold.feed",
                     initialValue: actuators.firstWhereOrNull(
-                      (f) => sensorConfig.upperThreshold.feed.id == f.id,
+                      (f) => sensorConfig.lowerThreshold.feed.id == f.id,
                     ),
                     items: actuators
                         .map((f) => DropdownMenuItem(
@@ -124,12 +141,20 @@ class SensorConfigNestedForm extends ConsumerWidget {
                         .toList(),
                     valueTransformer: (f) => f?.toProto3Json(),
                     enabled: state.hasUpperTrigger,
+                    validator: FormBuilderValidators.compose([
+                      if (state.hasUpperTrigger)
+                        FormBuilderValidators.required(),
+                    ]),
                   ),
                   FormBuilderSwitch(
                     name: "sensorConfig.upperThreshold.state",
                     title: const Text("Set state"),
                     subtitle: const Text("State to set"),
                     enabled: state.hasUpperTrigger,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                    initialValue: sensorConfig.upperThreshold.state,
                   )
                 ],
               ),
