@@ -6,18 +6,28 @@ class FeedIcon extends StatelessWidget {
   const FeedIcon({
     Key? key,
     required this.feed,
+    this.color,
   }) : super(key: key);
 
   final Feed feed;
+  final Color? color;
 
   static const icons = {
-    FeedType.TEMPERATURE: Icon(Icons.thermostat_outlined, color: Colors.red),
-    FeedType.HUMIDITY: Icon(Icons.water_drop_outlined, color: Colors.cyan),
-    FeedType.LIGHT: Icon(Icons.lightbulb_outline, color: Colors.amber),
+    FeedType.TEMPERATURE: Icons.thermostat_outlined,
+    FeedType.HUMIDITY: Icons.water_drop_outlined,
+    FeedType.LIGHT: Icons.lightbulb_outline,
+  };
+
+  static const colors = {
+    FeedType.TEMPERATURE: Colors.red,
+    FeedType.HUMIDITY: Colors.cyan,
+    FeedType.LIGHT: Colors.amber,
   };
 
   @override
   Widget build(BuildContext context) {
-    return icons[feed.type]!;
+    final icon = icons[feed.type]!;
+    final iconColor = color ?? colors[feed.type]!;
+    return Icon(icon, color: iconColor);
   }
 }
