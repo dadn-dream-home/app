@@ -26,7 +26,7 @@ class FeedConfigScreen extends ConsumerWidget {
       title: feedId,
       actions: [
         TextButton(
-          onPressed: controller.onSave,
+          onPressed: () => controller.onSave(context),
           child: const Text("Save"),
         ),
       ],

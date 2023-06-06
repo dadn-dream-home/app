@@ -25,7 +25,7 @@ class FeedConfigScreenController extends _$FeedConfigScreenController {
     state.whenData((_) => onDone(context));
   }
 
-  Future<void> onSave() async {
+  Future<void> onSave(BuildContext ctx) async {
     final formData = ref.read(formKeyProvider(feed)).currentState!;
     if (formData.validate()) {
       formData.save();
@@ -34,9 +34,16 @@ class FeedConfigScreenController extends _$FeedConfigScreenController {
           formData.value.unflatten(),
           ignoreUnknownFields: true,
         );
-      await ref.read(backendProvider).updateFeedConfig(UpdateFeedConfigRequest(
+      await ref
+          .read(backendProvider)
+          .updateFeedConfig(UpdateFeedConfigRequest(
             config: config,
-          ));
+          ))
+          .then((_) => {
+                ScaffoldMessenger.of(ctx).showSnackBar(
+                  SnackBar(content: Text('Saved ${feed.id} config')),
+                ),
+              });
     }
   }
 
