@@ -1,5 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:dream_home/src/extensions/feed.dart';
+import 'package:dream_home/src/features/feed_config/data/feed_config.dart';
 import 'package:dream_home/src/features/feed_config/presentation/sensor_config/presentation/sensor_config_nested_form_controller.dart';
+import 'package:dream_home/src/features/feed_list/data/feed_list_provider.dart';
 import 'package:dream_home/src/grpc/generated/backend.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -16,6 +19,15 @@ class SensorConfigNestedForm extends ConsumerWidget {
     final state = ref.watch(sensorConfigNestedFormControllerProvider(feed));
     final controller =
         ref.watch(sensorConfigNestedFormControllerProvider(feed).notifier);
+
+    final actuators = ref
+        .watch(feedListProvider)
+        .value!
+        .where((f) => f.type.isActuator())
+        .where((f) => f.id != feed.id);
+
+    final sensorConfig =
+        ref.watch(feedConfigProvider(feed)).value!.sensorConfig;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,6 +61,81 @@ class SensorConfigNestedForm extends ConsumerWidget {
         ),
         const SizedBox(height: 30.0),
         Divider(color: Colors.grey[500]),
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  FormBuilderSwitch(
+                    name: "sensorConfig.lowerThreshold.hasTrigger",
+                    title: const Text("Lower trigger"),
+                    subtitle: const Text("Trigger when value is low"),
+                    onChanged: controller.onLowerTriggerChange,
+                  ),
+                  FormBuilderDropdown(
+                    decoration: const InputDecoration(
+                      labelText: "Trigger feed",
+                    ),
+                    name: "sensorConfig.lowerThreshold.feed",
+                    initialValue: actuators.firstWhere(
+                        (f) => sensorConfig.lowerThreshold.feed.id == f.id,
+                        orElse: () => actuators.first),
+                    items: actuators
+                        .map((f) => DropdownMenuItem(
+                              value: f,
+                              child: Text(f.id),
+                            ))
+                        .toList(),
+                    valueTransformer: (f) => f?.toProto3Json(),
+                    enabled: state.hasLowerTrigger,
+                  ),
+                  FormBuilderSwitch(
+                    name: "sensorConfig.lowerThreshold.state",
+                    title: const Text("Set state"),
+                    subtitle: const Text("State to set"),
+                    enabled: state.hasLowerTrigger,
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                children: [
+                  FormBuilderSwitch(
+                    name: "sensorConfig.upperThreshold.hasTrigger",
+                    title: const Text("Upper trigger"),
+                    subtitle: const Text("Trigger when value is high"),
+                    onChanged: controller.onUpperTriggerChange,
+                  ),
+                  FormBuilderDropdown(
+                    decoration: const InputDecoration(
+                      labelText: "Trigger feed",
+                    ),
+                    name: "sensorConfig.upperThreshold.feed",
+                    initialValue: actuators.firstWhereOrNull(
+                      (f) => sensorConfig.upperThreshold.feed.id == f.id,
+                    ),
+                    items: actuators
+                        .map((f) => DropdownMenuItem(
+                              value: f,
+                              child: Text(f.id),
+                            ))
+                        .toList(),
+                    valueTransformer: (f) => f?.toProto3Json(),
+                    enabled: state.hasUpperTrigger,
+                  ),
+                  FormBuilderSwitch(
+                    name: "sensorConfig.upperThreshold.state",
+                    title: const Text("Set state"),
+                    subtitle: const Text("State to set"),
+                    enabled: state.hasUpperTrigger,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
         Visibility(
           visible: false,
           maintainState: true,

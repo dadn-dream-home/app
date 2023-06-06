@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$State {
   bool get hasNotification => throw _privateConstructorUsedError;
+  bool get hasLowerTrigger => throw _privateConstructorUsedError;
+  bool get hasUpperTrigger => throw _privateConstructorUsedError;
   SfRangeValues get threshold => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +30,11 @@ abstract class $StateCopyWith<$Res> {
   factory $StateCopyWith(State value, $Res Function(State) then) =
       _$StateCopyWithImpl<$Res, State>;
   @useResult
-  $Res call({bool hasNotification, SfRangeValues threshold});
+  $Res call(
+      {bool hasNotification,
+      bool hasLowerTrigger,
+      bool hasUpperTrigger,
+      SfRangeValues threshold});
 }
 
 /// @nodoc
@@ -45,12 +51,22 @@ class _$StateCopyWithImpl<$Res, $Val extends State>
   @override
   $Res call({
     Object? hasNotification = null,
+    Object? hasLowerTrigger = null,
+    Object? hasUpperTrigger = null,
     Object? threshold = null,
   }) {
     return _then(_value.copyWith(
       hasNotification: null == hasNotification
           ? _value.hasNotification
           : hasNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasLowerTrigger: null == hasLowerTrigger
+          ? _value.hasLowerTrigger
+          : hasLowerTrigger // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasUpperTrigger: null == hasUpperTrigger
+          ? _value.hasUpperTrigger
+          : hasUpperTrigger // ignore: cast_nullable_to_non_nullable
               as bool,
       threshold: null == threshold
           ? _value.threshold
@@ -66,7 +82,11 @@ abstract class _$$_StateCopyWith<$Res> implements $StateCopyWith<$Res> {
       __$$_StateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool hasNotification, SfRangeValues threshold});
+  $Res call(
+      {bool hasNotification,
+      bool hasLowerTrigger,
+      bool hasUpperTrigger,
+      SfRangeValues threshold});
 }
 
 /// @nodoc
@@ -79,12 +99,22 @@ class __$$_StateCopyWithImpl<$Res> extends _$StateCopyWithImpl<$Res, _$_State>
   @override
   $Res call({
     Object? hasNotification = null,
+    Object? hasLowerTrigger = null,
+    Object? hasUpperTrigger = null,
     Object? threshold = null,
   }) {
     return _then(_$_State(
       hasNotification: null == hasNotification
           ? _value.hasNotification
           : hasNotification // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasLowerTrigger: null == hasLowerTrigger
+          ? _value.hasLowerTrigger
+          : hasLowerTrigger // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasUpperTrigger: null == hasUpperTrigger
+          ? _value.hasUpperTrigger
+          : hasUpperTrigger // ignore: cast_nullable_to_non_nullable
               as bool,
       threshold: null == threshold
           ? _value.threshold
@@ -97,17 +127,25 @@ class __$$_StateCopyWithImpl<$Res> extends _$StateCopyWithImpl<$Res, _$_State>
 /// @nodoc
 
 class _$_State extends _State {
-  const _$_State({required this.hasNotification, required this.threshold})
+  const _$_State(
+      {required this.hasNotification,
+      required this.hasLowerTrigger,
+      required this.hasUpperTrigger,
+      required this.threshold})
       : super._();
 
   @override
   final bool hasNotification;
   @override
+  final bool hasLowerTrigger;
+  @override
+  final bool hasUpperTrigger;
+  @override
   final SfRangeValues threshold;
 
   @override
   String toString() {
-    return 'State(hasNotification: $hasNotification, threshold: $threshold)';
+    return 'State(hasNotification: $hasNotification, hasLowerTrigger: $hasLowerTrigger, hasUpperTrigger: $hasUpperTrigger, threshold: $threshold)';
   }
 
   @override
@@ -117,12 +155,17 @@ class _$_State extends _State {
             other is _$_State &&
             (identical(other.hasNotification, hasNotification) ||
                 other.hasNotification == hasNotification) &&
+            (identical(other.hasLowerTrigger, hasLowerTrigger) ||
+                other.hasLowerTrigger == hasLowerTrigger) &&
+            (identical(other.hasUpperTrigger, hasUpperTrigger) ||
+                other.hasUpperTrigger == hasUpperTrigger) &&
             (identical(other.threshold, threshold) ||
                 other.threshold == threshold));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hasNotification, threshold);
+  int get hashCode => Object.hash(runtimeType, hasNotification, hasLowerTrigger,
+      hasUpperTrigger, threshold);
 
   @JsonKey(ignore: true)
   @override
@@ -134,11 +177,17 @@ class _$_State extends _State {
 abstract class _State extends State {
   const factory _State(
       {required final bool hasNotification,
+      required final bool hasLowerTrigger,
+      required final bool hasUpperTrigger,
       required final SfRangeValues threshold}) = _$_State;
   const _State._() : super._();
 
   @override
   bool get hasNotification;
+  @override
+  bool get hasLowerTrigger;
+  @override
+  bool get hasUpperTrigger;
   @override
   SfRangeValues get threshold;
   @override
