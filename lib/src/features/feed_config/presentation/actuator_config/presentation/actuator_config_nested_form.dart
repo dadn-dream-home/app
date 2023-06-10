@@ -34,8 +34,8 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
         const Text("Actuator config"),
         FormBuilderSwitch(
           name: "actuatorConfig.automatic",
-          title: const Text("Notification", style: TextStyle()),
-          subtitle: const Text("Enable notification for this feed"),
+          title: const Text("Automatic", style: TextStyle()),
+          subtitle: const Text("Enable automatic mode for this actuator"),
         ),
         // time in date picker
 
