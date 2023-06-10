@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use feedTypeDescriptor instead')
 const FeedType$json = const {
   '1': 'FeedType',
@@ -19,7 +20,8 @@ const FeedType$json = const {
 };
 
 /// Descriptor for `FeedType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List feedTypeDescriptor = $convert.base64Decode('CghGZWVkVHlwZRIPCgtURU1QRVJBVFVSRRAAEgwKCEhVTUlESVRZEAESCQoFTElHSFQQAg==');
+final $typed_data.Uint8List feedTypeDescriptor = $convert.base64Decode(
+    'CghGZWVkVHlwZRIPCgtURU1QRVJBVFVSRRAAEgwKCEhVTUlESVRZEAESCQoFTElHSFQQAg==');
 @$core.Deprecated('Use streamFeedValuesRequestDescriptor instead')
 const StreamFeedValuesRequest$json = const {
   '1': 'StreamFeedValuesRequest',
@@ -29,7 +31,8 @@ const StreamFeedValuesRequest$json = const {
 };
 
 /// Descriptor for `StreamFeedValuesRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List streamFeedValuesRequestDescriptor = $convert.base64Decode('ChdTdHJlYW1GZWVkVmFsdWVzUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQ=');
+final $typed_data.Uint8List streamFeedValuesRequestDescriptor = $convert
+    .base64Decode('ChdTdHJlYW1GZWVkVmFsdWVzUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQ=');
 @$core.Deprecated('Use streamFeedValuesResponseDescriptor instead')
 const StreamFeedValuesResponse$json = const {
   '1': 'StreamFeedValuesResponse',
@@ -39,35 +42,54 @@ const StreamFeedValuesResponse$json = const {
 };
 
 /// Descriptor for `StreamFeedValuesResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List streamFeedValuesResponseDescriptor = $convert.base64Decode('ChhTdHJlYW1GZWVkVmFsdWVzUmVzcG9uc2USFAoFdmFsdWUYASABKAJSBXZhbHVl');
+final $typed_data.Uint8List streamFeedValuesResponseDescriptor =
+    $convert.base64Decode(
+        'ChhTdHJlYW1GZWVkVmFsdWVzUmVzcG9uc2USFAoFdmFsdWUYASABKAJSBXZhbHVl');
 @$core.Deprecated('Use listFeedsRequestDescriptor instead')
 const ListFeedsRequest$json = const {
   '1': 'ListFeedsRequest',
 };
 
 /// Descriptor for `ListFeedsRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listFeedsRequestDescriptor = $convert.base64Decode('ChBMaXN0RmVlZHNSZXF1ZXN0');
+final $typed_data.Uint8List listFeedsRequestDescriptor =
+    $convert.base64Decode('ChBMaXN0RmVlZHNSZXF1ZXN0');
 @$core.Deprecated('Use listFeedsResponseDescriptor instead')
 const ListFeedsResponse$json = const {
   '1': 'ListFeedsResponse',
   '2': const [
-    const {'1': 'feeds', '3': 1, '4': 3, '5': 11, '6': '.protobuf.Feed', '10': 'feeds'},
+    const {
+      '1': 'feeds',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.protobuf.Feed',
+      '10': 'feeds'
+    },
   ],
 };
 
 /// Descriptor for `ListFeedsResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listFeedsResponseDescriptor = $convert.base64Decode('ChFMaXN0RmVlZHNSZXNwb25zZRIkCgVmZWVkcxgBIAMoCzIOLnByb3RvYnVmLkZlZWRSBWZlZWRz');
+final $typed_data.Uint8List listFeedsResponseDescriptor = $convert.base64Decode(
+    'ChFMaXN0RmVlZHNSZXNwb25zZRIkCgVmZWVkcxgBIAMoCzIOLnByb3RvYnVmLkZlZWRSBWZlZWRz');
 @$core.Deprecated('Use createFeedRequestDescriptor instead')
 const CreateFeedRequest$json = const {
   '1': 'CreateFeedRequest',
   '2': const [
     const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    const {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.protobuf.FeedType', '10': 'type'},
+    const {
+      '1': 'type',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.protobuf.FeedType',
+      '10': 'type'
+    },
   ],
 };
 
 /// Descriptor for `CreateFeedRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List createFeedRequestDescriptor = $convert.base64Decode('ChFDcmVhdGVGZWVkUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQSJgoEdHlwZRgCIAEoDjISLnByb3RvYnVmLkZlZWRUeXBlUgR0eXBl');
+final $typed_data.Uint8List createFeedRequestDescriptor = $convert.base64Decode(
+    'ChFDcmVhdGVGZWVkUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQSJgoEdHlwZRgCIAEoDjISLnByb3RvYnVmLkZlZWRUeXBlUgR0eXBl');
 @$core.Deprecated('Use createFeedResponseDescriptor instead')
 const CreateFeedResponse$json = const {
   '1': 'CreateFeedResponse',
@@ -77,7 +99,8 @@ const CreateFeedResponse$json = const {
 };
 
 /// Descriptor for `CreateFeedResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List createFeedResponseDescriptor = $convert.base64Decode('ChJDcmVhdGVGZWVkUmVzcG9uc2USDgoCaWQYASABKAlSAmlk');
+final $typed_data.Uint8List createFeedResponseDescriptor =
+    $convert.base64Decode('ChJDcmVhdGVGZWVkUmVzcG9uc2USDgoCaWQYASABKAlSAmlk');
 @$core.Deprecated('Use deleteFeedRequestDescriptor instead')
 const DeleteFeedRequest$json = const {
   '1': 'DeleteFeedRequest',
@@ -87,22 +110,32 @@ const DeleteFeedRequest$json = const {
 };
 
 /// Descriptor for `DeleteFeedRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List deleteFeedRequestDescriptor = $convert.base64Decode('ChFEZWxldGVGZWVkUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQ=');
+final $typed_data.Uint8List deleteFeedRequestDescriptor =
+    $convert.base64Decode('ChFEZWxldGVGZWVkUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQ=');
 @$core.Deprecated('Use deleteFeedResponseDescriptor instead')
 const DeleteFeedResponse$json = const {
   '1': 'DeleteFeedResponse',
 };
 
 /// Descriptor for `DeleteFeedResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List deleteFeedResponseDescriptor = $convert.base64Decode('ChJEZWxldGVGZWVkUmVzcG9uc2U=');
+final $typed_data.Uint8List deleteFeedResponseDescriptor =
+    $convert.base64Decode('ChJEZWxldGVGZWVkUmVzcG9uc2U=');
 @$core.Deprecated('Use feedDescriptor instead')
 const Feed$json = const {
   '1': 'Feed',
   '2': const [
     const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    const {'1': 'type', '3': 2, '4': 1, '5': 14, '6': '.protobuf.FeedType', '10': 'type'},
+    const {
+      '1': 'type',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.protobuf.FeedType',
+      '10': 'type'
+    },
   ],
 };
 
 /// Descriptor for `Feed`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List feedDescriptor = $convert.base64Decode('CgRGZWVkEg4KAmlkGAEgASgJUgJpZBImCgR0eXBlGAIgASgOMhIucHJvdG9idWYuRmVlZFR5cGVSBHR5cGU=');
+final $typed_data.Uint8List feedDescriptor = $convert.base64Decode(
+    'CgRGZWVkEg4KAmlkGAEgASgJUgJpZBImCgR0eXBlGAIgASgOMhIucHJvdG9idWYuRmVlZFR5cGVSBHR5cGU=');
