@@ -1,33 +1,50 @@
-import 'package:dream_home/lighting_screen.dart';
-import 'package:dream_home/setting_screen.dart';
+import 'package:dream_home/src/routings/router.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dream_home/dashboard_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   // runApp(const MyApp(Dashboard()));
-  runApp(ProviderScope(child: MyApp(Lighting())));
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  final Widget page;
-
-  const MyApp(this.page, {super.key});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        textTheme: GoogleFonts.outfitTextTheme(),
-      ),
-      home: Directionality(
-        textDirection: TextDirection.ltr,
-        child: page,
-      ),
+      theme: themeData,
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+
+final themeData = ThemeData(
+  primarySwatch: Colors.orange,
+  textTheme: GoogleFonts.outfitTextTheme(),
+  appBarTheme: AppBarTheme(
+    titleTextStyle: GoogleFonts.outfit(
+      fontSize: 20,
+      color: Colors.black,
+      fontWeight: FontWeight.w600,
+    ),
+    backgroundColor: Colors.transparent,
+    shadowColor: Colors.transparent,
+  ),
+  scaffoldBackgroundColor: Colors.grey[100],
+  navigationBarTheme: NavigationBarThemeData(
+    labelTextStyle: MaterialStateTextStyle.resolveWith(
+      (states) => GoogleFonts.outfit(fontSize: 12, color: Colors.black),
+    ),
+  ),
+  cardTheme: CardTheme(
+    elevation: 2.0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+);
