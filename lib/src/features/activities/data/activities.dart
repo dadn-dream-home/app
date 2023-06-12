@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'activities.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 Stream<List<Activity>> activities(ActivitiesRef ref) async* {
   final List<Activity> activities = [];
   final stream =

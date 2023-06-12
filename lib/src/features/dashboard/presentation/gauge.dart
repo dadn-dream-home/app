@@ -47,7 +47,7 @@ class Gauge extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            value == null ? "" : "$value",
+            value == null ? "" : "$value".substring(0, 4),
             style: GoogleFonts.inter(
               textStyle: TextStyle(
                 color: Color.lerp(color, Colors.black, 0.5),
