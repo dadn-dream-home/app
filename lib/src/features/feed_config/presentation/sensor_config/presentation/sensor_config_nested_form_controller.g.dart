@@ -7,7 +7,7 @@ part of 'sensor_config_nested_form_controller.dart';
 // **************************************************************************
 
 String _$sensorConfigNestedFormControllerHash() =>
-    r'59f19ae1b66c3c3c5458081498e17142c8670870';
+    r'03a7d27cb46c530dc892fdb81cbb6108cfb696ff';
 
 /// Copied from Dart SDK
 class _SystemHash {

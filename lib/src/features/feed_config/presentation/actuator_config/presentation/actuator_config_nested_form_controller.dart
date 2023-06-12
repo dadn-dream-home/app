@@ -1,5 +1,4 @@
 import 'package:cron/cron.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -23,8 +22,8 @@ enum Weekday {
 @freezed
 class CronInputState with _$CronInputState {
   factory CronInputState({
-    required TimeOfDay turnOnTime,
-    required TimeOfDay turnOffTime,
+    required DateTime turnOnTime,
+    required DateTime turnOffTime,
     required List<Weekday> weekdays,
   }) = _CronInputState;
 
@@ -34,14 +33,14 @@ class CronInputState with _$CronInputState {
     final weekdayInts = weekdays.map((e) => e.index).toList();
     final hours = [turnOnTime.hour];
     final minutes = [turnOnTime.minute];
-    return '0 ${minutes.join(',')} ${hours.join(',')} * * ${weekdayInts.join(',')}';
+    return '${minutes.join(',')} ${hours.join(',')} * * ${weekdayInts.join(',')}';
   }
 
   String get turnOffCronExpr {
     final weekdayInts = weekdays.map((e) => e.index).toList();
     final hours = [turnOffTime.hour];
     final minutes = [turnOffTime.minute];
-    return '0 ${minutes.join(',')} ${hours.join(',')} * * ${weekdayInts.join(',')}';
+    return '${minutes.join(',')} ${hours.join(',')} * * ${weekdayInts.join(',')}';
   }
 }
 
@@ -58,13 +57,19 @@ class ActuatorConfigNestedFormController
         ? Schedule.parse(config.turnOffCronExpr)
         : Schedule();
     state = CronInputState(
-      turnOnTime: TimeOfDay(
-        hour: onSchedule.hours?[0] ?? 0,
-        minute: onSchedule.minutes?[0] ?? 0,
+      turnOnTime: DateTime(
+        0,
+        0,
+        0,
+        onSchedule.hours?[0] ?? 0,
+        onSchedule.minutes?[0] ?? 0,
       ),
-      turnOffTime: TimeOfDay(
-        hour: offSchedule.hours?[0] ?? 0,
-        minute: offSchedule.minutes?[0] ?? 0,
+      turnOffTime: DateTime(
+        0,
+        0,
+        0,
+        offSchedule.hours?[0] ?? 0,
+        offSchedule.minutes?[0] ?? 0,
       ),
       weekdays:
           onSchedule.weekdays?.map((i) => Weekday.values[i % 7]).toList() ?? [],
@@ -76,15 +81,15 @@ class ActuatorConfigNestedFormController
   }
 
   void setTurnOnTime(DateTime? dateTime) {
-    final time =
-        TimeOfDay(hour: dateTime?.hour ?? 0, minute: dateTime?.minute ?? 0);
-    state = state.copyWith(turnOnTime: time);
+    if (dateTime != null) {
+      state = state.copyWith(turnOnTime: dateTime);
+    }
   }
 
   void setTurnOffTime(DateTime? dateTime) {
-    final time =
-        TimeOfDay(hour: dateTime?.hour ?? 0, minute: dateTime?.minute ?? 0);
-    state = state.copyWith(turnOffTime: time);
+    if (dateTime != null) {
+      state = state.copyWith(turnOffTime: dateTime);
+    }
   }
 
   void setWeekdays(List<Weekday>? weekdays) {

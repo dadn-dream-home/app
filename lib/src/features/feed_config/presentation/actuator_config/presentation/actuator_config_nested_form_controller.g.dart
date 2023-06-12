@@ -7,7 +7,7 @@ part of 'actuator_config_nested_form_controller.dart';
 // **************************************************************************
 
 String _$actuatorConfigNestedFormControllerHash() =>
-    r'5786dd2b6b632929f8877cb769ba08db562972bd';
+    r'd72be9b044710c6ed7b840b353034221d389a6fd';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -43,8 +43,11 @@ class SensorCardMedium extends FeedCardMedium {
         text: TextSpan(
           children: [
             TextSpan(
-              text: "${valueAsync.value}",
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              text: "$value",
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const TextSpan(text: " "),
             TextSpan(

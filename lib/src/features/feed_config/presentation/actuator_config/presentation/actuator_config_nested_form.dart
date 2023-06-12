@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../grpc/generated/backend.pbgrpc.dart';
-import '../../../data/form_key.dart';
+import '../../../data/feed_config.dart';
 import 'actuator_config_nested_form_controller.dart';
 
 class ActuatorConfigNestedForm extends ConsumerWidget {
@@ -18,15 +18,7 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
         ref.watch(actuatorConfigNestedFormControllerProvider(feed).notifier);
     final state = ref.watch(actuatorConfigNestedFormControllerProvider(feed));
 
-    ref.listen(
-      actuatorConfigNestedFormControllerProvider(feed),
-      (_, state) {
-        ref.read(formKeyProvider(feed)).currentState!.patchValue({
-          "actuatorConfig.turnOnCronExpr": state.turnOnCronExpr,
-          "actuatorConfig.turnOffCronExpr": state.turnOffCronExpr,
-        });
-      },
-    );
+    ref.watch(feedConfigProvider(feed)).value!.actuatorConfig;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +38,8 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
                 name: "actuatorConfig.startTime",
                 decoration: const InputDecoration(labelText: "Turn on time"),
                 inputType: InputType.time,
-                initialTime: state.turnOnTime,
+                timePickerInitialEntryMode: TimePickerEntryMode.dial,
+                initialValue: state.turnOnTime,
                 onChanged: controller.setTurnOnTime,
                 enabled: true,
                 validator: FormBuilderValidators.compose([
@@ -60,7 +53,7 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
                 name: "actuatorConfig.endTime",
                 decoration: const InputDecoration(labelText: "Turn off time"),
                 inputType: InputType.time,
-                initialTime: state.turnOffTime,
+                initialValue: state.turnOffTime,
                 onChanged: controller.setTurnOffTime,
                 enabled: true,
                 validator: FormBuilderValidators.compose([
@@ -75,6 +68,7 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
         FormBuilderCheckboxGroup(
             name: "actuatorConfig.weekdays",
             decoration: const InputDecoration(labelText: "Weekdays"),
+            initialValue: state.weekdays,
             options: Weekday.values
                 .map(
                   (e) => FormBuilderFieldOption(
@@ -95,13 +89,15 @@ class ActuatorConfigNestedForm extends ConsumerWidget {
           maintainState: true,
           child: Column(
             children: [
-              FormBuilderTextField(
+              FormBuilderField(
                 name: "actuatorConfig.turnOnCronExpr",
                 initialValue: state.turnOnCronExpr,
+                builder: (field) => const SizedBox.shrink(),
               ),
-              FormBuilderTextField(
+              FormBuilderField(
                 name: "actuatorConfig.turnOffCronExpr",
                 initialValue: state.turnOffCronExpr,
+                builder: (field) => const SizedBox.shrink(),
               ),
             ],
           ),

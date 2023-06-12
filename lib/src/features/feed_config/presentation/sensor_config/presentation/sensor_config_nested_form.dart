@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:dream_home/src/extensions/feed.dart';
 import 'package:dream_home/src/features/feed_config/data/feed_config.dart';
 import 'package:dream_home/src/features/feed_config/presentation/sensor_config/presentation/sensor_config_nested_form_controller.dart';
@@ -82,9 +81,8 @@ class SensorConfigNestedForm extends ConsumerWidget {
                       labelText: "Trigger feed",
                     ),
                     name: "sensorConfig.lowerThreshold.feed",
-                    initialValue: actuators.firstWhereOrNull(
-                      (f) => sensorConfig.lowerThreshold.feed.id == f.id,
-                    ),
+                    initialValue: state.lowerFeed,
+                    onChanged: controller.onLowerFeedChange,
                     items: actuators
                         .map((f) => DropdownMenuItem(
                               value: f,
@@ -130,9 +128,8 @@ class SensorConfigNestedForm extends ConsumerWidget {
                       labelText: "Trigger feed",
                     ),
                     name: "sensorConfig.upperThreshold.feed",
-                    initialValue: actuators.firstWhereOrNull(
-                      (f) => sensorConfig.lowerThreshold.feed.id == f.id,
-                    ),
+                    initialValue: state.upperFeed,
+                    onChanged: controller.onUpperFeedChange,
                     items: actuators
                         .map((f) => DropdownMenuItem(
                               value: f,

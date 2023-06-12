@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CronInputState {
-  TimeOfDay get turnOnTime => throw _privateConstructorUsedError;
-  TimeOfDay get turnOffTime => throw _privateConstructorUsedError;
+  DateTime get turnOnTime => throw _privateConstructorUsedError;
+  DateTime get turnOffTime => throw _privateConstructorUsedError;
   List<Weekday> get weekdays => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $CronInputStateCopyWith<$Res> {
       _$CronInputStateCopyWithImpl<$Res, CronInputState>;
   @useResult
   $Res call(
-      {TimeOfDay turnOnTime, TimeOfDay turnOffTime, List<Weekday> weekdays});
+      {DateTime turnOnTime, DateTime turnOffTime, List<Weekday> weekdays});
 }
 
 /// @nodoc
@@ -56,11 +56,11 @@ class _$CronInputStateCopyWithImpl<$Res, $Val extends CronInputState>
       turnOnTime: null == turnOnTime
           ? _value.turnOnTime
           : turnOnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as DateTime,
       turnOffTime: null == turnOffTime
           ? _value.turnOffTime
           : turnOffTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as DateTime,
       weekdays: null == weekdays
           ? _value.weekdays
           : weekdays // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$_CronInputStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TimeOfDay turnOnTime, TimeOfDay turnOffTime, List<Weekday> weekdays});
+      {DateTime turnOnTime, DateTime turnOffTime, List<Weekday> weekdays});
 }
 
 /// @nodoc
@@ -100,11 +100,11 @@ class __$$_CronInputStateCopyWithImpl<$Res>
       turnOnTime: null == turnOnTime
           ? _value.turnOnTime
           : turnOnTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as DateTime,
       turnOffTime: null == turnOffTime
           ? _value.turnOffTime
           : turnOffTime // ignore: cast_nullable_to_non_nullable
-              as TimeOfDay,
+              as DateTime,
       weekdays: null == weekdays
           ? _value._weekdays
           : weekdays // ignore: cast_nullable_to_non_nullable
@@ -124,9 +124,9 @@ class _$_CronInputState extends _CronInputState {
         super._();
 
   @override
-  final TimeOfDay turnOnTime;
+  final DateTime turnOnTime;
   @override
-  final TimeOfDay turnOffTime;
+  final DateTime turnOffTime;
   final List<Weekday> _weekdays;
   @override
   List<Weekday> get weekdays {
@@ -165,15 +165,15 @@ class _$_CronInputState extends _CronInputState {
 
 abstract class _CronInputState extends CronInputState {
   factory _CronInputState(
-      {required final TimeOfDay turnOnTime,
-      required final TimeOfDay turnOffTime,
+      {required final DateTime turnOnTime,
+      required final DateTime turnOffTime,
       required final List<Weekday> weekdays}) = _$_CronInputState;
   _CronInputState._() : super._();
 
   @override
-  TimeOfDay get turnOnTime;
+  DateTime get turnOnTime;
   @override
-  TimeOfDay get turnOffTime;
+  DateTime get turnOffTime;
   @override
   List<Weekday> get weekdays;
   @override
